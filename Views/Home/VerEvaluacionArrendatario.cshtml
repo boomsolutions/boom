@@ -1,0 +1,120 @@
+﻿@model MvcApplication4.Models.Alquileres
+
+@{
+    ViewBag.Title = "Mejor Lo Alquilo - Ver Evaluacion Arrendatario";
+}
+
+<section id="checkout-page">
+
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+
+    <div class="container">
+        <h2>Evaluación realizada al arrendatario</h2>
+        <hr />
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                @if (Model.UsuarioArrendatario.FotosUsuarios.Count() > 0)
+                {
+                    <div style="background-image:url(@Url.Content(Model.UsuarioArrendatario.FotosUsuarios.First().Imagen.RutaFoto))" class="eval-user-image"  ></div>                                      
+                }
+                else
+                {
+                    <div style="background-image:url(@Url.Content("~/assets/images/default-avatar.jpg"))" class="eval-user-image"  ></div>
+                }
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top">
+                <label>@Model.UsuarioArrendatario.Nombre @Model.UsuarioArrendatario.Apellido ha alquilado <a href="@Url.Content("~/Home/Details/" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.Producto.IdProducto.ToString()))).ToString().Replace("%","%25")">@Model.Producto.Nombre</a>.<br/>Desde el @Model.FechaDesde.ToLongDateString() hasta el @Model.FechaHasta.ToLongDateString()</label>
+            </div>
+        </div>
+        
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 eval-detail">
+            
+            <div>
+                
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        @Html.LabelFor(model => model.ComentarioExperienciaArrendatario,"Describe tu experiencia")
+                        <p>@Html.DisplayFor(model => model.ComentarioExperienciaArrendatario)</p>
+                        
+                        </div>
+                    </div><!-- /.field-row -->
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        @Html.LabelFor(model => model.ComentarioPrivadoArrendatario, "Comentario privado para el usuario")
+                        <p>@Html.DisplayFor(model => model.ComentarioPrivadoArrendatario)</p>
+                        
+                        </div>
+                    </div><!-- /.field-row -->
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <label>Cuidado</label>
+                            (¿Tuvo el arrendatario los cuidados pautados?)
+                           
+                            <div class="star-holder margin-top">
+                                <div class="star-disable big" data-score="@Model.CalificacionCuidadoArrendatario"></div>
+                            </div>
+                                
+
+                        </div>
+                    </div><!-- /.field-row -->
+                    <br />
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <label>Comunicacion</label>
+                            (Claridad en la comunicacion con el arrendatario.)
+                            
+                            <div class="star-holder margin-top">
+                                <div class="star-disable big" data-score="@Model.CalificacionComunicacionArrendatario"></div>
+                            </div>
+                                
+                            
+                        </div>
+                    </div><!-- /.field-row -->
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label>Cumplimiento de las normas</label>
+                            (Respeto de las normas especificadas.)
+                            
+                            <div class="star-holder margin-top">
+                                <div class="star-disable big" data-score="@Model.CalificacionCumplimientoNormasArrendatario"></div>
+                            </div>
+                                
+
+                        </div>
+                    </div><!-- /.field-row -->
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label>¿Recomendarias a este usuario?</label>
+                               
+                            @if (Model.CalificacionPositivaArrendatario)
+                            {
+                                <label>SI</label>
+                            }    
+                            else
+                            {
+                                <label>NO</label>
+                            }
+ 
+                        </div>
+                    </div><!-- /.field-row -->
+
+            </div><!-- /.billing-address -->
+
+        </div><!-- /.col -->
+    </div><!-- /.container -->    
+</section>

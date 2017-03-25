@@ -1,0 +1,275 @@
+@{
+    ViewBag.Title = "VIEW SOLICITUDES USUARIO";
+    //Layout = null;
+}
+    
+
+<script type="text/javascript">
+    function MensajeRechazo()
+    {
+        msj = prompt('Ingrese la razon del rechazo:');
+        document.getElementById("msjRechazo").value = msj;
+    }
+</script>
+
+<!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+
+<!-- BEGIN BODY REAL -->
+    <div class="container" >        
+       
+     <div class="row">
+     	<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        	<div class="account-menu-holder">
+                <div class="account-menu-title">
+                	<p>MI CUENTA</p>
+                </div>
+                <div class="account-menu-option">
+                	<div class="panel-group panel-group-faq" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-faq">
+                          <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="">
+                                Configuracion
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
+                            <div class="panel-body">
+                                <ul>
+                                <li>@Html.ActionLink("Datos personales", "ViewUser", "Home")</li>
+                                </ul>
+    
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-faq">
+                          <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Mis publicaciones
+    
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="true" >
+                            <div class="panel-body">
+                              
+                              <ul>
+	                                @{ string cantConsSinLeer = ViewBag.CantidadConsultas; }
+                                    <li>@Html.ActionLink("Publicaciones", "ViewPublicaciones", "Home")</li>
+                                    <li>@Html.ActionLink("Preguntas" + cantConsSinLeer, "ViewConsultasParaUsuario", "Home")</li>
+                                    <li>@Html.ActionLink("Alquileres concretados", "ViewAlquileresPorUsuario", "Home")</li>
+                                    <li>@Html.ActionLink("Reservas pendientes", "ViewSolicitudesParaUsuario", "Home")</li>
+                                    <li>@Html.ActionLink("Reservas rechazadas", "ViewSolicitudesParaUsuarioRechazadas", "Home")</li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-faq">
+                          <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Mis alquileres
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
+                            <div class="panel-body">
+                              <ul>
+	                               @{ string cantRespSinLeer = ViewBag.CantidadRespuestasSinLeerString; }
+                                    <li>@Html.ActionLink("Preguntas" + cantRespSinLeer, "ViewConsultasDelUsuario", "Home")</li>
+                                    <li>@Html.ActionLink("Alquileres concretados", "ViewAlquileresDelUsuario", "Home")</li>
+                                    <li>@Html.ActionLink("Reservas pendientes", "ViewSolicitudesDelUsuario", "Home")</li>
+                                    <li>@Html.ActionLink("Reservas rechazadas", "ViewSolicitudesDelUsuarioRechazadas", "Home")</li>
+                                </ul>
+                              
+                            </div>
+                          </div>
+                        </div>
+                
+                
+              		</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="account-detail-holder">
+                <div class="account-detail-title">
+                	<p>Mis publicaciones - Reservas pendientes</p>
+                </div>
+                <div class="account-detail-content margin-top text-center">
+
+                    @if (ViewBag.Alquileres != null)
+                    {
+                        foreach (MvcApplication4.Models.Alquileres a1 in ((List<MvcApplication4.Models.Alquileres>)ViewBag.Alquileres).OrderByDescending(a => a.IdAlquiler))
+                        {
+                	        <div class="row">
+                    	        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                         	        <div class="col-lg-6" >
+                                       
+                                            @if (a1.UsuarioArrendatario.FotosUsuarios.Count() > 0)
+                                            {
+                                                foreach (var fu1 in a1.UsuarioArrendatario.FotosUsuarios.ToList())
+                                                {
+                                                    if (String.IsNullOrEmpty(fu1.Imagen.RutaFotoThumb))
+                                                    {
+                                                        <div class="account-detail-user-small user-image-thumb" style="background-image:url(@Url.Content(fu1.Imagen.RutaFoto.Replace("../../", "")))">
+                                                        </div>
+                                                        
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="account-detail-user-small user-image-thumb" style="background-image:url(@Url.Content(fu1.Imagen.RutaFotoThumb.Replace("../../", "")))">
+                                                        </div>
+                                                        
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="account-detail-user-small user-image-thumb" style="background-image:url(@Url.Content("~/assets/images/default-avatar.jpg"))">
+                                                </div>
+                                                
+                                            }
+
+
+                                     </div>
+                                     <div class="col-lg-6" >
+                                        <p>@a1.UsuarioArrendatario.Nombre @a1.UsuarioArrendatario.Apellido</p>
+                                        <p>@if (a1.UsuarioArrendatario.Barrio != null){@a1.UsuarioArrendatario.Barrio.DescripcionI1}</p>
+                                        <p>@if (a1.UsuarioArrendatario.Ciudad != null){@a1.UsuarioArrendatario.Ciudad.DescripcionI1}</p>
+                                        @*<p>ESTERLLAS</p>*@
+                                     </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">                        	
+                                     <div class="col-lg-6" >
+                                        
+                                        @if (a1.Producto.FotosProductos.Count() > 0)
+                                        {
+
+                                            foreach (var f2 in a1.Producto.FotosProductos.ToList())
+                                            {
+
+                                                if (String.IsNullOrEmpty(f2.Imagen.RutaFotoThumb))
+                                                {
+                                                    <div class="product-image-thumb" style="background-image:url(@Url.Content(f2.Imagen.RutaFoto.Replace("../../", "")))">
+                                                    </div>
+                                                    
+                                                }
+                                                else
+                                                {
+                                                    <div class="product-image-thumb" style="background-image:url(@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", "")))">
+                                                    </div>
+                                                    
+                                                
+                                                }
+                                        
+                                                 
+                                                break;
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                             <div class="product-image-thumb" style="background-image:url(@Url.Content("~/assets/images/product-small-01.jpg"))">
+                                                    </div>
+                                        }
+                                     </div>
+                                     <div class="col-lg-6" >
+                                        <p>@Html.ActionLink(a1.Producto.Nombre,"Details/" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(a1.Producto.IdProducto.ToString())),"Home")
+</p>
+                                        <!--<p class="owner">
+                                            Dueño: @a1.Producto.Usuario.Nombre [@a1.Producto.Usuario.User]
+                                        </p>-->
+                                     </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        	        <div class="row">
+                        		        <div class="col-lg-12 red-border">Desde @a1.FechaDesde.ToString("dd-MMM-yyyy")</div>
+                        		        <div class="col-lg-12 red-border">Hasta @a1.FechaHasta.ToString("dd-MMM-yyyy")</div>
+                                    </div>
+                                    <div class="row margin-top">
+                            	        <div class="col-lg-12 no-padding">
+                                            <!--<input type="button" class="le-button" value="Confirmar" />-->
+                                            @using (Html.BeginForm("ConfirmarAlquiler", "Home", FormMethod.Post))
+                                            {
+                                                @Html.Hidden("id",HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(a1.IdAlquiler.ToString())))
+                                                <input class="le-button le-button-account" type="submit"  value="Confirmar" onclick="javascript: return confirm('Esta seguro?');"/>
+                                            }
+                            	        </div>
+                        		        <div class="col-lg-12 no-padding margin-top">
+                            		        <!--<input type="button" class="le-button" data-toggle="modal" data-target="#exampleModal" data-whatever="" value="Rechazar" />-->
+                                            @using (Html.BeginForm("RechazarAlquiler", "Home", FormMethod.Post, new { id = "formRechazo"}))
+                                            {
+                                                    @Html.Hidden("id",HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(a1.IdAlquiler.ToString())))
+                                                    @Html.Hidden("msjRechazo")
+                                                    <input class="le-button le-button-account" type="submit"  value="Rechazar" onclick="javascript: MensajeRechazo();"/>
+                            
+                                            }
+                            	        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+
+                        }
+                    }
+                    else
+                    {
+                        <div class="text-center">No tienes solicitudes pendientes...</div>
+                    }
+
+                </div>
+                
+            </div>
+        </div>
+     </div>
+     
+     
+        
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color:#FF7E82;color:#FFFFFF">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Ingrese el motivo de rechazo</h4>
+              </div>
+              <div class="modal-body">
+                <form>
+                <!--
+                  <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>-->
+                  <div class="form-group">
+                    <label for="message-text" class="control-label">Motivo:</label>
+                    <textarea class="form-control" id="message-text"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+               <button type="button" class="le-button" style="background-color:#FF7E82">Aceptar</button>
+                <button type="button" class="le-button" data-dismiss="modal">Cancelar</button>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+	</div>
+
+   
+<!-- END BODY REAL -->

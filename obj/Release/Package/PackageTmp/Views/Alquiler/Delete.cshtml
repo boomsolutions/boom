@@ -1,0 +1,38 @@
+﻿@model MvcApplication4.Models.Alquileres
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Alquileres</legend>
+
+    <div class="display-label">Producto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Producto.Nombre)
+    </div>
+
+    <div class="display-label">FechaDesde</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaDesde)
+    </div>
+
+    <div class="display-label">FechaHasta</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FechaHasta)
+    </div>
+
+    <div class="display-label">IdUsuarioArrendatario</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IdUsuarioArrendatario)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

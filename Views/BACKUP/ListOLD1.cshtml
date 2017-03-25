@@ -1,0 +1,959 @@
+﻿@{
+    ViewBag.Title = "LISTPRODUCTS";
+}
+
+<script type="text/javascript">
+    function cargaImagen(img)
+    {
+        //alert(img.width + " - " + img.height);
+        r0 = img.width / img.height;
+        r = 246 / 186; //pasar a conf gral!!!
+
+        
+        //if (img.width > img.height)
+        if(r0 > r)
+        {
+            img.setAttribute("width", "246");
+        }
+        else
+        {
+            img.setAttribute("height", "186");
+        }
+    }
+
+    /*function cargaImagen2(img) {
+        alert(img.width + " - " + img.height);
+        
+    }*/
+</script>
+
+<script type="text/javascript">
+var cat = location.search.split("&")[1].replace("Categorias=","")
+document.body.onload = ga('send', 'event', 'load', 'OnLoadBusqueda', 'Entro a la categoria: ' + cat); //alert("OnLoad HOME.");
+</script>
+
+ <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+
+<div class="wrapper">
+
+   
+
+<!-- ============================================================= TOP NAVIGATION ============================================================= -->
+
+<!-- ============================================================= TOP NAVIGATION : END ============================================================= -->       
+<!-- ============================================================= HEADER ============================================================= -->
+<!-- ============================================================= HEADER : END ============================================================= -->
+
+@*<div class="animate-dropdown"><!-- ========================================= BREADCRUMB ========================================= -->
+<div id="top-mega-nav">
+    <div class="container">
+        <nav>
+            <ul class="inline">
+                <li class="dropdown le-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-list"></i> Ver Por Categoria
+                    </a>
+                    
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Computer Cases & Accessories</a></li>
+                        <li><a href="#">CPUs, Processors</a></li>
+                        <li><a href="#">Fans, Heatsinks &amp; Cooling</a></li>
+                        <li><a href="#">Graphics, Video Cards</a></li>
+                        <li><a href="#">Interface, Add-On Cards</a></li>
+                        <li><a href="#">Laptop Replacement Parts</a></li>
+                        <li><a href="#">Memory (RAM)</a></li>
+                        <li><a href="#">Motherboards</a></li>
+                        <li><a href="#">Motherboard &amp; CPU Combos</a></li>
+                        <li><a href="#">Motherboard Components</a></li>
+                    </ul>
+                </li>
+
+                <li class="breadcrumb-nav-holder"> 
+                    <ul>
+                  <!--      <li class="dropdown breadcrumb-item">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">laptops &amp; computers </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">PDA</a>
+                                    <a href="#">accesories</a>
+                                    <a href="#">tablets</a>
+                                    <a href="#">games</a>
+                                    <a href="#">consoles</a>
+                                </li>
+                            </ul>
+                        </li> --><!-- /.breadcrumb-item -->
+<!--
+                        <li class="dropdown breadcrumb-item">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Desktop PC </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">PDA</a>
+                                    <a href="#">accesories</a>
+                                    <a href="#">tablets</a>
+                                    <a href="#">games</a>
+                                    <a href="#">consoles</a>
+                                </li>
+                            </ul>
+                        </li> --><!-- /.breadcrumb-item -->
+<!--
+                        <li class="breadcrumb-item">
+                            <a href="#">Gaming</a>
+                        </li>--><!-- /.breadcrumb-item -->
+
+                        <li class="breadcrumb-item current">
+                            <a href="#">"Categoria Actual"</a>
+                        </li><!-- /.breadcrumb-item -->
+                    </ul>
+                </li><!-- /.breadcrumb-nav-holder -->
+
+            </ul><!-- /.inline -->
+        </nav>
+
+    </div><!-- /.container -->
+</div><!-- /#top-mega-nav -->
+<!-- ========================================= BREADCRUMB : END ========================================= --></div>*@     
+    <section id="category-grid">
+    <div class="container">
+        
+        <!-- ========================================= SIDEBAR ========================================= -->
+       <!-- <div class="col-xs-12 col-sm-3 no-margin sidebar narrow">-->
+
+            <!-- ========================================= PRODUCT FILTER ========================================= -->
+<!--<div class="widget">
+    <h1>Product Filters</h1>
+    <div class="body bordered">
+        
+        <div class="category-filter">
+            <h2>Brands</h2>
+            <hr>
+            <ul>
+                <li><input checked="checked" class="le-checkbox" type="checkbox"  /> <label>Samsung</label> <span class="pull-right">(2)</span></li>
+                <li><input  class="le-checkbox" type="checkbox" /> <label>Dell</label> <span class="pull-right">(8)</span></li>
+                <li><input  class="le-checkbox" type="checkbox" /> <label>Toshiba</label> <span class="pull-right">(1)</span></li>
+                <li><input  class="le-checkbox" type="checkbox" /> <label>Apple</label> <span class="pull-right">(5)</span></li>
+            </ul>
+        </div>-->
+<!-- /.category-filter -->
+        
+   <!--     <div class="price-filter">
+            <h2>Price</h2>
+            <hr>
+            <div class="price-range-holder">
+
+                <input type="text" class="price-slider" value="" >
+
+                <span class="min-max">
+                    Price: $89 - $2899
+                </span>
+                <span class="filter-button">
+                    <a href="#">Filter</a>
+                </span>
+            </div>
+        </div> --><!-- /.price-filter -->
+
+   <!-- </div>--><!-- /.body -->
+<!--</div>--><!-- /.widget -->
+<!-- ========================================= PRODUCT FILTER : END ========================================= -->
+        <!--    <div class="widget">
+    <h1 class="border">special offers</h1>
+    <ul class="product-list">
+        <li>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 no-margin">
+                    <a href="#" class="thumb-holder">
+                        <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-small-01.jpg" />
+                    </a>
+                </div>
+                <div class="col-xs-8 col-sm-8 no-margin">
+                    <a href="#">Netbook Acer </a>
+                    <div class="price">
+                        <div class="price-prev">$2000</div>
+                        <div class="price-current">$1873</div>
+                    </div>
+                </div>  
+            </div>
+        </li>
+
+        <li>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 no-margin">
+                    <a href="#" class="thumb-holder">
+                        <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-small-02.jpg" />
+                    </a>
+                </div>
+                <div class="col-xs-8 col-sm-8 no-margin">
+                    <a href="#">PowerShot Elph 115 16MP Digital Camera</a>
+                    <div class="price">
+                        <div class="price-prev">$2000</div>
+                        <div class="price-current">$1873</div>
+                    </div>
+                </div>  
+            </div>
+        </li>
+
+        <li>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 no-margin">
+                    <a href="#" class="thumb-holder">
+                        <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-small-03.jpg" />
+                    </a>
+                </div>
+                <div class="col-xs-8 col-sm-8 no-margin">
+                    <a href="#">PowerShot Elph 115 16MP Digital Camera</a>
+                    <div class="price">
+                        <div class="price-prev">$2000</div>
+                        <div class="price-current">$1873</div>
+                    </div>
+                </div>  
+            </div>
+        </li>
+
+        <li>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 no-margin">
+                    <a href="#" class="thumb-holder">
+                        <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-small-01.jpg" />
+                    </a>
+                </div>
+                <div class="col-xs-8 col-sm-8 no-margin">
+                    <a href="#">Netbook Acer</a>
+                    <div class="price">
+                        <div class="price-prev">$2000</div>
+                        <div class="price-current">$1873</div>
+                    </div>
+                </div>  
+            </div>
+        </li>
+        
+        <li>
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 no-margin">
+                    <a href="#" class="thumb-holder">
+                        <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-small-02.jpg" />
+                    </a>
+                </div>
+                <div class="col-xs-8 col-sm-8 no-margin">
+                    <a href="#">PowerShot Elph 115 16MP Digital Camera</a>
+                        <div class="price">
+                            <div class="price-prev">$2000</div>
+                            <div class="price-current">$1873</div>
+                        </div>
+                </div>  
+            </div>
+        </li>
+    </ul>
+</div>--><!-- /.widget -->
+          <!--  <div class="widget">
+    <div class="simple-banner">
+        <a href="#"><img alt="" class="img-responsive" src="assets/images/blank.gif" data-echo="assets/images/banners/banner-simple.jpg" /></a>
+    </div>
+</div>-->
+            <!-- ========================================= FEATURED PRODUCTS ========================================= -->
+<!--<div class="widget">
+    <h1 class="border">Featured Products</h1>
+    <ul class="product-list">
+        
+        <li class="sidebar-product-list-item">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 no-margin">
+                    <a href="#" class="thumb-holder">
+                        <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-small-01.jpg" />
+                    </a>
+                </div>
+                <div class="col-xs-8 col-sm-8 no-margin">
+                    <a href="#">Netbook Acer </a>
+                    <div class="price">
+                        <div class="price-prev">$2000</div>
+                        <div class="price-current">$1873</div>
+                    </div>
+                </div>  
+            </div>
+        </li>--><!-- /.sidebar-product-list-item -->
+
+      <!--  <li class="sidebar-product-list-item">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 no-margin">
+                    <a href="#" class="thumb-holder">
+                        <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-small-02.jpg" />
+                    </a>
+                </div>
+                <div class="col-xs-8 col-sm-8 no-margin">
+                    <a href="#">PowerShot Elph 115 16MP Digital Camera</a>
+                    <div class="price">
+                        <div class="price-prev">$2000</div>
+                        <div class="price-current">$1873</div>
+                    </div>
+                </div>  
+            </div>
+        </li>--><!-- /.sidebar-product-list-item -->
+
+    <!--    <li class="sidebar-product-list-item">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 no-margin">
+                    <a href="#" class="thumb-holder">
+                        <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-small-03.jpg" />
+                    </a>
+                </div>
+                <div class="col-xs-8 col-sm-8 no-margin">
+                    <a href="#">PowerShot Elph 115 16MP Digital Camera</a>
+                    <div class="price">
+                        <div class="price-prev">$2000</div>
+                        <div class="price-current">$1873</div>
+                    </div>
+                </div>  
+            </div>
+        </li>--><!-- /.sidebar-product-list-item -->
+
+     <!--   <li class="sidebar-product-list-item">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 no-margin">
+                    <a href="#" class="thumb-holder">
+                        <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-small-01.jpg" />
+                    </a>
+                </div>
+                <div class="col-xs-8 col-sm-8 no-margin">
+                    <a href="#">Netbook Acer </a>
+                    <div class="price">
+                        <div class="price-prev">$2000</div>
+                        <div class="price-current">$1873</div>
+                    </div>
+                </div>  
+            </div>
+        </li>--><!-- /.sidebar-product-list-item -->
+        
+        <!--<li class="sidebar-product-list-item">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 no-margin">
+                    <a href="#" class="thumb-holder">
+                        <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-small-02.jpg" />
+                    </a>
+                </div>
+                <div class="col-xs-8 col-sm-8 no-margin">
+                    <a href="#">PowerShot Elph 115 16MP Digital Camera</a>
+                    <div class="price">
+                        <div class="price-prev">$2000</div>
+                        <div class="price-current">$1873</div>
+                    </div>
+                </div>
+            </div>
+        </li>--><!-- /.sidebar-product-list-item -->
+
+  <!--  </ul> --><!-- /.product-list -->
+<!--</div> --><!-- /.widget -->
+<!-- ========================================= FEATURED PRODUCTS : END ========================================= -->
+      <!--  </div> -->
+        <!-- ========================================= SIDEBAR : END ========================================= -->
+
+        <!-- ========================================= CONTENT ========================================= -->
+
+        <!--ANTES <div class="col-xs-12 col-sm-9 no-margin wide sidebar">-->
+ <div class="col-xs-12 col-sm-12 no-margin ">
+@*<section id="recommended-products" class="carousel-holder hover small" hidden="hidden">
+
+    <div class="title-nav">
+        <h2 class="inverse">Recommended Products</h2>
+        <div class="nav-holder">
+            <a href="#prev" data-target="#owl-recommended-products" class="slider-prev btn-prev fa fa-angle-left"></a>
+            <a href="#next" data-target="#owl-recommended-products" class="slider-next btn-next fa fa-angle-right"></a>
+        </div>
+    </div><!-- /.title-nav -->
+
+    <div id="owl-recommended-products" class="owl-carousel product-grid-holder">
+        <div class="no-margin carousel-item product-item-holder hover size-medium">
+            <div class="product-item">
+                <div class="ribbon red"><span>sale</span></div> 
+                <div class="image">
+                    <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-11.jpg" />
+                </div>
+                <div class="body">
+                    <div class="title">
+                        <a href="single-product.html">LC-70UD1U 70" class aquos 4K ultra HD</a>
+                    </div>
+                    <div class="brand">sharp</div>
+                </div>
+                <div class="prices">
+                    <div class="price-current text-right">$1199.00</div>
+                </div>
+                <div class="hover-area">
+                    <div class="add-cart-button">
+                        <a href="single-product.html" class="le-button">add to cart</a>
+                    </div>
+                    <div class="wish-compare">
+                        <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                        <a class="btn-add-to-compare" href="#">compare</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.carousel-item -->
+
+        <div class="no-margin carousel-item product-item-holder hover size-medium">
+            <div class="product-item">
+                <div class="ribbon blue"><span>new!</span></div> 
+                <div class="image">
+                    <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-12.jpg" />
+                </div>
+                <div class="body">
+                    <div class="title">
+                        <a href="single-product.html">cinemizer OLED 3D virtual reality TV Video</a>
+                    </div>
+                    <div class="brand">zeiss</div>
+                </div>
+                <div class="prices">
+
+                    <div class="price-current text-right">$1199.00</div>
+                </div>
+                <div class="hover-area">
+                    <div class="add-cart-button">
+                        <a href="single-product.html" class="le-button">add to cart</a>
+                    </div>
+                    <div class="wish-compare">
+                        <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                        <a class="btn-add-to-compare" href="#">compare</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.carousel-item -->
+
+        <div class="no-margin carousel-item product-item-holder hover size-medium">
+            <div class="product-item">
+                <div class="image">
+                    <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-13.jpg" />
+                </div>
+                <div class="body">
+                    <div class="title">
+                        <a href="single-product.html">s2340T23" full HD multi-Touch Monitor</a>
+                    </div>
+                    <div class="brand">dell</div>
+                </div>
+                <div class="prices">
+                    <div class="price-current text-right">$1199.00</div>
+                </div>
+                <div class="hover-area">
+                    <div class="add-cart-button">
+                        <a href="single-product.html" class="le-button">add to cart</a>
+                    </div>
+                    <div class="wish-compare">
+                        <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                        <a class="btn-add-to-compare" href="#">compare</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.carousel-item -->
+
+        <div class="no-margin carousel-item product-item-holder hover size-medium">
+            <div class="product-item">
+                <div class="ribbon blue"><span>new!</span></div> 
+                <div class="image">
+                    <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-14.jpg" />
+                </div>
+                <div class="body">
+                    <div class="title">
+                        <a href="single-product.html">kardon BDS 7772/120 integrated 3D</a>
+                    </div>
+                    <div class="brand">harman</div>
+                </div>
+                <div class="prices">
+                    <div class="price-current text-right">$1199.00</div>
+                </div>
+                <div class="hover-area">
+                    <div class="add-cart-button">
+                        <a href="single-product.html" class="le-button">add to cart</a>
+                    </div>
+                    <div class="wish-compare">
+                        <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                        <a class="btn-add-to-compare" href="#">compare</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.carousel-item -->
+
+        <div class="no-margin carousel-item product-item-holder hover size-medium">
+            <div class="product-item">
+                <div class="ribbon green"><span>bestseller</span></div> 
+                <div class="image">
+                    <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-15.jpg" />
+                </div>
+                <div class="body">
+                    <div class="title">
+                        <a href="single-product.html">netbook acer travel B113-E-10072</a>
+                    </div>
+                    <div class="brand">acer</div>
+                </div>
+                <div class="prices">
+                    <div class="price-current text-right">$1199.00</div>
+                </div>
+                <div class="hover-area">
+                    <div class="add-cart-button">
+                        <a href="single-product.html" class="le-button">add to cart</a>
+                    </div>
+                    <div class="wish-compare">
+                        <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                        <a class="btn-add-to-compare" href="#">compare</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.carousel-item -->
+
+        <div class="no-margin carousel-item product-item-holder hover size-medium">
+            <div class="product-item">
+                <div class="image">
+                    <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-16.jpg" />
+                </div>
+                <div class="body">
+                    <div class="title">
+                        <a href="single-product.html">iPod touch 5th generation,64GB, blue</a>
+                    </div>
+                    <div class="brand">apple</div>
+                </div>
+                <div class="prices">
+                    <div class="price-current text-right">$1199.00</div>
+                </div>
+                <div class="hover-area">
+                    <div class="add-cart-button">
+                        <a href="single-product.html" class="le-button">add to cart</a>
+                    </div>
+                    <div class="wish-compare">
+                        <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                        <a class="btn-add-to-compare" href="#">compare</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.carousel-item -->
+
+        <div class="no-margin carousel-item product-item-holder hover size-medium">
+            <div class="product-item">
+                <div class="image">
+                    <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-13.jpg" />
+                </div>
+                <div class="body">
+                    <div class="title">
+                        <a href="single-product.html">s2340T23" full HD multi-Touch Monitor</a>
+                    </div>
+                    <div class="brand">dell</div>
+                </div>
+                <div class="prices">
+                    <div class="price-current text-right">$1199.00</div>
+                </div>
+                <div class="hover-area">
+                    <div class="add-cart-button">
+                        <a href="single-product.html" class="le-button">add to cart</a>
+                    </div>
+                    <div class="wish-compare">
+                        <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                        <a class="btn-add-to-compare" href="#">compare</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.carousel-item -->
+
+        <div class="no-margin carousel-item product-item-holder hover size-medium">
+            <div class="product-item">
+                <div class="ribbon blue"><span>new!</span></div> 
+                <div class="image">
+                    <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-14.jpg" />
+                </div>
+                <div class="body">
+
+                    <div class="title">
+                        <a href="single-product.html">kardon BDS 7772/120 integrated 3D</a>
+                    </div>
+                    <div class="brand">harman</div>
+                </div>
+                <div class="prices">
+
+                    <div class="price-current text-right">$1199.00</div>
+                </div>
+                <div class="hover-area">
+                    <div class="add-cart-button">
+                        <a href="single-product.html" class="le-button">add to cart</a>
+                    </div>
+                    <div class="wish-compare">
+                        <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                        <a class="btn-add-to-compare" href="#">compare</a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.carousel-item -->
+
+    </div><!-- /#recommended-products-carousel .owl-carousel -->
+</section><!-- /.carousel-holder -->            *@
+
+<section id="gaming" >
+    <div class="grid-list-products">
+        <h2 class="section-title">
+            Resultados de la busqueda
+            @foreach (MvcApplication4.Models.Productos p1 in (List<MvcApplication4.Models.Productos>)ViewBag.Productos)
+            {
+                //@p1.CategoriasProducto.DescripcionI1
+                break;
+            }
+        </h2>
+        
+        <div class="control-bar" style="height: 58px;">
+            
+
+            <div class="grid-list-buttons">
+                <ul>
+                    <li class="grid-list-button-item active"><a data-toggle="tab" href="#grid-view"><i class="fa fa-th-large"></i> Grid</a></li>
+                    <li class="grid-list-button-item "><a data-toggle="tab" href="#list-view"><i class="fa fa-th-list"></i> List</a></li>
+                </ul>
+            </div>
+        </div><!-- /.control-bar -->
+                                
+        <div class="tab-content">
+            <div id="grid-view" class="products-grid fade tab-pane in active">
+                
+                <div class="product-grid-holder">
+                    <div class="row no-margin">
+                        
+
+                        @foreach (MvcApplication4.Models.Productos p in (List<MvcApplication4.Models.Productos>)ViewBag.Productos)
+                        {
+                            
+                        <a href="@Url.Content("~/Home/Details/" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p.IdProducto.ToString()))).ToString().Replace("%","%25")" style="color:#0e53a5">
+                        <div class="col-xs-12 col-md-3 col-sm-4 no-margin product-item-holder hover">
+                            <div class="product-item">
+                                @*<div class="ribbon red"><span>sale</span></div> *@
+                                <div class="image" style="height: 222px;" >
+                                   <!-- <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-01.jpg" />-->
+
+
+                                    @if (p.FotosProductos.Count() > 0)
+                                    {
+
+                                        foreach (var f2 in p.FotosProductos.ToList())
+                                        {
+                                            if (String.IsNullOrEmpty(f2.Imagen.RutaFotoThumb))
+                                            {
+                                                <img alt="Foto publicacion" src="@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))" data-echo="@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))" onload="cargaImagen(this);"   />
+                                            }
+                                            else
+                                            {
+                                                <img alt="Foto publicacion" src="@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))" data-echo="@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))" onload="cargaImagen(this);"   />
+                                            }
+                                             
+                                            break;
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img alt="Foto publicacion blank" src="@Url.Content("~/assets/images/products/product-02.jpg")" />
+                                    }
+
+
+
+                                </div>
+                                <div class="body">
+                                    @*<div class="label-discount green">-50% sale</div>*@
+                                    <div class="title">
+                                        @p.Nombre
+                                        @*@Html.ActionLink(p.Nombre, "Details", new { id = HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p.IdProducto.ToString())) })*@
+                                    </div>
+                                    @*<div class="brand">@p.Usuario.User</div>*@
+                                </div>
+                                <div class="prices">
+                                    <!--<div class="price-prev">$1399.00</div>-->
+                                    
+                                        @if(p.MostrarPrecioHora)
+                                        {
+                                            if(p.PrecioHora != null)
+                                            {
+                                                <div class="price-current pull-left">hora: </div><div class="price-current pull-right">@p.Moneda.Simbolo @Math.Floor(p.PrecioHora.Value)<sup>@p.PrecioHora.ToString().Substring(p.PrecioHora.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div><br />
+                                            }
+                                        }
+                                        @if(p.MostrarPrecioDiario)
+                                        {
+                                            if(p.PrecioDiario != null)
+                                            {
+                                                <div class="price-current pull-left">diario: </div><div class="price-current pull-right">@p.Moneda.Simbolo @Math.Floor(p.PrecioDiario.Value)<sup>@p.PrecioDiario.ToString().Substring(p.PrecioDiario.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div><br />
+                                            }
+                                        }
+                                        @if(p.MostrarPrecioSemanal)
+                                        {
+                                            if(p.PrecioSemanal != null)
+                                            {
+                                                <div class="price-current pull-left">semanal: </div><div class="price-current pull-right">@p.Moneda.Simbolo @Math.Floor(p.PrecioSemanal.Value)<sup>@p.PrecioSemanal.ToString().Substring(p.PrecioSemanal.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div><br />
+                                            }
+                                        }
+                                        @if(p.MostrarPrecioFinDeSemana)
+                                        {
+                                            if(p.PrecioFinDeSemana != null)
+                                            {
+                                                <div class="price-current pull-left">fin de semana: </div><div class="price-current pull-right">@p.Moneda.Simbolo @Math.Floor(p.PrecioFinDeSemana.Value)<sup>@p.PrecioFinDeSemana.ToString().Substring(p.PrecioFinDeSemana.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div><br />
+                                            }
+                                        }
+                                        @if(p.MostrarPrecioMensual)
+                                        {
+                                            if(p.PrecioMensual != null)
+                                            {
+                                                <div class="price-current pull-left">mensual: </div><div class="price-current pull-right">@p.Moneda.Simbolo @Math.Floor(p.PrecioMensual.Value)<sup>@p.PrecioMensual.ToString().Substring(p.PrecioMensual.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div><br />
+                                            }
+                                        }
+                                            
+                                    @*<table align="right">
+                                        @if(p.MostrarPrecioHora)
+                                        {
+                                            if(p.PrecioHora != null)
+                                            {
+                                                <tr><td><div class="price-current pull-right">hora: </div></td><td><div class="price-current pull-right">@p.Moneda.Simbolo @Math.Floor(p.PrecioHora.Value)<sup>@p.PrecioHora.ToString().Substring(p.PrecioHora.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div></td></tr>
+                                            }
+                                        }
+                                        @if(p.MostrarPrecioDiario)
+                                        {
+                                            if(p.PrecioDiario != null)
+                                            {
+                                                <tr><td><div class="price-current pull-right">diario: </div></td><td><div class="price-current pull-right">@p.Moneda.Simbolo @Math.Floor(p.PrecioDiario.Value)<sup>@p.PrecioDiario.ToString().Substring(p.PrecioDiario.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div></td></tr>
+                                            }
+                                        }
+                                        @if(p.MostrarPrecioSemanal)
+                                        {
+                                            if(p.PrecioSemanal != null)
+                                            {
+                                                <tr><td><div class="price-current pull-right">semanal: </div></td><td><div class="price-current pull-right">@p.Moneda.Simbolo @Math.Floor(p.PrecioSemanal.Value)<sup>@p.PrecioSemanal.ToString().Substring(p.PrecioSemanal.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div></td></tr>
+                                            }
+                                        }
+                                        @if(p.MostrarPrecioFinDeSemana)
+                                        {
+                                            if(p.PrecioFinDeSemana != null)
+                                            {
+                                                <tr><td><div class="price-current pull-right">fin de semana: </div></td><td><div class="price-current pull-right">@p.Moneda.Simbolo @Math.Floor(p.PrecioFinDeSemana.Value)<sup>@p.PrecioFinDeSemana.ToString().Substring(p.PrecioFinDeSemana.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div></td></tr>
+                                            }
+                                        }
+                                        @if(p.MostrarPrecioMensual)
+                                        {
+                                            if(p.PrecioMensual != null)
+                                            {
+                                                <tr><td><div class="price-current pull-right">mensual: </div></td><td><div class="price-current pull-right">@p.Moneda.Simbolo @Math.Floor(p.PrecioMensual.Value)<sup>@p.PrecioMensual.ToString().Substring(p.PrecioMensual.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div></td></tr>
+                                            }
+                                        }
+                                            </table>*@
+                                </div>
+                                @*
+                                <div class="hover-area">
+                                    <div class="add-cart-button">
+                                        <a href="single-product.html" class="le-button">add to cart / ALQUILAR</a>
+                                    </div>
+                                    <div class="wish-compare">
+                                        <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                                        <a class="btn-add-to-compare" href="#">compare</a>
+                                    </div>
+                                </div>*@
+                            </div><!-- /.product-item -->
+                        </div><!-- /.product-item-holder -->
+                            </a>
+                        }
+
+                        
+                    </div><!-- /.row -->
+                </div><!-- /.product-grid-holder -->
+                
+                @*<div class="pagination-holder">
+                    <div class="row">
+                        
+                        <div class="col-xs-12 col-sm-6 text-left">
+                            <ul class="pagination ">
+                                <li class="current"><a  href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">next</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="result-counter">
+                                Showing <span>1-9</span> of <span>11</span> results
+                            </div>
+                        </div>
+
+                    </div><!-- /.row -->
+                </div><!-- /.pagination-holder -->*@
+            </div><!-- /.products-grid #grid-view -->
+
+            <div id="list-view" class="products-grid fade tab-pane ">
+                <div class="products-list">
+                    
+                    @foreach (MvcApplication4.Models.Productos p2 in (List<MvcApplication4.Models.Productos>)ViewBag.Productos)
+                    {
+                    <div class="product-item product-item-holder">
+                        @*<div class="ribbon red"><span>sale</span></div> 
+                        <div class="ribbon blue"><span>new!</span></div>*@
+                        <div class="row">
+                            <div class="no-margin col-xs-12 col-sm-4 image-holder">
+                                <div class="image" style="height: 222px;">
+
+                                    @if (p2.FotosProductos.Count() > 0)
+                                    {
+                                        foreach (var f3 in p2.FotosProductos.ToList())
+                                        {
+                                            if (String.IsNullOrEmpty(f3.Imagen.RutaFotoThumb))
+                                            {
+                                                <img alt="Foto publicacion" src="@Url.Content(f3.Imagen.RutaFoto.Replace("../../", ""))" data-echo="@Url.Content(f3.Imagen.RutaFoto.Replace("../../", ""))" onload="cargaImagen(this);" />
+                                            }
+                                            else
+                                            {
+                                                <img alt="Foto publicacion" src="@Url.Content(f3.Imagen.RutaFotoThumb.Replace("../../", ""))" data-echo="@Url.Content(f3.Imagen.RutaFotoThumb.Replace("../../", ""))" onload="cargaImagen(this);" />
+                                            }
+                                             
+                                            break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img alt="Foto publicacion blank" src="@Url.Content("~/assets/images/products/product-02.jpg")" />
+                                    }
+
+                                    <!--<img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-01.jpg" />-->
+                                </div>
+                            </div><!-- /.image-holder -->
+                            <div class="no-margin col-xs-12 col-sm-4 body-holder">
+                                <div class="body">
+                                    @*<div class="label-discount green">-50% sale</div>*@
+                                    <div class="title">
+                                        <a href="Home/Details/@HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p2.IdProducto.ToString()))">@p2.Nombre</a>
+                                    </div>
+                                    @*<div class="brand">@p2.Usuario.User</div>*@
+                                    <div class="excerpt">
+                                        <p>@p2.Descripcion</p>
+                                    </div>
+                                    @*<div class="addto-compare">
+                                        <a class="btn-add-to-compare" href="#">add to compare list</a>
+                                    </div>*@
+                                </div>
+                            </div><!-- /.body-holder -->
+                            <div class="no-margin col-xs-12 col-sm-4 price-area">
+                                <div class="right-clmn">
+                                    
+                                        @if(p2.MostrarPrecioHora)
+                                        {
+                                            if(p2.PrecioHora != null)
+                                            {
+                                                <div class="price-current pull-left" style="width: 60%;">hora:</div><div class="price-current pull-right">@p2.Moneda.Simbolo @Math.Floor(p2.PrecioHora.Value)<sup>@p2.PrecioHora.ToString().Substring(p2.PrecioHora.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div><br />
+                                            }
+                                        }
+                                        @if(p2.MostrarPrecioDiario)
+                                        {
+                                            if(p2.PrecioDiario != null)
+                                            {
+                                                <div class="price-current pull-left" style="width: 60%;">diario:</div><div class="price-current pull-right">@p2.Moneda.Simbolo @Math.Floor(p2.PrecioDiario.Value)<sup>@p2.PrecioDiario.ToString().Substring(p2.PrecioDiario.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div><br />
+                                            }
+                                        }
+                                        @if(p2.MostrarPrecioSemanal)
+                                        {
+                                            if(p2.PrecioSemanal != null)
+                                            {
+                                                <div class="price-current pull-left" style="width: 60%;">semanal:</div><div class="price-current pull-right">@p2.Moneda.Simbolo @Math.Floor(p2.PrecioSemanal.Value)<sup>@p2.PrecioSemanal.ToString().Substring(p2.PrecioSemanal.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div><br />
+                                            }
+                                        }
+                                        @if(p2.MostrarPrecioFinDeSemana)
+                                        {
+                                            if(p2.PrecioFinDeSemana != null)
+                                            {
+                                                <div class="price-current pull-left" style="width: 60%;">fin de semana:</div><div class="price-current pull-right">@p2.Moneda.Simbolo @Math.Floor(p2.PrecioFinDeSemana.Value)<sup>@p2.PrecioFinDeSemana.ToString().Substring(p2.PrecioFinDeSemana.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div><br />
+                                            }
+                                        }
+                                        @if(p2.MostrarPrecioMensual)
+                                        {
+                                            if(p2.PrecioMensual != null)
+                                            {
+                                                <div class="price-current pull-left" style="width: 60%;">mensual:</div><div class="price-current pull-right">@p2.Moneda.Simbolo @Math.Floor(p2.PrecioMensual.Value)<sup>@p2.PrecioMensual.ToString().Substring(p2.PrecioMensual.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div>
+                                            }
+                                        }
+                                        
+                                        <!--<table align="right">-->
+                                        @*@if(p2.MostrarPrecioHora)
+                                        {
+                                            if(p2.PrecioHora != null)
+                                            {
+                                                <tr><td><div class="price-current">hora:</div></td><td><div class="price-current">@p2.Moneda.Simbolo @Math.Floor(p2.PrecioHora.Value)<sup>@p2.PrecioHora.ToString().Substring(p2.PrecioHora.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div></td></tr>
+                                            }
+                                        }
+                                        @if(p2.MostrarPrecioDiario)
+                                        {
+                                            if(p2.PrecioDiario != null)
+                                            {
+                                                <tr><td><div class="price-current">diario:</div></td><td><div class="price-current">@p2.Moneda.Simbolo @Math.Floor(p2.PrecioDiario.Value)<sup>@p2.PrecioDiario.ToString().Substring(p2.PrecioDiario.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div></td></tr>
+                                            }
+                                        }
+                                        @if(p2.MostrarPrecioSemanal)
+                                        {
+                                            if(p2.PrecioSemanal != null)
+                                            {
+                                                <tr><td><div class="price-current">semanal:</div></td><td><div class="price-current">@p2.Moneda.Simbolo @Math.Floor(p2.PrecioSemanal.Value)<sup>@p2.PrecioSemanal.ToString().Substring(p2.PrecioSemanal.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div></td></tr>
+                                            }
+                                        }
+                                        @if(p2.MostrarPrecioFinDeSemana)
+                                        {
+                                            if(p2.PrecioFinDeSemana != null)
+                                            {
+                                                <tr><td><div class="price-current">fin de semana:</div></td><td><div class="price-current">@p2.Moneda.Simbolo @Math.Floor(p2.PrecioFinDeSemana.Value)<sup>@p2.PrecioFinDeSemana.ToString().Substring(p2.PrecioFinDeSemana.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div></td></tr>
+                                            }
+                                        }
+                                        @if(p2.MostrarPrecioMensual)
+                                        {
+                                            if(p2.PrecioMensual != null)
+                                            {
+                                                <tr><td><div class="price-current">mensual:</div></td><td><div class="price-current">@p2.Moneda.Simbolo @Math.Floor(p2.PrecioMensual.Value)<sup>@p2.PrecioMensual.ToString().Substring(p2.PrecioMensual.ToString().IndexOf(System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator)+1,2)</sup></div></td></tr>
+                                            }
+                                        }
+                                    </table>*@
+                                    @*<div class="price-prev">$1399.00</div>*@
+                                    @*<div class="availability"><label>availability:</label><span class="available">  in stock</span></div>
+                                    <a class="le-button" href="#">add to cart / ALQUILAR</a>
+                                    <a class="btn-add-to-wishlist" href="#">add to wishlist</a>*@
+                                </div>
+                            </div><!-- /.price-area -->
+                        </div><!-- /.row -->
+                    </div><!-- /.product-item -->
+
+                    }
+
+                    
+                </div><!-- /.products-list -->
+
+                @*<div class="pagination-holder">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 text-left">
+                            <ul class="pagination">
+                                <li class="current"><a  href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">next</a></li>
+                            </ul><!-- /.pagination -->
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="result-counter">
+                                Showing <span>1-9</span> of <span>11</span> results
+                            </div><!-- /.result-counter -->
+                        </div>
+                    </div><!-- /.row -->
+                </div><!-- /.pagination-holder -->*@
+
+            </div><!-- /.products-grid #list-view -->
+
+        </div><!-- /.tab-content -->
+    </div><!-- /.grid-list-products -->
+
+</section><!-- /#gaming -->            
+        </div><!-- /.col -->
+        <!-- ========================================= CONTENT : END ========================================= -->    
+    </div><!-- /.container -->
+</section><!-- /#category-grid -->      
+<!-- ============================================================= FOOTER ============================================================= -->
+
+
+
+

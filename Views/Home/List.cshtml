@@ -1,0 +1,398 @@
+@{
+    ViewBag.Title = "LISTPRODUCTS";
+}
+
+<script type="text/javascript">
+    function cargaImagen(img)
+    {
+        //alert(img.width + " - " + img.height);
+        r0 = img.width / img.height;
+        r = 246 / 186; //pasar a conf gral!!!
+
+        
+        //if (img.width > img.height)
+        if(r0 > r)
+        {
+            img.setAttribute("width", "246");
+        }
+        else
+        {
+            img.setAttribute("height", "186");
+        }
+    }
+
+    /*function cargaImagen2(img) {
+        alert(img.width + " - " + img.height);
+        
+    }*/
+</script>
+
+<script type="text/javascript">
+var cat = location.search.split("&")[1].replace("Categorias=","")
+document.body.onload = ga('send', 'event', 'load', 'OnLoadBusqueda', 'Entro a la categoria: ' + cat); //alert("OnLoad HOME.");
+</script>
+
+ <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+    
+<!--<div class="menu">-->
+<div class="container">
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+        <h2>Resultado de la b&uacute;squeda</h2>
+    </div>
+</div>
+<hr />
+
+<!--<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+FILTROS
+</div>-->
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+        
+    <div class="result-tabholder">
+        @if (((List<MvcApplication4.Models.Productos>)ViewBag.Productos).Count() == 0)
+        {
+            string texto = "No hay resultados para tu búsqueda...";
+            @texto
+        }
+        else
+        {
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#grid" data-toggle="tab"><i class="fa fa-th-large"></i> Grilla</a>
+                </li>
+                <li>
+                    <a href="#list" data-toggle="tab"><i class="fa fa-th-list"></i> Lista</a>
+                </li>
+ 
+            </ul>
+            <div class="tab-content">
+                        
+                <div class="tab-pane fade-in active" id="grid">
+                    <div class="row">
+                            	
+                        
+                        
+
+						@foreach (MvcApplication4.Models.Productos p in (List<MvcApplication4.Models.Productos>)ViewBag.Productos)
+                        {		
+                        <a href="@Url.Content("~/Home/Details/" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p.IdProducto.ToString()))).ToString().Replace("%","%25")">
+                            <!--<div class="no-margin carousel-item product-item-holder size-small hover" style="min-height: 400px;">-->
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="product-item">
+                                    
+                                    @{ decimal? precioMostrar = 0;
+                                           string modalidadMostrar = "";
+
+                                           if (p.MostrarPrecioDiario)
+                                           {
+                                               precioMostrar = p.PrecioDiario;
+                                               modalidadMostrar = "día"; 
+                                           }
+
+                                           if (p.MostrarPrecioFinDeSemana)
+                                           {
+                                               precioMostrar = p.PrecioFinDeSemana;
+                                               modalidadMostrar = "finde";
+                                           }
+
+                                           if (p.MostrarPrecioHora)
+                                           {
+                                               precioMostrar = p.PrecioHora;
+                                               modalidadMostrar = "hora";
+                                           }
+
+                                           if (p.MostrarPrecioMensual)
+                                           {
+                                               precioMostrar = p.PrecioMensual;
+                                               modalidadMostrar = "mes";
+                                           }
+
+                                           if (p.MostrarPrecioSemanal)
+                                           {
+                                               precioMostrar = p.PrecioSemanal;
+                                               modalidadMostrar = "sem";
+                                           }   
+                                            }
+
+
+                                    @if (p.FotosProductos.Count() > 0)
+                                    {
+
+                                        foreach (var f2 in p.FotosProductos.ToList())
+                                        {
+                                            if (String.IsNullOrEmpty(f2.Imagen.RutaFotoThumb))
+                                            {
+                                                <div class="image" style="background-image:url('@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))')">
+                                                    <div class="prices">        
+                                                        <div class="price-current pull-left">@p.Moneda.Simbolo @Convert.ToInt32(precioMostrar) / @modalidadMostrar</div><br/>
+                                                    </div>
+                                               
+                                                </div>
+                                                <!--<img alt="Foto publicacion" src="@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))" data-echo="@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))" onload="cargaImagen(this);"   />-->
+                                            }
+                                            else
+                                            {
+                                                <div class="image" style="background-image:url('@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))')">
+                                                    <div class="prices">        
+                                                        <div class="price-current pull-left">@p.Moneda.Simbolo @Convert.ToInt32(precioMostrar) / @modalidadMostrar</div><br/>
+                                                    </div>
+                                               
+                                                </div>
+                                                <!--<img alt="Foto publicacion" src="@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))" data-echo="@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))" onload="cargaImagen(this);"   />-->
+                                            }
+                                             
+                                            break;
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="image">
+                                            <div class="prices">        
+                                                <div class="price-current pull-left">@p.Moneda.Simbolo @Convert.ToInt32(precioMostrar) / @modalidadMostrar</div><br/>
+                                            </div>
+                                               
+                                        </div>
+                                        <!--<img alt="Foto publicacion blank" src="@Url.Content("~/assets/images/products/product-02.jpg")" />-->
+                                    }
+
+                                        
+                                            
+                                    @*<div class="star">
+                                    </div>*@
+                                    <div class="info">
+                                                
+                                        <div class="user">
+                                                                 
+                                            @if (p.Usuario.FotosUsuarios.Count() > 0)
+                                            {
+                                                foreach (var fu in p.Usuario.FotosUsuarios.ToList())
+                                                {
+                                                    if (String.IsNullOrEmpty(fu.Imagen.RutaFotoThumb))
+                                                    {
+                                                        <div class="user-image" title="@p.Usuario.Nombre" style="background-image:url('@Url.Content(fu.Imagen.RutaFoto.Replace("../../", ""))')">
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="user-image" title="@p.Usuario.Nombre" style="background-image:url('@Url.Content(fu.Imagen.RutaFotoThumb.Replace("../../", ""))')">
+                                                        </div>
+                                                    }
+                                             
+                                                    break;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="user-image">
+                                                </div>
+                                            }
+                                             
+                                            <div class="user-info">
+                                                
+                                                <div class="body">
+                                                    <div class="title">
+                                                        @{ string titulo = "";}
+                                                        @if (p.Nombre.Length > 20) 
+                                                        {
+                                                            titulo = p.Nombre.Substring(0,20) + "...";
+                                                        }
+                                                        else
+                                                        {
+                                                            titulo = p.Nombre;
+                                                        }
+                                                        @titulo
+                                                    </div>
+                                                </div>
+                                                    
+                                                @*<div class="user-info-name">@p.Usuario.Nombre</div>*@
+                                                <div class="user-info-barrio">@if(p.Usuario.Barrio != null){@p.Usuario.Barrio.DescripcionI1} - @if(p.Usuario.Ciudad != null){@p.Usuario.Ciudad.DescripcionI1}</div>
+                                                @*<div class="user-info-city">@if(p.Usuario.Ciudad != null){@p.Usuario.Ciudad.DescripcionI1}</div>*@
+                                            </div>
+    
+                                            <!-- <div class="user-star">
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div><!-- /.product-item -->
+                            </div><!-- /.product-item-holder -->
+                        </a>
+                        }
+								
+                    </div>
+                </div><!-- /.tab-pane #additional-info -->
+                        
+                <div class="tab-pane fade" id="list">
+                    @foreach (MvcApplication4.Models.Productos p in (List<MvcApplication4.Models.Productos>)ViewBag.Productos)
+                    {
+                    <div class="row">
+                        <a href="#">
+                            <!--<div class="no-margin carousel-item product-item-holder size-small hover" style="min-height: 400px;">-->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="product-item">
+                                    @{ decimal? precioMostrar = 0;
+                                           string modalidadMostrar = "";
+
+                                           if (p.MostrarPrecioDiario)
+                                           {
+                                               precioMostrar = p.PrecioDiario;
+                                               modalidadMostrar = "día"; 
+                                           }
+
+                                           if (p.MostrarPrecioFinDeSemana)
+                                           {
+                                               precioMostrar = p.PrecioFinDeSemana;
+                                               modalidadMostrar = "finde";
+                                           }
+
+                                           if (p.MostrarPrecioHora)
+                                           {
+                                               precioMostrar = p.PrecioHora;
+                                               modalidadMostrar = "hora";
+                                           }
+
+                                           if (p.MostrarPrecioMensual)
+                                           {
+                                               precioMostrar = p.PrecioMensual;
+                                               modalidadMostrar = "mes";
+                                           }
+
+                                           if (p.MostrarPrecioSemanal)
+                                           {
+                                               precioMostrar = p.PrecioSemanal;
+                                               modalidadMostrar = "sem";
+                                           }   
+                                            }
+
+
+                                    @if (p.FotosProductos.Count() > 0)
+                                    {
+
+                                        foreach (var f2 in p.FotosProductos.ToList())
+                                        {
+                                            if (String.IsNullOrEmpty(f2.Imagen.RutaFotoThumb))
+                                            {
+                                                <div class="image" style="background-image:url('@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))')">
+                                                    <div class="prices">        
+                                                        <div class="price-current pull-left">@p.Moneda.Simbolo @Convert.ToInt32(precioMostrar) / @modalidadMostrar</div><br/>
+                                                    </div>
+                                               
+                                                </div>
+                                                <!--<img alt="Foto publicacion" src="@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))" data-echo="@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))" onload="cargaImagen(this);"   />-->
+                                            }
+                                            else
+                                            {
+                                                <div class="image" style="background-image:url('@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))')">
+                                                    <div class="prices">        
+                                                        <div class="price-current pull-left">@p.Moneda.Simbolo @Convert.ToInt32(precioMostrar) / @modalidadMostrar</div><br/>
+                                                    </div>
+                                               
+                                                </div>
+                                                <!--<img alt="Foto publicacion" src="@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))" data-echo="@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))" onload="cargaImagen(this);"   />-->
+                                            }
+                                             
+                                            break;
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="image">
+                                            <div class="prices">        
+                                                <div class="price-current pull-left">@p.Moneda.Simbolo @Convert.ToInt32(precioMostrar) / @modalidadMostrar</div><br/>
+                                            </div>
+                                               
+                                        </div>
+                                        <!--<img alt="Foto publicacion blank" src="@Url.Content("~/assets/images/products/product-02.jpg")" />-->
+                                    }
+
+                                    <!--<div class="image">
+                                        <div class="prices">        
+                                            <div class="price-current pull-left">$ 1.000</div><br/>
+                                        </div>
+                                               
+                                    </div>
+                                         -->   
+                                    @*<div class="star">
+                                    </div>*@
+                                    <div class="info">
+                                                
+                                        <div class="user">
+                                                                                                
+                                            @if (p.Usuario.FotosUsuarios.Count() > 0)
+                                            {
+                                                foreach (var fu in p.Usuario.FotosUsuarios.ToList())
+                                                {
+                                                    if (String.IsNullOrEmpty(fu.Imagen.RutaFotoThumb))
+                                                    {
+                                                        <div class="user-image" title="@p.Usuario.Nombre" style="background-image:url('@Url.Content(fu.Imagen.RutaFoto.Replace("../../", ""))')">
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="user-image" title="@p.Usuario.Nombre" style="background-image:url('@Url.Content(fu.Imagen.RutaFotoThumb.Replace("../../", ""))')">
+                                                        </div>
+                                                    }
+                                             
+                                                    break;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="user-image">
+                                                </div>
+                                            }
+                                            <div class="user-info">
+                                                
+                                        <div class="body">
+                                                <div class="title">
+                                                    
+                                                    @{ string titulo = "";}
+                                                        @if (p.Nombre.Length > 20) 
+                                                        {
+                                                            titulo = p.Nombre.Substring(0,20) + "...";
+                                                        }
+                                                        else
+                                                        {
+                                                            titulo = p.Nombre;
+                                                        }
+                                                        @titulo
+                                                </div>
+                                        </div>
+                                                    
+                                                @*<div class="user-info-name">@p.Usuario.Nombre</div>*@
+                                                <div class="user-info-barrio">@if(p.Usuario.Barrio != null){@p.Usuario.Barrio.DescripcionI1} - @if(p.Usuario.Ciudad != null){@p.Usuario.Ciudad.DescripcionI1}</div>
+                                                @*<div class="user-info-city">@if(p.Usuario.Ciudad != null){@p.Usuario.Ciudad.DescripcionI1}</div>*@
+                                            </div>
+    
+                                            <!-- <div class="user-star">
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div><!-- /.product-item -->
+                            </div><!-- /.product-item-holder -->
+                        </a>
+                    </div>
+                    }
+                </div><!-- /.tab-pane #additional-info -->
+                        
+            </div>
+        }
+
+    </div>
+        
+</div>
+
+</div>

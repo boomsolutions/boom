@@ -1,0 +1,35 @@
+﻿@model MvcApplication4.Models.CategoriaProductos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CategoriaProductos</legend>
+
+    <div class="display-label">DescripcionI1</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DescripcionI1)
+    </div>
+
+    <div class="display-label">DescripcionI2</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DescripcionI2)
+    </div>
+
+    <div class="display-label">DescripcionI3</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DescripcionI3)
+    </div>
+    <div class="display-label">Visible</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Visible)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.IdCategoriaProducto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,284 @@
+﻿@{
+    ViewBag.Title = "VIEW USER";
+    //Layout = null;
+}
+  
+<!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+  
+<div class="wrapper">
+
+    
+
+        <!-- ============================================================= TOP NAVIGATION ============================================================= -->
+<!-- ============================================================= TOP NAVIGATION : END ============================================================= -->       
+<!-- ============================================================= HEADER ============================================================= -->
+
+<!-- ============================================================= HEADER : END ============================================================= -->
+    
+<div class="animate-dropdown"><!-- ========================================= BREADCRUMB ========================================= -->
+<div id="top-mega-nav">
+    <div class="container">
+        <nav id="top-megamenu-nav" class="megamenu-vertical animate-dropdown" >
+            <div class="container">
+                <div class="yamm navbar">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mc-horizontal-menu-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                           @* <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>*@
+                        </button>
+                    </div><!-- /.navbar-header -->
+                    <div class="collapse navbar-collapse" id="mc-horizontal-menu-collapse">
+                        <ul class="nav navbar-nav nav3">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Mi cuenta</a>
+                                <ul class="dropdown-menu">
+                                    <li><div class="yamm-content">
+            <div class="row">
+               <div class="col-xs-12 col-sm-4">
+                    <h2>Configuracion</h2>
+                    <ul class="nav3">
+                        <li>@Html.ActionLink("Datos Personales", "EditUser", new { id = HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Convert.ToString(ViewBag.IdUsuario)))})</li>
+                        @*<li><a href="#">Power Supply Testers Sound </a></li>
+                        <li><a href="#">Sound Cards (Internal)</a></li>
+                        <li><a href="#">Video Capture &amp; TV Tuner Cards</a></li>
+                        <li><a href="#">Other</a></li>*@
+                    </ul>
+                </div><!-- /.col -->
+
+                <div class="col-xs-12 col-sm-4">
+                    <h2>Mis publicaciones</h2>
+                    <ul class="nav3">
+                         @{ string visitas = ViewBag.CantidadConsultas; }
+                        <li>@Html.ActionLink("Articulos", "ViewUser", "Home")</li>
+                        <li>@Html.ActionLink("Preguntas" + visitas, "ViewConsultasParaUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Alquileres concretados", "ViewAlquileresPorUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Reservas pendientes", "ViewSolicitudesParaUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Reservas rechazadas", "ViewSolicitudesParaUsuarioRechazadas", "Home")</li>
+                        
+                       @* <li><a href="#">Laptop Replacement Parts</a></li>
+                        <li><a href="#">Memory (RAM)</a></li>
+                        <li><a href="#">Motherboards</a></li>
+                        <li><a href="#">Motherboard &amp; CPU Combos</a></li>
+                        <li><a href="#">Motherboard Components &amp; Accs</a></li>*@
+                    </ul>
+                </div><!-- /.col -->
+
+                <div class="col-xs-12 col-sm-4">
+                    <h2>Mis alquileres</h2>
+                    <ul class="nav3">
+                        @{ string cantRespSinLeer = ViewBag.CantidadRespuestasSinLeerString; }
+                        <li>@Html.ActionLink("Preguntas" + cantRespSinLeer, "ViewConsultasDelUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Alquileres concretados", "ViewAlquileresDelUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Reservas pendientes", "ViewSolicitudesDelUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Reservas rechazadas", "ViewSolicitudesDelUsuarioRechazadas", "Home")</li>
+                        @*<li><a href="#">Other</a></li>*@
+                    </ul>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.yamm-content --></li>
+                                </ul>
+                            </li>
+                             <li class="dropdown">
+                                <a href="#"  data-hover="dropdown" data-toggle="dropdown">Mis publicaciones - Alquileres concretados</a>
+                               
+                            </li>
+                        </ul><!-- /.navbar-nav -->
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.navbar -->
+            </div><!-- /.container -->
+        </nav>
+     @*   <nav>
+            <ul class="inline">
+                <li class="dropdown le-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-list"></i>operaciones del usuario
+                    </a>
+                    <ul class="dropdown-menu">
+                         <li>@Html.ActionLink("Datos personales", "EditUser", new { id = ViewBag.IdUsuario})</li>
+                        
+                        <li>@Html.ActionLink("Mis publicaciones - Articulos", "ViewUser", "Home")</li>
+                        <li>@Html.ActionLink("Mis publicaciones - Preguntas", "ViewConsultasParaUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Mis publicaciones - Alquileres concretados", "ViewAlquileresPorUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Mis publicaciones - Reservas pendientes", "ViewSolicitudesParaUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Mis publicaciones - Reservas rechazadas", "ViewSolicitudesParaUsuarioRechazadas", "Home")</li>
+                        
+                     
+                        <li>@Html.ActionLink("Mis alquileres - Preguntas", "ViewConsultasDelUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Mis alquileres - Alquileres concretados", "ViewSolicitudesDelUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Mis alquileres - Reservas pendientes", "ViewSolicitudesDelUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Mis alquileres - Reservas rechazadas", "ViewSolicitudesDelUsuarioRechazadas", "Home")</li>
+                        </ul>
+                </li>
+
+                <li class="breadcrumb-nav-holder"> 
+                    <ul>
+                        <li class="breadcrumb-item current gray">
+                            <a href="#">Alquileres realizados</a>
+                        </li>
+                    </ul>
+                </li><!-- /.breadcrumb-nav-holder -->
+            </ul>
+        </nav>*@
+    </div><!-- /.container -->
+</div><!-- /#top-mega-nav -->
+<!-- ========================================= BREADCRUMB : END ========================================= --></div>     <section id="cart-page">
+    <div class="container">
+        <!-- ========================================= CONTENT ========================================= -->
+        <div class="col-xs-12 col-md-12 items-holder no-margin">
+            @if (ViewBag.Alquileres != null)
+            { 
+                foreach (MvcApplication4.Models.Alquileres a1 in (List<MvcApplication4.Models.Alquileres>)ViewBag.Alquileres)
+                {
+                    <div class="row no-margin cart-item">
+                        <div class="col-xs-12 col-sm-2 no-margin">
+                            <a href="#" class="thumb-holder">
+
+                                @if (a1.Producto.FotosProductos.Count() > 0)
+                                        {
+
+                                            foreach (var f2 in a1.Producto.FotosProductos.ToList())
+                                            {
+                                            
+                                                 if (String.IsNullOrEmpty(f2.Imagen.RutaFotoThumb))
+                                                    {
+                                                        <img class="lazy" alt="Foto publicacion" src="@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))"  />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="lazy" alt="Foto publicacion" src="@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))"  />
+                                                
+                                                    }
+                                                break;
+                                            
+                                            }
+                                        }
+                                else
+                                {
+                                    <img class="lazy" alt="Foto publicacion blank" src="http://placehold.it/73x73" />
+                                }
+
+                            </a>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3 ">
+                            <div class="title">
+                                @Html.ActionLink(a1.Producto.Nombre,"Details/" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(a1.Producto.IdProducto.ToString())),"Home")
+
+                            </div>
+                            <div class="brand">Dueño: @a1.Producto.Usuario.Nombre [@a1.Producto.Usuario.User]</div>
+                        </div> 
+
+                        <div class="col-xs-12 col-sm-2 no-margin">
+                            <!--
+                            <div class="quantity">
+                                <div class="le-quantity">
+                                    <form>
+                                        <a class="minus" href="#reduce"></a>
+                                        <input name="quantity" readonly="readonly" type="text" value="1" />
+                                        <a class="plus" href="#add"></a>
+                                    </form>
+                                </div>
+                            </div>
+                                -->
+                            <div class="price">
+                                Desde: @a1.FechaDesde.ToShortDateString()
+                            </div>
+                        
+                        </div> 
+
+                        <div class="col-xs-12 col-sm-2 no-margin">
+                        
+                            <div class="price">
+                                Hasta: @a1.FechaHasta.ToShortDateString()
+                            </div>
+                        
+                            <!--<a class="close-btn" href="#"></a>-->
+                        </div>
+
+                        <div class="col-xs-12 col-sm-3 no-margin">
+                        
+                            @if(String.IsNullOrEmpty(a1.ComentarioExperienciaArrendatario))
+                            {
+                                @Html.ActionLink("Evaluar arrendatario", "EvaluarArrendatario", new { id = HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(a1.IdAlquiler.ToString())) }, new { @class="le-button" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Ver evaluacion al arrendatario", "VerEvaluacionArrendatario", new { id = HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(a1.IdAlquiler.ToString())) }, new { @class="le-button" })
+                            }
+                           
+                        
+                            <!--<a class="close-btn" href="#"></a>-->
+                        </div>
+                        
+
+                    </div><!-- /.cart-item -->
+
+                }
+            }
+            else
+            {
+                <div style="text-align:center">No tienes alquileres concretados...</div>
+            }
+            
+        </div>
+        <!-- ========================================= CONTENT : END ========================================= -->
+
+        <!-- ========================================= SIDEBAR ========================================= -->
+        <!--
+        <div class="col-xs-12 col-md-3 no-margin sidebar ">
+            <div class="widget cart-summary">
+                <h1 class="border">shopping cart</h1>
+                <div class="body">
+                    <ul class="tabled-data no-border inverse-bold">
+                        <li>
+                            <label>cart subtotal</label>
+                            <div class="value pull-right">$8434.00</div>
+                        </li>
+                        <li>
+                            <label>shipping</label>
+                            <div class="value pull-right">free shipping</div>
+                        </li>
+                    </ul>
+                    <ul id="total-price" class="tabled-data inverse-bold no-border">
+                        <li>
+                            <label>order total</label>
+                            <div class="value pull-right">$8434.00</div>
+                        </li>
+                    </ul>
+                    <div class="buttons-holder">
+                        <a class="le-button big" href="http://localhost/~akther/themeforest/mediacenter/upload/PHP/checkout.html" >checkout</a>
+                        <a class="simple-link block" href="http://localhost/~akther/themeforest/mediacenter/upload/PHP/index.html" >continue shopping</a>
+                    </div>
+                </div>
+            </div> 
+
+            <div id="cupon-widget" class="widget">
+                <h1 class="border">use coupon</h1>
+                <div class="body">
+                    <form>
+                        <div class="inline-input">
+                            <input data-placeholder="enter coupon code" type="text" />
+                            <button class="le-button" type="submit">Apply</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- ========================================= SIDEBAR : END ========================================= -->
+    </div>
+</section>      
+<!-- ============================================================= FOOTER ============================================================= -->

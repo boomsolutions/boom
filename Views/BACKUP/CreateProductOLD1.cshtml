@@ -1,0 +1,377 @@
+﻿@model MvcApplication4.Models.Productos
+
+@{
+    ViewBag.Title = "HOME/INDEX";
+    
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@*<script src="@Url.Content("~/Scripts/MvcFoolproofJQueryValidation.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/mvcfoolproof.unobtrusive.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/MvcFoolproofValidation.js")" type="text/javascript"></script>*@
+
+<script src="@Url.Content("~/assets/js/trumbowyg.min.js")"></script>
+<link rel="stylesheet" href="@Url.Content("~/assets/css/trumbowyg.min.css")">
+<script src="@Url.Content("~/assets/js//plugins/upload/trumbowyg.upload.js")"></script>
+        <script src="@Url.Content("~/assets/js//plugins/base64/trumbowyg.base64.js")"></script>
+        <script src="@Url.Content("~/assets/js//plugins/colors/trumbowyg.colors.js")"></script>
+
+<script type="text/javascript">
+    function AgregarFileUploader()
+    {
+        var cant = document.getElementById("DIVSubirFotos").childElementCount - 2;
+
+        //htmltext = "<input id='ImageUpload" + cant + "' name='ImageUpload" + cant + "' type='file' value=''>";
+        htmltext = "<input id='ImageUpload' name='ImageUpload' type='file' value='' onchange='javascript:CargarPreview(this);'><img id='preview' width='20%' height='auto' alt='Preview' src>";
+        //htmltext = htmltext + "<span class='field-validation-valid' data-valmsg-for='ImageUpload' data-valmsg-replace='true'></span>";
+        input = document.createElement("input");
+        document.getElementById("DIVSubirFotos").appendChild(input);
+        input.outerHTML = htmltext;
+        /*var newimage = document.createElement("input");
+        newimage.outerHTML = htmltext;
+        document.getElementById("ImageUpload").appendChild(newimage);
+        */
+    }
+
+    function MostrarPrecioEnvio(cb)
+    {
+        document.getElementById('DIVPrecioEnvio').hidden = (cb.checked == false);
+        document.getElementById('DIVComentarioEnvio').hidden = (cb.checked == false);
+    }
+
+    function CambioDeptos(depto)
+    {
+        document.getElementById('DIVBarrio').hidden = true;
+        if ($("#IdDepartamento").val() == "10")
+        {
+            document.getElementById('DIVBarrio').hidden = false;
+        }
+        return false;
+    }
+
+    var pos = 0;
+
+    function CargarPreview(file)
+    {
+        //file.parentNode.getElementById('preview').src = file.value;
+        //file.parentNode.getElementsByTagName("img")[0].src = file.value;
+
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            //$('#blah').attr('src', e.target.result);
+            file.parentNode.getElementsByTagName("img")[pos].src = e.target.result; // file.value;
+            pos = pos + 1;
+        }
+
+        reader.readAsDataURL(file.files[0]);
+    } 
+
+    function RotarImagen(link) {
+        link.parentNode.getElementsByTagName('input')[1].value = file.parentNode.getElementById('rotation').value + 1;
+    }
+</script>
+
+<!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+
+<div class="wrapper">
+
+    
+<!-- ============================================================= TOP NAVIGATION ============================================================= -->
+<!-- ============================================================= TOP NAVIGATION : END ============================================================= -->
+<!-- ============================================================= HEADER ============================================================= -->
+
+<!-- ============================================================= HEADER : END ============================================================= -->
+@*<div class="animate-dropdown"><!-- ========================================= BREADCRUMB ========================================= -->
+<div id="top-mega-nav">
+    <div class="container">
+        <nav>
+            <ul class="inline">
+                <li class="dropdown le-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-list"></i> Shop by Department
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Computer Cases &amp; Accessories</a></li>
+                        <li><a href="#">CPUs, Processors</a></li>
+                        <li><a href="#">Fans, Heatsinks &amp; Cooling</a></li>
+                        <li><a href="#">Graphics, Video Cards</a></li>
+                        <li><a href="#">Interface, Add-On Cards</a></li>
+                        <li><a href="#">Laptop Replacement Parts</a></li>
+                        <li><a href="#">Memory (RAM)</a></li>
+                        <li><a href="#">Motherboards</a></li>
+                        <li><a href="#">Motherboard &amp; CPU Combos</a></li>
+                        <li><a href="#">Motherboard Components</a></li>
+                    </ul>
+                </li>
+
+                <li class="breadcrumb-nav-holder"> 
+                    <ul>
+                        <li class="breadcrumb-item current gray">
+                            <a href="#">Publicar</a>
+                        </li>
+                    </ul>
+                </li><!-- /.breadcrumb-nav-holder -->
+            </ul>
+        </nav>
+    </div><!-- /.container -->
+</div><!-- /#top-mega-nav -->
+<!-- ========================================= BREADCRUMB : END ========================================= --></div>*@     
+    <!-- ========================================= CONTENT ========================================= -->
+
+<section id="checkout-page">
+    <div class="container reg" style="width:650px">
+        <div class="col-xs-12 no-margin">
+            
+            <div class="billing-address">
+                <h2 class="border h1">Nueva Publicación</h2>
+                @using (Html.BeginForm("CreateProduct", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="row field-row">
+                        <div class="col-xs-12">
+                            @Html.LabelFor(model => model.IdTipoProducto, "Tipo de publicación")
+                            @Html.DropDownList("IdTipoProducto", null, new { @class = "le-input" })
+                            @Html.ValidationMessageFor(model => model.IdTipoProducto)
+                        </div>
+                    </div><!-- /.field-row -->
+                    
+                    <div class="row field-row">
+                        <div class="col-xs-12">
+                            @Html.LabelFor(model => model.IdCategoriaProducto, "Categoría")
+                            @Html.DropDownList("IdCategoriaProducto", null, new { @class = "le-input" })
+                            @Html.ValidationMessageFor(model => model.IdCategoriaProducto)
+                        </div>
+                    </div><!-- /.field-row -->
+                    
+                    <div class="row field-row">
+                        <div class="col-xs-12">
+                            @Html.LabelFor(model => model.Nombre, "Título")
+                            @Html.TextBoxFor(model => model.Nombre, new { @class = "le-input", placeholder = "Nombre" })
+                            @Html.ValidationMessageFor(model => model.Nombre)
+                        </div>
+                    </div><!-- /.field-row -->
+
+                    <div class="row field-row">
+                        <div class="col-xs-12">
+
+                            @Html.LabelFor(model => model.Descripcion)
+                            @Html.TextAreaFor(model => model.Descripcion, new { @class = "le-input" })
+                            @Html.ValidationMessageFor(model => model.Descripcion)
+
+                            @*<div id="trumbowyg-demo"></div>*@
+                        </div>
+                    </div><!-- /.field-row -->
+
+                    
+                    
+    
+                    <div class="row field-row">
+                        <div class="col-xs-12 col-sm-2">
+                            @Html.LabelFor(model => model.IdMoneda, "Moneda")
+                            @Html.DropDownList("IdMoneda", null, new { @class = "le-input" })
+                            @Html.ValidationMessageFor(model => model.IdMoneda)
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            @Html.LabelFor(model => model.PrecioHora, "Precio hora")
+                            @Html.TextBoxFor(model => model.PrecioHora, new { @class = "le-input", type = "number" })
+                            @Html.ValidationMessageFor(model => model.PrecioHora)
+                            
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            @Html.LabelFor(model => model.PrecioDiario, "Precio diario")
+                            @Html.TextBoxFor(model => model.PrecioDiario, new { @class = "le-input", type = "number" })
+                            @Html.ValidationMessageFor(model => model.PrecioDiario)
+                            
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            @Html.LabelFor(model => model.PrecioSemanal, "Precio semanal")
+                            @Html.TextBoxFor(model => model.PrecioSemanal, new { @class = "le-input", type = "number" })
+                            @Html.ValidationMessageFor(model => model.PrecioSemanal)
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            @Html.LabelFor(model => model.PrecioFinDeSemana, "Precio fin de semana")
+                            @Html.TextBoxFor(model => model.PrecioFinDeSemana, new { @class = "le-input", type = "number" })
+                            @Html.ValidationMessageFor(model => model.PrecioFinDeSemana)
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            @Html.LabelFor(model => model.PrecioMensual, "Precio mensual")
+                            @Html.TextBoxFor(model => model.PrecioMensual, new { @class = "le-input", type = "number" })
+                            @Html.ValidationMessageFor(model => model.PrecioMensual)
+                        </div>
+                        
+                    </div><!-- /.field-row -->
+                    
+                    <div class="row field-row">
+                        <div class="col-xs-12 col-sm-2">
+                            Selecciona el precio que se verá en la página principal:
+                        </div>
+                        
+                        <div class="col-xs-12 col-sm-2">
+                            @Html.LabelFor(model => model.MostrarPrecioHora, " ")
+                            
+                            @Html.CheckBoxFor(model => model.MostrarPrecioHora, new { @class = "le-checkbox big" })
+                            @Html.ValidationMessageFor(model => model.MostrarPrecioHora)
+                         </div>
+
+                        <div class="col-xs-12 col-sm-2">
+                            @Html.LabelFor(model => model.MostrarPrecioDiario, " ")
+                            
+                            @Html.CheckBoxFor(model => model.MostrarPrecioDiario, new { @class = "le-checkbox big" })
+                            @Html.ValidationMessageFor(model => model.MostrarPrecioDiario)
+                         </div>
+                       
+                         <div class="col-xs-12 col-sm-2">
+                            @Html.LabelFor(model => model.MostrarPrecioSemanal, " ")
+                            
+                            @Html.CheckBoxFor(model => model.MostrarPrecioSemanal, new { @class = "le-checkbox big" })
+                            @Html.ValidationMessageFor(model => model.MostrarPrecioSemanal)
+                         </div>
+                        
+                         <div class="col-xs-12 col-sm-2">
+                            @Html.LabelFor(model => model.MostrarPrecioFinDeSemana, " ")
+                            
+                            @Html.CheckBoxFor(model => model.MostrarPrecioFinDeSemana, new { @class = "le-checkbox big" })
+                            @Html.ValidationMessageFor(model => model.MostrarPrecioFinDeSemana)
+                         </div>
+                         <div class="col-xs-12 col-sm-2">
+                            @Html.LabelFor(model => model.MostrarPrecioMensual, " ")
+                            
+                            @Html.CheckBoxFor(model => model.MostrarPrecioMensual, new { @class = "le-checkbox big" })
+                            @Html.ValidationMessageFor(model => model.MostrarPrecioMensual)
+                         </div>
+                    </div><!-- /.field-row -->
+                    
+                    <div class="row field-row">
+                        <div class="col-xs-12">
+                        @Html.LabelFor(model => model.GarantiaDinero, "Garantía")
+                        @Html.TextBoxFor(model => model.GarantiaDinero, new { @class = "le-input", type = "number" })
+                        @Html.ValidationMessageFor(model => model.GarantiaDinero)
+                        </div>
+                    </div><!-- /.field-row -->
+                        
+
+                    <div class="row field-row">
+                        <div class="col-xs-12">
+                        @Html.LabelFor(model => model.GarantiaExtra, "Requisitos")
+                        @Html.TextAreaFor(model => model.GarantiaExtra, new { @class = "le-input" })
+                        @Html.ValidationMessageFor(model => model.GarantiaExtra)
+                        </div>
+                    </div><!-- /.field-row -->
+                    
+
+                    <div class="row field-row">
+                        <div class="col-xs-12">
+                        @Html.LabelFor(model => model.CondicionesUso, "Condiciones de uso")
+                        @Html.TextAreaFor(model => model.CondicionesUso, new { @class = "le-input" })
+                        @Html.ValidationMessageFor(model => model.CondicionesUso)
+                        </div>
+                    </div><!-- /.field-row -->
+                       
+                      <div class="row field-row">
+                        <div class="col-xs-12">
+                            @Html.LabelFor(model => model.IdDepartamento, "Departamento")
+                            @Html.DropDownList("IdDepartamento", null, new { @class = "le-input", onchange = "javascript:CambioDeptos(this);" })
+                            @Html.ValidationMessageFor(model => model.IdDepartamento)
+                        </div>
+                    </div><!-- /.field-row -->
+                    
+                     <div class="row field-row" id="DIVBarrio" hidden="true">
+                        <div class="col-xs-12">
+                            @Html.LabelFor(model => model.IdBarrio, "Barrio")
+                            @Html.DropDownList("IdBarrio", null, new { @class = "le-input" })
+                            @Html.ValidationMessageFor(model => model.IdBarrio)
+                        </div>
+                    </div><!-- /.field-row -->
+                    
+                     <div class="row field-row">
+                        <div class="col-xs-12">
+                            
+                            @Html.CheckBoxFor(model => model.ConEnvio, new { @class = "le-checkbox big", onclick = "javascript:MostrarPrecioEnvio(this);" })
+                            Con envío?
+                            @*@Html.LabelFor(model => model.ConEnvio, "Con Envio?")
+                            *@
+                            
+                            @Html.ValidationMessageFor(model => model.ConEnvio)
+                            
+                            <div id="DIVPrecioEnvio" hidden="true">
+                                @Html.LabelFor(model => model.PrecioEnvio, "Precio de envío")
+                                @Html.TextBoxFor(model => model.PrecioEnvio, new { @class = "le-input" })
+                                @Html.ValidationMessageFor(model => model.PrecioEnvio)
+                            <div>
+                                Si deja este campo vacio el precio será "A convenir".
+                                </div>
+                                 </div>
+                           
+                            <br/>
+                            <div id="DIVComentarioEnvio" hidden="true">
+                                @Html.LabelFor(model => model.ComentarioEnvio, "Comentario de envío")
+                                @Html.TextAreaFor(model => model.ComentarioEnvio, new { @class = "le-input" })
+                            </div>
+                        </div>
+                    </div><!-- /.field-row -->
+
+                    @*<div class="row field-row" hidden="true">
+                        <div class="col-xs-12">
+                        @Html.LabelFor(model => model.IdUsuario, "Usuarios")
+                        @Html.DropDownList("IdUsuario", (SelectList)ViewBag.IdUsuario, new { @class = "le-input"})
+                        @Html.ValidationMessageFor(model => model.IdUsuario)
+                        </div>
+                    </div><!-- /.field-row -->
+                    
+                    <div class="row field-row" hidden="true">
+                        <div class="col-xs-12">
+                        @Html.LabelFor(model => model.IdEstadoProducto, "EstadoProducto")
+                        @Html.DropDownList("IdEstadoProducto", (SelectList)ViewBag.IdEstadoProducto, new { @class = "le-input"})
+                        @Html.ValidationMessageFor(model => model.IdEstadoProducto)
+                        </div>
+                    </div><!-- /.field-row -->*@
+                    
+                    //@Html.HiddenFor(model => model.IdUsuario)
+                    //@Html.HiddenFor(model => model.IdEstadoProducto)
+
+                    //@Html.Hidden("IdUsuario", ((SelectList)ViewBag.IdUsuario).First().Value)
+                    //@Html.Hidden("IdEstadoProducto", ((SelectList)ViewBag.IdEstadoProducto).First().Value)
+                  
+                    <div class="row field-row">
+                        <div class="col-xs-12" id="DIVSubirFotos">
+                            @Html.Label("ImageUpload", "Subir fotos")
+                            @Html.TextBox("ImageUpload", String.Empty, new { type = "file", onchange = "javascript:CargarPreview(this);" })
+                            
+                            @Html.ValidationMessage("ImageUpload")
+                            <a href="#" onclick="javascript:RotarImagen(this);"><img id="preview" width="20%" height="auto" alt='Preview' src></a>
+                            <input type="hidden" value="0" id="rotation" />
+                        </div>
+                        <div class="col-xs-12" >
+                        <a href="javascript:AgregarFileUploader();">Más fotos...</a>
+                            </div>
+                    </div>  
+                    
+                    <div class="place-order-button">
+                        <input class="le-button big" type="submit" value="Publicar" />
+                    </div>
+                }
+            </div><!-- /.billing-address -->
+
+        </div><!-- /.col -->
+    </div><!-- /.container -->    
+</section><!-- /#checkout-page -->
+<!-- ========================================= CONTENT : END ========================================= -->      
+<!-- ============================================================= FOOTER ============================================================= -->
+
+    <script>
+
+        $('#trumbowyg-demo').trumbowyg();
+    </script>
+    </div>

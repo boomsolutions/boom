@@ -1,0 +1,93 @@
+﻿@model IEnumerable<MvcApplication4.Models.Usuarios>
+
+@{
+    ViewBag.Title = "ListarUsuarios";
+Layout = null;
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Log In", "LogIn")
+</p>
+<table>
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Apellido
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Telefono
+        </th>
+        <th>
+            User
+        </th>
+        <th>
+            Confirmado
+        </th>
+        <th>
+            Fecha de confirmado
+        </th>
+        <th>
+            Estado
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User)
+        </td>
+        <td>
+            @if(item.LogModificacionesCabezal.Count() > 0)
+            {
+               
+                @((item.LogModificacionesCabezal.Where(lmc => lmc.Accion == 2 && lmc.Tabla == "Usuarios").Count() > 0)?"SI":"NO")
+                    
+                
+            }
+        </td>
+<td>
+           @if(item.LogModificacionesCabezal.Count() > 0)
+            {
+               
+                if(item.LogModificacionesCabezal.Where(lmc => lmc.Accion == 2 && lmc.Tabla == "Usuarios").Count() > 0)
+                {
+                          @item.LogModificacionesCabezal.Where(lmc => lmc.Accion == 2 && lmc.Tabla == "Usuarios").OrderBy(lmc => lmc.Fecha).First().Fecha
+                }
+                    
+                
+            }
+        </td>
+        <td>
+           @Html.DisplayFor(modelItem => item.IdEstadoUsuario)
+        </td>
+        <td>
+             @Html.ActionLink("Back to List", "Index")
+        </td>
+    </tr>
+}
+
+</table>
+
+
+

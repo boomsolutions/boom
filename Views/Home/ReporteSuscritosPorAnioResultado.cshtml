@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MvcApplication4.Models.Suscriptor>
+
+@{
+    Layout = null;
+}
+
+<h2>Resultado Suscritores por año de nacimiento desde @ViewBag.Desde hasta @ViewBag.Hasta</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Usuarios Confirmados", "ListarUsuarios")*@
+    TOTAL: @ViewBag.CantidadVisitas
+</p>
+<table>
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Fecha de nacimiento
+        </th>
+        <th>
+            Fecha de suscrito
+        </th>
+        <th>
+            Email
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaNacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaSuscripto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+       
+    </tr>
+}
+
+</table>

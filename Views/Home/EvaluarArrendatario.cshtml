@@ -1,0 +1,124 @@
+﻿@model MvcApplication4.Models.Alquileres
+
+@{
+    ViewBag.Title = "EvaluarArrendatario";
+}
+
+<section id="checkout-page">
+
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+
+    <div class="container">
+        <h2>Evaluar al arrendatario</h2>
+        <hr />
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            @if (Model.UsuarioArrendatario.FotosUsuarios.Count() > 0)
+            {
+                <div style="background-image:url(@Url.Content(Model.UsuarioArrendatario.FotosUsuarios.First().Imagen.RutaFoto))" class="eval-user-image"  ></div>                                      
+            }
+            else
+            {
+                <div style="background-image:url(@Url.Content("~/assets/images/default-avatar.jpg"))" class="eval-user-image"  ></div>                                      
+            }
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top-bottom">
+                <label>@Model.UsuarioArrendatario.Nombre @Model.UsuarioArrendatario.Apellido ha alquilado <a href="@Url.Content("~/Home/Details/" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.Producto.IdProducto.ToString()))).ToString().Replace("%","%25")">@Model.Producto.Nombre</a>.<br/>Desde el @Model.FechaDesde.ToString("dd-MMM-yyyy") hasta el @Model.FechaHasta.ToString("dd-MMM-yyyy")</label>
+             </div>
+        </div>
+        
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+            
+            <div>
+                
+                @using (Html.BeginForm("EvaluarArrendatario", "Home", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+                {
+                    
+                    @Html.Hidden("IdAlquilerEncrypt",HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.IdAlquiler.ToString())))
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                        @Html.LabelFor(model => model.ComentarioExperienciaArrendatario,"Describe tu experiencia")
+                        @Html.TextAreaFor(model => model.ComentarioExperienciaArrendatario, new { @class = "le-input", rows = "8", placeholder="¿Cómo describirías la expriencia de prestarle a este usuario?" })
+                        @Html.ValidationMessageFor(model => model.ComentarioExperienciaArrendatario)
+                        </div>
+                    </div><!-- /.field-row -->
+
+                    <div class="row margin-top">
+                        <div class="col-xs-12">
+                        @Html.LabelFor(model => model.ComentarioPrivadoArrendatario, "Comentario privado para el usuario")
+                        @Html.TextAreaFor(model => model.ComentarioPrivadoArrendatario, new { @class = "le-input", rows = "8", placeholder="Dale las gracias a este usuario por su alquiler o hazle algunas sugerencias para mejorar." })
+                        @Html.ValidationMessageFor(model => model.ComentarioPrivadoArrendatario)
+                        </div>
+                    </div><!-- /.field-row -->
+
+                    <div class="row margin-top">
+                        <div class="col-xs-12">
+                            <label>Cuidado</label>
+                            <p>¿Tuvo el arrendatario los cuidados pautados?</p>
+                            <div class="star-holder margin-top">
+                                <div class="star big" data-score="3"></div>
+                            </div>
+                                
+
+                        </div>
+                    </div><!-- /.field-row -->
+                    <br />
+                    <div class="row margin-top">
+                        <div class="col-xs-12">
+                            <label>Comunicacion</label>
+                            <p>Claridad en la comunicacion con el arrendatario.</p>
+                            
+                            <div class="star-holder margin-top">
+                                <div class="star big" data-score="3"></div>
+                            </div>
+                                
+
+                        </div>
+                    </div><!-- /.field-row -->
+                    
+                    <div class="row margin-top">
+                        <div class="col-xs-12">
+                            <label>Cumplimiento de las normas</label>
+                            <p>Respeto de las normas especificadas.</p>
+                            
+                            <div class="star-holder margin-top">
+                                <div class="star big" data-score="3"></div>
+                            </div>
+                                
+
+                        </div>
+                    </div><!-- /.field-row -->
+                    
+                    <div class="row margin-top">
+                        <div class="col-xs-12">
+                            <label>¿Recomendarias a este usuario?</label>
+                                
+                            <label>@Html.RadioButton("calif", "1", true, new { style="width: 15px;height:15px"}) SI</label>
+                            <label>@Html.RadioButton("calif", "-1", false, new { style="width: 15px;height:15px"}) NO</label>
+
+                        </div>
+                    </div><!-- /.field-row -->
+                    
+                    <div class="row margin-top">
+                        <div class="col-xs-12">
+                        <input class="le-button" type="submit" value="Enviar"  />
+                        </div>
+                    </div>
+                }
+            </div><!-- /.billing-address -->
+
+        </div><!-- /.col -->
+    </div><!-- /.container -->    
+</section>

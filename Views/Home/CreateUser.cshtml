@@ -1,0 +1,285 @@
+@model MvcApplication4.Models.Usuarios
+
+@{
+    ViewBag.Title = "Mejor lo alquilo - Registrarse";
+    
+}
+
+<script>
+
+    function CambioDeptos(depto)
+    {
+        document.getElementById('DIVBarrio').hidden = true;
+        if ($("#IdDepartamento").val() == "10") {
+            document.getElementById('DIVBarrio').hidden = false;
+        }
+        return false;
+    }
+
+</script>
+
+    <!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+<!-- End Google Tag Manager -->
+
+<!-- BEGIN BODY REAL -->
+    <div class="container-fluid" >        
+       <!--<div class="row top-backimage">
+       		<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+            	
+       		</div>
+       </div>-->
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 margin-top">
+            <p class="lead text-center" style="font-weight: normal;">
+                <strong>MejorLoAlquilo</strong> es una plataforma de arrendamiento de bienes entre particulares cuyo fin es rentabilizar esas cosas que no usas, al mismo tiempo que pod&eacute;s alquilar lo que necesitas pero no quer&eacute;s comprar. 
+            </p>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+       <div class="row">
+       		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            	<h2 class="text-center">CREAR CUENTA</h2>
+            </div>
+       </div>
+       <hr>
+        <div class="row">
+        
+            <div class="col-lg-4 col-lg-offset-4">
+            <p class="lead text-center" style="color: red;">Por la seguridad de nuestros usuarios todos los datos ingresados deben ser verificables.</p>
+        </div>
+        
+            <div class="row">
+     	
+        <div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-12 col-xs-12">
+            @using (Html.BeginForm("CreateUser", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id="CreateUserForm" }))
+            {
+               
+                
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!--<label>Usuario</label><br>
+                    <input type="text" placeholder="Nombre" class="le-input" />-->
+                    @*@Html.LabelFor(model => model.User, "Usuario")*@
+                    @Html.TextBoxFor(model => model.User, new { @class = "le-input", placeholder = "Usuario" })
+                    @Html.ValidationMessageFor(model => model.User)
+                </div>
+                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top">
+                    <!--<label>Contraseña</label><br>
+                    <input type="text" placeholder="Nombre" />-->
+                    @*@Html.LabelFor(model => model.Password, "Contraseña")*@
+                   @* @Html.PasswordFor(model => model.Password, new { @class = "le-input", placeholder = "Contraseña" })
+                     *@
+                     <input type="password" data-val="true" data-val-required="Contrase&ntilde;a es un campo requerido." class="le-input" name="Password" id="Password" placeholder="Contrase&ntilde;a" />
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top">
+                    <!--<label>Confirmar contraseña</label><br>
+                    <input type="text" placeholder="Nombre" />-->
+                    @*@Html.LabelFor(model => model.ConfirmPassword, "Confirmar Contraseña")*@
+                    @*@Html.PasswordFor(model => model.ConfirmPassword, new { @class = "le-input", placeholder = "Confirmar Contraseña" })
+                    *@
+                    <input type="password" data-val="true" data-val-required="Contrase&ntilde;a es un campo requerido." class="le-input" name="ConfirmPassword" id="ConfirmPassword" placeholder="Confirmar Contrase&ntilde;a" />
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top">
+                <!--<label>Corre electronico</label><br>
+                <input type="text" placeholder="Nombre" style="width: 100%;" />-->
+                     @*@Html.LabelFor(model => model.Email)*@
+                        @Html.TextBoxFor(model => model.Email, new { @class = "le-input", placeholder = "Correo electronico" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <hr />
+                    </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <label>DATOS PERSONALES</label>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <!--<label>Nombre</label><br>
+                <input type="text" placeholder="Nombre" style="width: 100%;" />-->
+                    @*@Html.LabelFor(model => model.Nombre)*@
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "le-input", placeholder = "Nombre" })
+                        @Html.ValidationMessageFor(model => model.Nombre)
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <!--<label>Apellido</label><br>
+                <input type="text" placeholder="Apellido" style="width: 100%;" />-->
+                    @*@Html.LabelFor(model => model.Apellido)*@
+                        @Html.TextBoxFor(model => model.Apellido, new { @class = "le-input", placeholder = "Apellido" })
+                        @Html.ValidationMessageFor(model => model.Apellido)
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 no-padding margin-top">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <label for="FechaNacimiento">FECHA DE NACIMIENTO</label>
+                        </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 no-padding-right">
+                        @Html.DropDownList("ListaDias", null, new { @class = "le-input"})
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        @Html.DropDownList("ListaMeses", null, new { @class = "le-input"})
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 no-padding-left">
+                        @Html.DropDownList("ListaAnios", null, new { @class = "le-input"})
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        @Html.ValidationMessage("FechaNacimiento")
+                    </div>
+                    <!--
+                <label>FECHA DE NACIMIENTO</label>
+                <select>
+                	<option>Dia</option>
+                	<option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                <select>
+                	<option>Mes</option>
+                	<option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+                <select>
+                	<option>AÑo</option>
+                	<option>1984</option>
+                    <option>1985</option>
+                    <option>1986</option>
+                    <option>1987</option>
+                </select>-->
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-top">
+                	<!--<label>TELEFONO</label>
+                    <input type="number" placeholder="59894111111" />-->
+                    <label for="Telefono">TEL&Eacute;FONO</label>
+                    
+                            @Html.TextBoxFor(model => model.Telefono, new { @class = "le-input", placeholder = "Telefono" })
+                            @Html.ValidationMessageFor(model => model.Telefono)
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margin-top">
+                    @Html.LabelFor(model => model.IdDepartamento, "Departamento")
+                            @Html.DropDownList("IdDepartamento", null, new { @class = "le-input" , onchange = "javascript:CambioDeptos(this);"})
+                            @Html.ValidationMessageFor(model => model.IdDepartamento)
+                    <!--
+                <label>DEPARTAMENTO</label>
+                	<select>
+                	<option>Artigas</option>
+                	<option>Monte</option>
+                    <option>MAldo</option>
+                    <option>Canelones</option>
+                	</select>-->
+                </div>
+                
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margin-top">
+                    @Html.LabelFor(model => model.IdBarrio, "Barrio")
+                            @Html.DropDownList("IdBarrio", null, new { @class = "le-input" })
+                            @Html.ValidationMessageFor(model => model.IdBarrio)
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top">
+                <label>FOTO DE PERFIL</label>
+				
+                @*<input type="file" />
+                <img src width="135px" height="135px" style="margin-right:15px;border-style:dashed;border-width:thin;border-color:#F1F1F1" />
+				*@
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                          <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 135px; height: 135px;cursor: pointer;"></div>
+                          <div>
+                            <span class="btn btn-default btn-file" style="display:none">
+                                <span class="fileinput-new">Select image</span>
+                                <span class="fileinput-exists">Change</span>
+                                <!--<input type="file" name="...">-->
+                                @Html.TextBox("ImageUpload", String.Empty, new { type = "file"/*, onchange = "javascript:CargarPreview(this);" */})
+                            
+                                
+                            </span>
+                              @Html.ValidationMessage("ImageUpload")
+                            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Borrar</a>
+                          </div>
+                        </div>
+
+                </div>                
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top">
+                <label>INSCRIBIRSE AL NEWSLETTER </label><!--<input type="checkbox" name="InscribirseNL" id="InscribirseNL" checked/>-->
+                    @Html.CheckBox("InscribirseNL",true)
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <hr/>
+                    </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <p style="font-size:11px">Mejorloalquilo constituye una plataforma online de prueba. Los usuarios 
+que se registren para utilizar sus servicios, aceptan los presentes t&eacute;rminos 
+y condiciones de uso, los cuales tienen un car&aacute;cter obligatorio y vinculante.</p>
+                </div>
+                
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <!--<input type="button" class="le-button" data-toggle="modal" data-target="#exampleModal" data-whatever="" value="Rechazar" />-->
+                                            
+                        Acepto los <a data-toggle="modal" data-target="#termycondModal" href="#">t&eacute;rminos y condiciones</a>
+                          
+                        @Html.CheckBoxFor(model => model.AceptoTerminosYCondiciones, new { @class = "le-checkbox big", @checked = "true" })
+                        @Html.ValidationMessageFor(model => model.AceptoTerminosYCondiciones)
+                            
+                    </div>
+                
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top text-center">
+                    <!--<input type="submit" value="Registrarse" class="le-button" />-->
+                    <input class="le-button" type="submit" value="Registrarse" onclick="javascript: ga('send', 'event', 'BotonRegistrarUsuario', 'click', 'Se registro un nuevo usuario');" />
+                </div>
+            }
+        </div>
+        
+     </div>
+     
+     
+	    </div>
+
+
+        <div class="modal fade" id="termycondModal" tabindex="-1" role="dialog" aria-labelledby="termycondModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color:#FF7E82;color:#FFFFFF">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="termycondModalLabel">T&eacute;rminos y condiciones para el prototipo</h4>
+              </div>
+              <div class="modal-body">
+
+                  <h1>T&eacute;rminos y condiciones para el prototipo</h1>
+MEJORLOALQUILO CONSTITUYE UNA PLATAFORMA ONLINE DE PRUEBA. LOS USUARIOS QUE SE REGISTREN PARA UTILIZAR SUS SERVICIOS, ACEPTAN LOS PRESENTES T&eacute;RMINOS Y CONDICIONES DE USO, LOS CUALES TIENEN UN CAR&aacute;CTER OBLIGATORIO Y VINCULANTE.<br>
+<h2>Condiciones de Uso y Responsabilidad:</h2> MejorLoAlquilo pone a disposici&oacute;n de los usuarios una plataforma virtual que les permite ponerse en contacto para arrendar bienes. MejorLoAlquilo no interviene en el perfeccionamiento de las operaciones realizadas entre los usuarios ni en las condiciones por ellos estipuladas. MejorLoAlquilo se limita a facilitarles a los usuarios un modelo de contrato de arrendamiento que pueden utilizar como no en las operaciones de alquiler que celebren. Cada usuario es responsable por los art&iacute;culos que publique, por la legalidad y legitimidad de los mismos y la veracidad de sus datos de registro. Asimismo, el usuario reconoce que al realizar operaciones con otros usuarios lo hace bajo su propio riesgo y responsabilidad. En ning&uacute;n caso MejorLoAquilo ser&aacute; responsable por los daños y perjuicios y/o lucro cesante que pueda sufrir cualquier usuario como consecuencia de las operaciones realizadas o no realizadas con bienes publicados en MejorLoAlquilo.<br>
+<h2>Privacidad de la Informaci&oacute;n:</h2> Todo dato personal que recoja MejorLoAlquilo respecto de los usuarios ser&aacute; utilizado con la &uacute;nica finalidad de brindar el servicio descripto y no ser&aacute; transferido a ning&uacute;n tercero ni utilizado con ninguna otra finalidad.
+
+
+               @* <form>
+                
+                  <div class="form-group">
+                    <label for="message-text" class="control-label">Motivo:</label>
+                    <textarea class="form-control" id="message-text"></textarea>
+                  </div>
+                </form>*@
+              </div>
+              <div class="modal-footer">
+               @*<button type="button" class="le-button" style="background-color:#FF7E82">Aceptar</button>*@
+                <button type="button" class="le-button" data-dismiss="modal">Cerrar</button>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+   
+<!-- END BODY REAL -->

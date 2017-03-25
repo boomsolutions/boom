@@ -1,0 +1,394 @@
+@{
+    ViewBag.Title = "VIEW CONSULTAS USUARIO";
+                                    //Layout = null;
+}
+ 
+<script type="text/javascript">
+    function CambiarRows()
+    { }
+</script>  
+
+<!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+<!-- End Google Tag Manager -->
+
+<!-- BEGIN BODY REAL -->
+    <div class="container" >        
+       
+     <div class="row">
+     	<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        	<div class="account-menu-holder">
+                <div class="account-menu-title">
+                	<p>MI CUENTA</p>
+                </div>
+                <div class="account-menu-option">
+                	<div class="panel-group panel-group-faq" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-faq">
+                          <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="">
+                                Configuracion
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                            <div class="panel-body">
+                                <ul>
+                                <li>@Html.ActionLink("Datos personales", "ViewUser", "Home")</li>
+                                </ul>
+    
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-faq">
+                          <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Mis publicaciones
+    
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="true" >
+                            <div class="panel-body">
+                              
+                              <ul>
+	                                @{ string cantConsSinLeer = ViewBag.CantidadConsultas; }
+                                    <li>@Html.ActionLink("Publicaciones", "ViewPublicaciones", "Home")</li>
+                                    <li>@Html.ActionLink("Preguntas" + cantConsSinLeer, "ViewConsultasParaUsuario", "Home")</li>
+                                    <li>@Html.ActionLink("Alquileres concretados", "ViewAlquileresPorUsuario", "Home")</li>
+                                    <li>@Html.ActionLink("Reservas pendientes", "ViewSolicitudesParaUsuario", "Home")</li>
+                                    <li>@Html.ActionLink("Reservas rechazadas", "ViewSolicitudesParaUsuarioRechazadas", "Home")</li>
+                                </ul>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-faq">
+                          <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Mis alquileres
+                              </a>
+                            </h4>
+                          </div>
+                          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
+                            <div class="panel-body">
+                              <ul>
+	                               
+	                                @{ string cantRespSinLeer = ViewBag.CantidadRespuestasSinLeerString; }
+                                    <li>@Html.ActionLink("Preguntas" + cantRespSinLeer, "ViewConsultasDelUsuario", "Home")</li>
+                                    <li>@Html.ActionLink("Alquileres concretados", "ViewAlquileresDelUsuario", "Home")</li>
+                                    <li>@Html.ActionLink("Reservas pendientes", "ViewSolicitudesDelUsuario", "Home")</li>
+                                    <li>@Html.ActionLink("Reservas rechazadas", "ViewSolicitudesDelUsuarioRechazadas", "Home")</li>
+                                </ul>
+                              
+                            </div>
+                          </div>
+                        </div>
+                
+                
+              		</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div class="account-detail-holder">
+                <div class="account-detail-title">
+                	<p>Mis publicaciones - Preguntas</p>
+                </div>
+                <div class="account-detail-content margin-top panel-group panel-group-faq" id="questions">
+                @if (ViewBag.Productos != null)
+                {
+                    
+                    int contProd = 0;
+                    foreach (MvcApplication4.Models.Productos p1 in ((List<MvcApplication4.Models.Productos>)ViewBag.Productos))
+                    {
+                        contProd++;
+                         <div class='panel panel-faq'>
+                            <div class="row">
+                    	
+                                    <div class="col-lg-12">                        	
+                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" >
+                                            @if (p1.FotosProductos.Count() > 0)
+                                            {
+                                                foreach (var f2 in p1.FotosProductos.ToList())
+                                                {
+                                                    if (String.IsNullOrEmpty(f2.Imagen.RutaFotoThumb))
+                                                    {
+                                                        <div class="product-image-thumb" style="background-image:url(@Url.Content(f2.Imagen.RutaFoto.Replace("../../", "")))">
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="product-image-thumb" style="background-image:url(@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", "")))">
+                                                        </div>
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="product-image-thumb" style="background-image:url(@Url.Content("~/assets/images/product-small-01.jpg"))">
+                                                </div>
+                                            }
+                                         </div>
+                                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <p>
+                                                @Html.ActionLink(p1.Nombre, "Details/" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p1.IdProducto.ToString())), "Home")
+                                            </p>
+                                            @*<p class="owner">@p1.Usuario.Nombre</p>
+                                             <p>@if (p1.Usuario.Barrio != null){@p1.Usuario.Barrio.DescripcionI1}</p>
+                                             <p>@if (p1.Usuario.Ciudad != null){@p1.Usuario.Ciudad.DescripcionI1}</p>*@
+                                         </div>
+                                    </div>
+                        
+                            </div>
+                            <hr/>
+
+                             @{int contUsu = 0;}
+
+                                @foreach (MvcApplication4.Models.Usuarios u in ((List<MvcApplication4.Models.Usuarios>)ViewBag.UsuariosConsultantes))
+                                {
+                                    contUsu++;
+
+                                    if (u.ComentariosProducto.Where(c => c.IdProducto == p1.IdProducto).Count() > 0)
+                                    {
+                                        <!-- CABEZAL -->
+                                        <div class="row margin-bottom panel-heading">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <a data-toggle="collapse" data-parent="#questions" href="#collapse-@contProd-@contUsu" class="collapsed" aria-expanded="false">
+                                                    Mensajes de: <strong>@u.Nombre</strong> 
+                                                    @*@{string sinLeer = "";
+                                                        if(u.ComentariosProducto.Where(c => c.EsRespuesta == false && c.Leido == false).Count() > 0)
+                                                        {
+                                                            sinLeer = "(" + u.ComentariosProducto.Where(c => c.EsRespuesta == false && c.Leido == false).Count() + " mensajes nuevos)";
+                                                        }
+                                                    }
+                                                    @sinLeer*@
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                    bool primero = true;
+                                    
+                                    <!-- CONTENIDO -->
+                                    <div id="collapse-@contProd-@contUsu" class="panel-collapse collapse" aria-expanded="false"> 
+                                             
+                                    @foreach (MvcApplication4.Models.ComentariosProducto cp in u.ComentariosProducto.OrderByDescending(cp => cp.IdComentariosProducto))
+                                    {
+                                        
+                                        if (cp.Producto.IdProducto == p1.IdProducto)
+                                        {
+                                        
+                                                 
+                                                
+                                                if(primero)
+                                                {
+                                                    primero = false;
+                                                    using (Html.BeginForm("ResponderConsulta", "Home", FormMethod.Post))
+                                                    {
+                                                            <div class="row">
+                                                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-7">            	
+                                                                        <p class="comment-background-resp arrow-right right">
+                                                                        @Html.Hidden("IdComentariosProductoOrigen", cp.IdComentariosProducto)
+                                                                        @Html.Hidden("IdProducto", p1.IdProducto)
+                                                                        @Html.Hidden("IdUsuario", cp.IdUsuario)
+                                                                        @Html.Hidden("IdUsuarioConsulta", cp.IdUsuario)
+                                                                        @Html.TextArea("Comentario", new { @class = "le-input", rows = 4, placeholder = "Escribe tu respuesta..." })
+                                                 
+                                                                        <button type="submit" class="le-button">Enviar</button>
+                                                                        </p>
+                                                                </div>
+
+                                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 text-right">
+                         	                                        <div class="col-lg-2 ui-front no-padding-left" >
+                                                     
+                                                                    @if (cp.Producto.Usuario.FotosUsuarios.Count() > 0)
+                                                                    {
+                                                                        foreach (var fu in cp.Producto.Usuario.FotosUsuarios.ToList())
+                                                                        {
+                                                                            if (String.IsNullOrEmpty(fu.Imagen.RutaFotoThumb))
+                                                                            {
+                                                                                <div class="comment-user-small" style="background-image:url('@Url.Content(fu.Imagen.RutaFoto.Replace("../../", ""))')">
+                                                                                </div>
+                                                                            }
+                                                                            else
+                                                                            {  
+                                                                                <div class="comment-user-small" style="background-image:url('@Url.Content(fu.Imagen.RutaFotoThumb.Replace("../../", ""))')">
+                                                                                </div>
+                                                                            }
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img class="comment-user-small" src="@Url.Content("~/assets/images/default-avatar.jpg")"  />
+                                                                    }
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    }
+                                                }
+                                    
+                                     
+                                                if (cp.EsRespuesta)
+                                                {
+                                                    <div class="row">
+                                                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-7">            	
+                                                                <p class="comment-background-resp arrow-right">
+                                                                    @cp.Comentario
+                                                                <br /><br />
+                                                                <label>@cp.FechaComentario.ToString("dd-MMM-yyyy")</label>
+                                                                </p>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-5 text-right">
+                         	                                <div class="col-lg-2 ui-front no-padding-left">
+                                                                    @if (cp.Producto.Usuario.FotosUsuarios.Count() > 0)
+                                                                    {
+                                                                        foreach (var fu in cp.Producto.Usuario.FotosUsuarios.ToList())
+                                                                        {
+                                                                            if (String.IsNullOrEmpty(fu.Imagen.RutaFotoThumb))
+                                                                            {
+                                                                                <div class="comment-user-small" style="background-image:url(@Url.Content(fu.Imagen.RutaFoto.Replace("../../", "")))">
+                                                                                </div>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <div class="comment-user-small" style="background-image:url(@Url.Content(fu.Imagen.RutaFotoThumb.Replace("../../", "")))">
+                                                                                </div>
+                                                                            }
+                                                                            break;
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <img class="comment-user-small" src="@Url.Content("~/assets/images/default-avatar.jpg")"  />
+                                                        
+                                                                    }
+                                                
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="row">
+                                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 text-left">
+                         	                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 no-padding-left ui-front">
+
+                                            @if (cp.Usuario.FotosUsuarios.Count() > 0)
+                                            {
+                                                foreach (var fu in cp.Usuario.FotosUsuarios.ToList())
+                                                {
+                                                    if (String.IsNullOrEmpty(fu.Imagen.RutaFotoThumb))
+                                                    {
+                                                        
+                                                        <div class="comment-user-small" style="background-image:url(@Url.Content(fu.Imagen.RutaFoto.Replace("../../", "")))">
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        
+                                                        <div class="comment-user-small" style="background-image:url(@Url.Content(fu.Imagen.RutaFotoThumb.Replace("../../", "")))">
+                                                        </div>
+                                                    }
+                                                    break;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                
+                                                <div class="comment-user-small" style="background-image:url(@Url.Content("~/assets/images/default-avatar.jpg"))">
+                                                </div>
+                                            }
+
+
+                                            
+                                            </div>
+                                        
+                                                        </div>
+                                                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-8">            	
+                                                                <p class="comment-background arrow-left">
+                                                                    @cp.Comentario
+                                                                    <br /><br />
+                                                                    <label>@cp.FechaComentario.ToString("dd-MMM-yyyy")</label>
+                                                                </p>
+                                                        </div>
+                                                    </div>           
+                                                }
+
+                                                    
+                                    
+                                            
+                                            
+                                        }
+                                        
+                                        
+                                    }
+
+                                    </div>  
+                                    
+                                    <hr />
+                                }
+
+                            <hr class="separator"/>
+                          </div>
+                    }
+                }
+                else
+                {
+                        <div class="text-center">No tienes preguntas pendientes...</div>
+                } 
+                </div>
+                
+            </div>
+        </div>
+       
+     </div>
+     
+     
+        
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header" style="background-color:#FF7E82;color:#FFFFFF">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Ingrese el motivo de rechazo</h4>
+              </div>
+              <div class="modal-body">
+                <form>
+                <!--
+                  <div class="form-group">
+                    <label for="recipient-name" class="control-label">Recipient:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>-->
+                  <div class="form-group">
+                    <label for="message-text" class="control-label">Motivo:</label>
+                    <textarea class="form-control" id="message-text"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+               <button type="button" class="le-button" style="background-color:#FF7E82">Aceptar</button>
+                <button type="button" class="le-button" data-dismiss="modal">Cancelar</button>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+	</div>
+
+   
+<!-- END BODY REAL -->

@@ -1,0 +1,287 @@
+﻿@model MvcApplication4.Models.Usuarios
+
+@{
+    ViewBag.Title = "HOME/INDEX";
+    
+}
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    
+    function onDeleteSuccess(link) {
+        //link.parentElement.remove();
+        link.parentNode.parentNode.parentNode.remove();
+        //alert(result);
+    }
+</script>
+
+<!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+
+<div class="wrapper">
+
+    
+<!-- ============================================================= TOP NAVIGATION ============================================================= -->
+<!-- ============================================================= TOP NAVIGATION : END ============================================================= -->
+<!-- ============================================================= HEADER ============================================================= -->
+
+<!-- ============================================================= HEADER : END ============================================================= -->
+@*<div class="animate-dropdown"><!-- ========================================= BREADCRUMB ========================================= -->
+<div id="top-mega-nav">
+    <div class="container">
+        <nav>
+            <ul class="inline">
+                <li class="dropdown le-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-list"></i> Shop by Department
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Computer Cases &amp; Accessories</a></li>
+                        <li><a href="#">CPUs, Processors</a></li>
+                        <li><a href="#">Fans, Heatsinks &amp; Cooling</a></li>
+                        <li><a href="#">Graphics, Video Cards</a></li>
+                        <li><a href="#">Interface, Add-On Cards</a></li>
+                        <li><a href="#">Laptop Replacement Parts</a></li>
+                        <li><a href="#">Memory (RAM)</a></li>
+                        <li><a href="#">Motherboards</a></li>
+                        <li><a href="#">Motherboard &amp; CPU Combos</a></li>
+                        <li><a href="#">Motherboard Components</a></li>
+                    </ul>
+                </li>
+
+                <li class="breadcrumb-nav-holder"> 
+                    <ul>
+                        <li class="breadcrumb-item current gray">
+                            <a href="#">Publicar</a>
+                        </li>
+                    </ul>
+                </li><!-- /.breadcrumb-nav-holder -->
+            </ul>
+        </nav>
+    </div><!-- /.container -->
+</div><!-- /#top-mega-nav -->
+<!-- ========================================= BREADCRUMB : END ========================================= --></div>*@     
+    <!-- ========================================= CONTENT ========================================= -->
+
+<section id="checkout-page">
+    <div class="container" style="width:650px">
+        <div class="col-xs-12 no-margin">
+            
+            <div class="billing-address">
+                <h2 class="border h1">Editar Usuario</h2>
+                @using (Html.BeginForm("EditUser", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+                    //Html.Hidden("IdUsuario", Model.IdUsuario)
+                    
+                    @Html.Hidden("IdUsuarioEncrypt", HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.IdUsuario.ToString())))
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <!--<label>Usuario</label><br>
+                            <input type="text" placeholder="Nombre" class="le-input" />-->
+                            @*@Html.LabelFor(model => model.User, "Usuario")*@
+                            @Html.TextBoxFor(model => model.User, new { @class = "le-input", placeholder = "Usuario" })
+                            @Html.ValidationMessageFor(model => model.User)
+                        </div>
+                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top">
+                            <!--<label>Contraseña</label><br>
+                            <input type="text" placeholder="Nombre" />-->
+                            @*@Html.LabelFor(model => model.Password, "Contraseña")*@
+                            @Html.PasswordFor(model => model.Password, new { @class = "le-input", placeholder = "Contraseña" })
+                            @Html.ValidationMessageFor(model => model.Password)
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top">
+                            <!--<label>Confirmar contraseña</label><br>
+                            <input type="text" placeholder="Nombre" />-->
+                            @*@Html.LabelFor(model => model.ConfirmPassword, "Confirmar Contraseña")*@
+                            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "le-input", placeholder = "Confirmar Contraseña" })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top">
+                        <!--<label>Corre electronico</label><br>
+                        <input type="text" placeholder="Nombre" style="width: 100%;" />-->
+                             @*@Html.LabelFor(model => model.Email)*@
+                                @Html.TextBoxFor(model => model.Email, new { @class = "le-input", placeholder = "Correo electronico" })
+                                @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                    </div>
+                    
+                    <div class="row field-row">
+                        <div class="col-xs-6">
+                        @Html.LabelFor(model => model.Nombre)
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "le-input", placeholder = "Nombre" })
+                        @Html.ValidationMessageFor(model => model.Nombre)
+                        </div>
+                    
+                        <div class="col-xs-6">
+                        @Html.LabelFor(model => model.Apellido)
+                        @Html.TextBoxFor(model => model.Apellido, new { @class = "le-input", placeholder = "Apellido" })
+                        @Html.ValidationMessageFor(model => model.Apellido)
+                        </div>
+                    </div><!-- /.field-row -->
+
+                    @*<div class="row field-row">
+                        <div class="col-xs-12">
+                        @Html.LabelFor(model => model.Email)
+                        @Html.TextBoxFor(model => model.Email, new { @class = "le-input", placeholder = "Email" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                        </div>
+                    </div><!-- /.field-row -->*@
+
+                    <div class="row field-row">
+                        <div class="col-xs-12 col-sm-6">
+                            @Html.LabelFor(model => model.Telefono)
+                            @Html.TextBoxFor(model => model.Telefono, new { @class = "le-input", placeholder = "Telefono" })
+                            @Html.ValidationMessageFor(model => model.Telefono)
+                        </div>
+                    
+                         <div class="col-xs-12 col-sm-6">
+                            <label for="FechaNacimiento">Fecha de Nacimiento</label>
+                            @Html.DropDownList("ListaDias", null, new { @class = "le-input", style = "width: 26%" })
+                                
+                            @Html.DropDownList("ListaMeses", null, new { @class = "le-input", style = "width: 26%" })
+                                
+                            @Html.DropDownList("ListaAnios", null, new { @class = "le-input", style = "width: 45%" })
+                            @Html.ValidationMessage("FechaNacimiento")
+                        </div>
+
+                       @* <div class="col-xs-12 col-sm-4">
+                        @Html.LabelFor(model => model.FechaNacimiento)
+                        @Html.TextBoxFor(model => model.FechaNacimiento, new { @class = "le-input", type = "date", placeholder = "Fecha Nac" })
+                        @Html.ValidationMessageFor(model => model.FechaNacimiento)
+                        </div>*@
+                    
+                    </div><!-- /.field-row -->
+
+                    <div class="row field-row">
+                        <div class="col-xs-2">
+                            <label>Sexo</label>
+                        </div>   
+
+                         @if (Model == null)
+                         { 
+                            <div class="col-xs-4"> 
+                                <label>@Html.RadioButton("Sexo", "F", true, new { style = "width: 15%;" }) Femenino</label>    
+                            </div>
+                            <div class="col-xs-4">
+                                <label>@Html.RadioButton("Sexo", "M", false, new { style = "width: 15%;" }) Masculino</label>
+                            </div>
+                         }
+                         else
+                         {
+                             <div class="col-xs-4"> 
+                                <label>@Html.RadioButton("Sexo", "F", Model.Sexo == "F", new { style = "width: 15%;" }) Femenino</label>    
+                            </div>
+                            <div class="col-xs-4">
+                                <label>@Html.RadioButton("Sexo", "M", Model.Sexo == "M", new { style = "width: 15%;" }) Masculino</label> 
+                            </div>
+                         }
+                        
+                    </div><!-- /.field-row -->@*
+                    
+                    
+                    
+                    
+                     <div class="row field-row">
+                        <div class="col-xs-12">
+                            @Html.LabelFor(model => model.IdDepartamento, "Departamento")
+                            @Html.DropDownList("IdDepartamento", null, new { @class = "le-input" })
+                            @Html.ValidationMessageFor(model => model.IdDepartamento)
+                        </div>
+                    </div><!-- /.field-row -->
+                    
+                     <div class="row field-row">
+                        <div class="col-xs-12">
+                            @Html.LabelFor(model => model.IdBarrio, "Barrio")
+                            @Html.DropDownList("IdBarrio", null, new { @class = "le-input" })
+                            @Html.ValidationMessageFor(model => model.IdBarrio)
+                        </div>
+                    </div><!-- /.field-row -->
+                    
+                    *@
+                    
+                    @*<div class="row field-row">
+                        <div class="col-xs-12">
+                            @Html.LabelFor(model => model.User, "Usuario")
+                            @Html.TextBoxFor(model => model.User, new { @class = "le-input", placeholder = "User" })
+                            @Html.ValidationMessageFor(model => model.User)
+                        </div>
+                    </div><!-- /.field-row -->
+
+                        <div class="row field-row">
+                            <div class="col-xs-12">    
+                            @Html.LabelFor(model => model.Password, "Contraseña")
+                            @Html.PasswordFor(model => model.Password, new { @class = "le-input", placeholder = "Password" })
+                            @Html.ValidationMessageFor(model => model.Password)
+                            </div>
+                        </div><!-- /.field-row -->
+                    
+                    
+                    <div class="row field-row">
+                            <div class="col-xs-12">    
+                            @Html.LabelFor(model => model.ConfirmPassword, "Confirmar Contraseña")
+                            @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "le-input", placeholder = "Password" })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                            </div>
+                    </div><!-- /.field-row -->*@
+                    
+                         if (Model.FotosUsuarios != null)
+                         {
+                             foreach (MvcApplication4.Models.FotoUsuarios fu in Model.FotosUsuarios.ToList())
+                             {
+                        
+                    
+                                <div id="DIVBORRAR" class="thumb-holder">
+                                @Ajax.ActionLink(
+                                    " ",
+                                    "DeleteFotoUserConfirmed",
+                                    "Home",
+                                    new
+                                    {
+                                        id = HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(fu.IdFotoUsuario.ToString()))
+                                    },
+                                    new AjaxOptions
+                                    {
+                                        HttpMethod = "POST"
+                                    }, new { onclick = "javascipt:onDeleteSuccess(this)", @class = "fa fa-times-circle" }
+                                )       
+                                <img alt="Foto perfil" src="@Url.Content(fu.Imagen.RutaFoto)" height="100" />
+                                </div>
+                             
+                             }
+                         }
+                    <div class="row field-row">
+                        <div class="col-xs-12" id="DIVSubirFotos">
+                            @Html.Label("ImageUpload", "Subir Foto de perfil")
+                            @Html.TextBox("ImageUpload", String.Empty, new { type = "file" })
+                            
+                            @Html.ValidationMessage("ImageUpload")
+                        </div>
+                        @*<div class="col-xs-12" >
+                        <a href="javascript:AgregarFileUploader();">Mas fotos...</a>
+                         </div>*@
+                    </div>
+                    
+                    <div class="place-order-button">
+                        <input class="le-button big" type="submit" value="Aceptar cambios" />
+                    </div>
+                }
+            </div><!-- /.billing-address -->
+
+        </div><!-- /.col -->
+    </div><!-- /.container -->    
+</section><!-- /#checkout-page -->
+<!-- ========================================= CONTENT : END ========================================= -->      
+<!-- ============================================================= FOOTER ============================================================= -->

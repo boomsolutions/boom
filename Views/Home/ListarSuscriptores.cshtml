@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MvcApplication4.Models.Suscriptor>
+
+@{
+    Layout = null;
+}
+
+<h2>Suscriptores</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Usuarios Confirmados", "ListarUsuarios")*@
+</p>
+<table>
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Departamento
+        </th>
+        <th>
+            Barrio
+        </th>
+        <th>
+            Fecha Nacimiento
+        </th>
+        <th>
+            Fecha Suscripto
+        </th>
+        
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Departamento.DescripcionI1)
+        </td>
+        <td>
+            @if (item.Departamento.IdDepartamento == 10)
+            {
+                @Html.DisplayFor(modelItem => item.Barrio.DescripcionI1)
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaNacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaSuscripto)
+        </td>
+        
+    </tr>
+}
+
+</table>
+
+
+
+

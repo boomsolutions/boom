@@ -1,0 +1,25 @@
+﻿@model MvcApplication4.Models.FotoProductos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>FotoProductos</legend>
+
+    <div class="display-label">Producto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Producto.Nombre)
+    </div>
+
+    <div class="display-label">RutaFoto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RutaFoto)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.IdFotoProducto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

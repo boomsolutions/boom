@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MvcApplication4.Controllers.ReporteConsultaView>
+
+@{
+    //Layout = null;
+}
+
+<h2>Consultas realizadas</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Usuarios Confirmados", "ListarUsuarios")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Producto
+        </th>
+        <th>
+            Propietario
+        </th>
+        <th>
+            Usuario consultante
+        </th>
+       <th>
+            Fecha Realizado
+        </th>
+        <th>
+            Consulta
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropietarioProducto)
+            @Html.ActionLink("Recordar","EnviarMailRecordatorioConsultaPropietario",item.EmailPropietario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioConsultante)
+            @Html.ActionLink("Recordar","EnviarMailRecordatorioConsultaConsultante",item.EmailConsultante)
+        </td>
+       <td>
+            @Html.DisplayFor(modelItem => item.FechaRealizado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Consulta)
+        </td>
+    </tr>
+}
+
+</table>

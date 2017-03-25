@@ -1,0 +1,58 @@
+﻿@model MvcApplication4.Models.CategoriaProductos
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>CategoriaProductos</legend>
+
+        @Html.HiddenFor(model => HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(model.IdCategoriaProducto.ToString())))
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DescripcionI1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DescripcionI1)
+            @Html.ValidationMessageFor(model => model.DescripcionI1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DescripcionI2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DescripcionI2)
+            @Html.ValidationMessageFor(model => model.DescripcionI2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DescripcionI3)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DescripcionI3)
+            @Html.ValidationMessageFor(model => model.DescripcionI3)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Visible)
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.Visible)
+            @Html.ValidationMessageFor(model => model.Visible)
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

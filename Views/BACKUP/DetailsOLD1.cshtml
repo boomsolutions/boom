@@ -1,0 +1,933 @@
+﻿@model MvcApplication4.Models.Productos
+
+@{
+    ViewBag.Title = "Details";
+    //Layout = null;
+}
+
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    function CambioFecha(fecha)
+    {
+        d1 = new Date(document.getElementById('FechaDesde').value);
+        d2 = new Date(document.getElementById('FechaHasta').value);
+        if (d1 > d2)
+        {
+            alert("La fecha desde debe ser menor o igual a la fecha hasta!");
+            fecha.value = ""
+            return false;
+        }
+        return true;
+    }
+
+    function ValidarFechas()
+    {
+        d1 = document.getElementById('FechaDesde').value;
+        d2 = document.getElementById('FechaHasta').value;
+        if (d1 == "" || d2 == "")
+        {
+            alert("Las fechas seleccionadas no son correctas!");
+            return false;
+        }
+
+        var u1 = @ViewBag.IdUsuarioLogueado;
+        var u2 = @ViewBag.IdUsuarioProducto;
+        
+        if(u1 == u2)
+        {
+            alert("No puedes enviarte una solicitud a ti mismo");
+            return false;
+        }
+
+        //ohSnap('Tu solicitud ha sido enviada correctamente!', 'green');
+
+        return true;
+    }
+
+    function ValidarConsulta()
+    {
+        @*var u1 = @HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Convert.ToString(ViewBag.IdUsuarioLogueado)));
+        var u2 = @HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Convert.ToString(ViewBag.IdUsuarioProducto)));
+        
+        if(u1 == u2)
+        {
+            alert("No puedes enviarte una consulta a ti mismo");
+            return false;
+        }*@
+
+        //ohSnap('Tu consulta ha sido enviada correctamente!', 'green');
+
+        return true;
+    }
+
+    function onSuccess(result)
+    {
+        if(result.url)
+        {
+            window.location.href = result.url;
+        }
+        alert("onSuccess()");
+    }
+    function onFailure(result)
+    {
+        alert("onFailure()");
+    }
+
+    @{
+        string msjConsulta = TempData["msjConsulta"] as string;
+        string msjSolicitud = TempData["msjSolicitud"] as string;
+        
+    } 
+
+    if ('@msjConsulta' != "") {
+        alert('@msjConsulta');
+        //ohSnap('@msjConsulta', 'green');
+    }
+
+    if ('@msjSolicitud' != "") {
+        alert('@msjSolicitud');
+        //ohSnap('@msjSolicitud', 'green');
+    }
+
+</script>
+
+<script type="text/javascript">
+      var idprod = '@HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Convert.ToString(Model.IdProducto)))';
+      document.body.onload = ga('send', 'event', 'load', 'OnLoadDetails', 'Se visito el articulo: ' + idprod); //alert("OnLoad HOME.");
+</script>
+   
+  <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+
+<div class="wrapper">
+
+  
+<!-- ============================================================= TOP NAVIGATION ============================================================= -->
+
+<!-- ============================================================= TOP NAVIGATION : END ============================================================= -->       
+ <!-- ============================================================= HEADER ============================================================= -->
+<!-- ============================================================= HEADER : END ============================================================= -->
+    
+<div class="animate-dropdown"><!-- ========================================= BREADCRUMB ========================================= -->
+<div id="top-mega-nav">
+    <div class="container">
+        <nav>
+            <ul class="inline">
+                <li class="le-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-list"></i> Categoria
+                    </a>
+                    @*<ul class="dropdown-menu">
+                        @foreach (MvcApplication4.Models.CategoriaProductos cp in (List<MvcApplication4.Models.CategoriaProductos>)ViewBag.CategoriasProductos)
+                        {
+                             
+                            <li>@Html.ActionLink(cp.DescripcionI1, "Index", new { searchString = "", categorias = HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(cp.IdCategoriaProducto.ToString())) })</li>
+                        }
+                       
+                    </ul>*@
+                </li>
+
+                <li class="breadcrumb-nav-holder"> 
+                    <ul>
+                        <li class="breadcrumb-item current">
+                            <a href="#">@Model.CategoriasProducto.DescripcionI1</a>
+                        </li><!-- /.breadcrumb-item -->
+                        @*
+                        <li class="dropdown breadcrumb-item">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">laptops &amp; computers </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">PDA</a>
+                                    <a href="#">accesories</a>
+                                    <a href="#">tablets</a>
+                                    <a href="#">games</a>
+                                    <a href="#">consoles</a>
+                                </li>
+                            </ul>
+                        </li><!-- /.breadcrumb-item -->
+
+                        <li class="dropdown breadcrumb-item">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">desktop PC </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">PDA</a>
+                                    <a href="#">accesories</a>
+                                    <a href="#">tablets</a>
+                                    <a href="#">games</a>
+                                    <a href="#">consoles</a>
+                                </li>
+                            </ul>
+                        </li><!-- /.breadcrumb-item -->
+
+                        <li class="breadcrumb-item">
+                            <a href="#">gaming</a>
+                        </li><!-- /.breadcrumb-item -->
+
+                        <li class="breadcrumb-item current">
+                            <a href="#">VAIO Fit Laptop - Windows</a>
+                        </li><!-- /.breadcrumb-item -->*@
+                    </ul>
+                </li><!-- /.breadcrumb-nav-holder -->
+            </ul>
+        </nav>
+    </div><!-- /.container -->
+</div><!-- /#top-mega-nav -->
+<!-- ========================================= BREADCRUMB : END ========================================= --></div>     
+
+<div id="single-product">
+    <div class="container">
+
+         <div class="no-margin col-xs-12 col-sm-6 col-md-5 gallery-holder">
+            <div class="product-item-holder size-big single-product-gallery small-gallery">
+
+                <div id="owl-single-product">
+            
+                        @if (Model.FotosProductos.Count() > 0)
+                        {
+                            int i = 0;
+                            foreach (var f in Model.FotosProductos.ToList())
+                            {
+                                i = i + 1;
+                                string slide = "slide" + i.ToString();
+                                <div class="single-product-gallery-item" id="@slide">
+                                    <a data-rel="prettyphoto" href="@Url.Content(f.Imagen.RutaFoto.Replace("../../", ""))">
+                                        <img class="img-responsive" alt="Producto" src="@Url.Content(f.Imagen.RutaFoto.Replace("../../", ""))" data-echo="@Url.Content(f.Imagen.RutaFoto.Replace("../../", ""))" />
+                                    </a>
+                                </div><!-- /.single-product-gallery-item -->
+                            }
+                        }
+            
+            
+                </div><!-- /.single-product-slider -->
+
+
+                <div class="single-product-gallery-thumbs gallery-thumbs">
+
+                    <div id="owl-single-product-thumbnails">
+
+                                
+                            @if (Model.FotosProductos.Count() > 0)
+                            {
+                                int j = 0;
+                                foreach (var f2 in Model.FotosProductos.ToList())
+                                {
+                                    j = j + 1;
+                                    string slide = "#slide" + j.ToString();
+                                    int h = j - 1;
+                                    <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="@h" href="@slide">
+                                        @if (String.IsNullOrEmpty(f2.Imagen.RutaFotoThumb))
+                                        {
+                                            <img width="67" alt="Foto" src="@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))" data-echo="@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))" />
+                                        }
+                                        else
+                                        {
+                                            <img width="67" alt="Foto" src="@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))" data-echo="@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))" />
+                                        }
+                                
+                                    </a>
+                                }
+                            }
+                
+                
+
+                    </div><!-- /#owl-single-product-thumbnails -->
+
+                    <div class="nav-holder left hidden-xs">
+                        <a class="prev-btn slider-prev" data-target="#owl-single-product-thumbnails" href="#prev"></a>
+                    </div><!-- /.nav-holder -->
+            
+                    <div class="nav-holder right hidden-xs">
+                        <a class="next-btn slider-next" data-target="#owl-single-product-thumbnails" href="#next"></a>
+                    </div><!-- /.nav-holder -->
+
+                </div><!-- /.gallery-thumbs -->
+
+            </div><!-- /.single-product-gallery -->
+        </div><!-- /.gallery-holder -->        
+  
+<div class="no-margin col-xs-12 col-sm-7 body-holder">
+    <div class="body">
+        @*<div class="star-holder inline"><div class="star" data-score="4"></div></div>
+        <div class="availability"><label>Availability:</label><span class="available">  in stock</span></div>*@
+
+        <div class="title"><a href="#">@Model.Nombre</a></div>
+        <div class="brand"></div>
+
+       @* <div class="social-row">
+            <span class="st_facebook_hcount"></span>
+            <span class="st_twitter_hcount"></span>
+            <span class="st_pinterest_hcount"></span>
+        </div>
+
+        <div class="buttons-holder">
+            <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+            <a class="btn-add-to-compare" href="#">add to compare list</a>
+        </div>*@
+
+        <div class="excerpt">
+            <p>@*@Model.Descripcion*@</p>
+        </div>
+        
+        <div class="prices">
+            <div class="price-current">
+                <table>
+                    @if (Model.PrecioHora != null)
+                    {
+                        <tr><td style="width: 75%;">hora:</td><td>@Model.Moneda.Simbolo @Model.PrecioHora</td></tr>
+                    }
+                    @if (Model.PrecioDiario != null)
+                    {
+                        <tr><td style="width: 75%;">diario:</td><td>@Model.Moneda.Simbolo @Model.PrecioDiario</td></tr>
+                    }
+                    @if (Model.PrecioSemanal != null)
+                    {
+                        <tr><td style="width: 75%;">semanal:</td><td>@Model.Moneda.Simbolo @Model.PrecioSemanal</td></tr>
+                    }
+                    @if (Model.PrecioFinDeSemana != null)
+                    {
+                        <tr><td style="width: 75%;">fin de semana:</td><td>@Model.Moneda.Simbolo @Model.PrecioFinDeSemana</td></tr>
+                    }
+                    @if (Model.PrecioMensual != null)
+                    {
+                        <tr><td style="width: 75%;">mensual:</td><td>@Model.Moneda.Simbolo @Model.PrecioMensual</td></tr>
+                    }
+                 </table>
+                 
+             </div>
+            
+            <!--<div class="price-prev">$2199.00</div>-->
+        </div>
+
+        <br>
+        @*AJAX
+        @using (Ajax.BeginForm("AlquilarFechas", "Home", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "onSuccess", OnFailure = "onFailure" }))
+        {
+            
+                @Html.ValidationSummary(true)
+            <!--<form action="../../Alquiler/AlquilarFechas" >-->
+                @Html.Hidden("IdProductoEncrypt", HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.IdProducto.ToString())))
+
+            <!--  <input name="FechaDesde" type="date" value="" /> -->
+                
+                <div class="col-xs-12 col-sm-4 no-margin">
+            @Html.Label("Desde")
+        
+                @Html.TextBox("FechaDesde", null, new { type = "date", @class = "le-input", onchange = "javascript:CambioFecha(this);" })
+                @Html.ValidationMessage("FechaDesde")
+                    </div>
+                    <!--  <input name="FechaHasta" type="date" value="" /> -->
+                <div class="col-xs-12 col-sm-4 no-margin">
+            @Html.Label("Hasta")
+        
+                @Html.TextBox("FechaHasta", null, new { type = "date", @class = "le-input", onchange = "javascript:CambioFecha(this);" })
+                @Html.ValidationMessage("FechaHasta")
+                    </div>
+
+                    
+            <!--<a id="addto-cart" href="Alquiler/AlquilarFechas" class="le-button huge">add to cart / ALQUILAR</a>-->
+                <div class="col-xs-12  col-sm-8 no-margin">
+  
+                <input type="submit" class="le-button" value="Solicitud de reserva" style="width:100%"/>
+
+
+                </div>
+        }*@
+
+        
+            @using (Html.BeginForm("AlquilarFechas", "Home", FormMethod.Post, new { novalidate = "novalidate" }))
+            {
+                @Html.ValidationSummary(true)
+            <!--<form action="../../Alquiler/AlquilarFechas" >-->
+                @Html.Hidden("IdProductoEncrypt", HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.IdProducto.ToString())))
+
+            <!--  <input name="FechaDesde" type="date" value="" /> -->
+                
+                <div class="col-xs-12 col-sm-4 no-margin">
+            @Html.Label("Desde")
+        
+                @Html.TextBox("FechaDesde", null, new { type = "date", @class = "le-input", onchange = "javascript:CambioFecha(this);" })
+                @Html.ValidationMessage("FechaDesde")
+                    </div>
+                    <!--  <input name="FechaHasta" type="date" value="" /> -->
+                <div class="col-xs-12 col-sm-4 no-margin">
+            @Html.Label("Hasta")
+        
+                @Html.TextBox("FechaHasta", null, new { type = "date", @class = "le-input", onchange = "javascript:CambioFecha(this);" })
+                @Html.ValidationMessage("FechaHasta")
+                    </div>
+
+                    
+            <!--<a id="addto-cart" href="Alquiler/AlquilarFechas" class="le-button huge">add to cart / ALQUILAR</a>-->
+                <div class="col-xs-12  col-sm-8 no-margin">
+  
+                <input type="submit" class="le-button" value="Solicitud de reserva" onclick="javascript: return ValidarFechas();" style="width:100%"/>
+
+@*AJAX ADENTRO DEL HMTL
+                  @Ajax.ActionLink(
+                                    "Solicitud de reserva",
+                                    "AlquilarFechas",
+                                    "Home",
+                                    new
+                                    {
+                                        fechaHasta = DateTime.Now.AddDays(3),
+                                        fechaDesde = DateTime.Now,
+                                        IdProductoEncrypt = HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.IdProducto.ToString()))
+                                    },
+                                    new AjaxOptions
+                                    {
+                                        HttpMethod = "POST"
+                                    }, new { onclick = "javascript: return ValidarFechas();", @class = "le-button" }
+                                ) *@
+                    </div>
+                
+            }
+            
+            @using (Html.BeginForm("Consultar", "Home", FormMethod.Post, new { novalidate = "novalidate" }))
+            {
+                    @Html.Hidden("IdProductoEncrypt", HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.IdProducto.ToString())))
+
+                    @Html.Hidden("IdUsuarioEncrypt", HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.IdUsuario.ToString())))
+
+                    <div class="col-xs-12  col-sm-8 no-margin">
+                         <br>
+                        @Html.TextArea("Comentario", null, new { @class = "le-input" })
+                        @Html.ValidationMessage("Comentario")
+                    </div>
+                        <div class="col-xs-12  col-sm-8 no-margin">
+                        <!--<textarea class="le-input" name="txtConsulta" id="txtConsulta"></textarea>-->
+                        <input type="submit" class="le-button" value="Enviar Consulta" onclick="javascript: return ValidarConsulta();" style="width:100%"/>
+                
+                        </div>
+                  <!--  </form> -->
+            }
+
+            @*@using (Ajax.BeginForm("Consultar", "Home", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "javascript: alert('success');" }, new { novalidate = "novalidate" }))
+            {
+                @Html.Hidden("IdProductoEncrypt", HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.IdProducto.ToString())))
+
+                @Html.Hidden("IdUsuarioEncrypt", HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.IdUsuario.ToString())))
+
+                <div class="col-xs-12  col-sm-8 no-margin">
+                     <br>
+                    @Html.TextArea("Comentario", null, new { @class = "le-input" })
+                    @Html.ValidationMessage("Comentario")
+                </div>
+                    <div class="col-xs-12  col-sm-8 no-margin">
+                    <!--<textarea class="le-input" name="txtConsulta" id="txtConsulta"></textarea>-->
+                    <input type="submit" class="le-button" value="Enviar Consulta" onclick="javascript: return ValidarConsulta();" style="width:100%"/>
+                
+                    </div>
+              <!--  </form> -->
+            }*@
+
+
+        <!--
+        <div class="qnt-holder">
+            <div class="le-quantity">
+                <form>
+                    <a class="minus" href="#reduce"></a>
+                    <input name="quantity" readonly type="text" value="1" />
+                    
+                    <a class="plus" href="#add"></a>
+
+                    
+                </form>
+            </div>
+            
+            
+        </div> -->
+    </div><!-- /.body -->
+
+</div><!-- /.body-holder -->
+    </div><!-- /.container -->
+</div><!-- /.single-product -->
+
+<!-- ========================================= SINGLE PRODUCT TAB ========================================= -->
+<section id="single-product-tab">
+    <div class="container">
+        <div class="tab-holder">
+            
+            <ul class="nav nav-tabs simple" >
+                <li class="active"><a href="#description" data-toggle="tab">Descripción</a></li>
+                <!--<li><a href="#additional-info" data-toggle="tab">Garantía</a></li>
+                <li><a href="#reviews" data-toggle="tab">Reviews (3)</a></li>-->
+            </ul><!-- /.nav-tabs -->
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="description">
+                    <p style="white-space: pre-line;">@Model.Descripcion</p>
+
+                    <ul class="tabled-data">
+                        <li>
+                            <label></label>
+                            <div class="value"></div>
+                        </li>
+                        <li>
+                            <label>Propietario</label>
+                            <div class="value">@Model.Usuario.User</div>
+                        </li>
+                        @if (Model.Departamento != null)
+                        {
+                            <li>
+                                <label>Departamento</label>
+                                <div class="value">
+                                    @Model.Departamento.DescripcionI1
+                                </div>
+                            </li>
+                        }
+                        @if (Model.Barrio != null && Model.Departamento.IdDepartamento == 10)
+                        {
+                            <li>
+                                <label>Barrio</label>
+                                <div class="value">
+                                    @Model.Barrio.DescripcionI1
+                                </div>
+                            </li>
+                        }
+                        @*<li>
+                            <label>Zona</label>
+                            <div class="value">@Model.Zona</div>
+                        </li>*@
+                        <li>
+                            <label>Con Envío</label>
+                            <div class="value">@(Model.ConEnvio ? "Si" : "No")</div>
+                        </li>
+                        @if (Model.ConEnvio)
+                        {
+                        <li>
+                            <label>Precio de Envio</label>
+                            
+                            @if (Model.PrecioEnvio == null)
+                            {
+                                <div class="value">A convenir</div>
+                            }
+                            else
+                            {
+                                <div class="value">@Model.Moneda.Simbolo @Model.PrecioEnvio</div>
+                            }
+                                
+                        </li>
+                            <li>
+                            <label>Comentario de envío</label>
+                            <div class="value">@Model.ComentarioEnvio</div>
+                        </li>
+                        }
+                    </ul><!-- /.tabled-data -->
+
+                    @*<div class="meta-row">
+                        
+
+                        <div class="inline">
+                            <label>SKU:</label>
+                            <span>54687621</span>
+                        </div><!-- /.inline -->
+
+                        <span class="seperator">/</span>
+
+                        <div class="inline">
+                            <label>categories:</label>
+                            <span><a href="#">-50% sale</a>,</span>
+                            <span><a href="#">gaming</a>,</span>
+                            <span><a href="#">desktop PC</a></span>
+                        </div><!-- /.inline -->
+
+                        <span class="seperator">/</span>
+
+                        <div class="inline">
+                            <label>tag:</label>
+                            <span><a href="#">fast</a>,</span>
+                            <span><a href="#">gaming</a>,</span>
+                            <span><a href="#">strong</a></span>
+                        </div><!-- /.inline -->
+                    </div><!-- /.meta-row -->*@
+                </div><!-- /.tab-pane #description -->
+
+            </div><!-- /.tab-content -->
+
+            
+        </div><!-- /.tab-holder -->
+<br>
+        <div class="tab-holder">
+            
+            <ul class="nav nav-tabs simple" >
+                <li class="active"><a href="#additional-info" data-toggle="tab">Garantía</a></li>
+                <!--<li><a href="#reviews" data-toggle="tab">Reviews (3)</a></li>-->
+            </ul><!-- /.nav-tabs -->
+
+            <div class="tab-content">
+                
+                <div class="tab-pane active" id="additional-info">
+                    <ul class="tabled-data">
+                        <li>
+                            <label>Garantía</label>
+                            <div class="value">@Model.Moneda.Simbolo @Model.GarantiaDinero</div>
+
+                        </li>
+                        <li>
+                            <label>Requisitos</label>
+                            <div class="value">@Model.GarantiaExtra</div>
+
+                        </li>
+                    </ul><!-- /.tabled-data -->
+                </div><!-- /.tab-pane #additional-info -->
+
+            </div><!-- /.tab-content -->
+
+            
+        </div><!-- /.tab-holder -->
+<br>
+        @* <div class="tab-holder">
+            
+            <ul class="nav nav-tabs simple" >
+                <!--<li class="active"><a href="#additional-info" data-toggle="tab">Garantía</a></li>-->
+                <li class="active"><a href="#reviews" data-toggle="tab">Preguntas al propietario</a></li>
+            </ul><!-- /.nav-tabs -->
+
+            <div class="tab-content">
+                
+                 <div class="tab-pane active" id="reviews">
+                    <div class="add-review row">
+                        <div class="col-sm-12 col-xs-12">
+                            <div class="new-review-form">
+            
+                                @using (Html.BeginForm("Consultar", "Home", FormMethod.Post))
+                                {
+                                    
+            
+                                    <div class="field-row">
+            
+                                        @Html.Hidden("IdProductoEncrypt", HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.IdProducto.ToString())))
+
+                                        @Html.Hidden("IdUsuarioEncrypt", HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.IdUsuario.ToString())))
+
+            
+                                        @Html.TextArea("Comentario", new { @class = "le-input", rows = 8, placeholder = "Escribe tu pregunta..." })
+                                    </div><!-- /.field-row -->
+
+                                    <div class="buttons-holder">
+                                        <button type="submit" class="le-button huge" onclick="javascript: return ValidarConsulta();">Preguntar</button>
+                                    </div><!-- /.buttons-holder -->
+                                <!--</form> /.contact-form -->
+                                }
+                            </div><!-- /.new-review-form -->
+                        </div><!-- /.col -->
+                    </div><!-- /.add-review -->
+
+                     <div class="comments">
+                        @foreach (MvcApplication4.Models.ComentariosProducto cp in @Model.ComentariosProducto.Where(p => p.IdProducto == @Model.IdProducto).OrderByDescending(c => c.FechaComentario).ToList())
+                        {
+                            <div class="comment-item">
+                                <div class="row no-margin">
+                                    <div class="col-lg-1 col-xs-12 col-sm-2 no-margin">
+                                        <div class="avatar">
+                                            @if (cp.Usuario.FotosUsuarios.Count() > 0)
+                                            {
+                                                if (String.IsNullOrEmpty(cp.Usuario.FotosUsuarios.First().Imagen.RutaFotoThumb))
+                                                {
+                                                    
+                                                    <img alt="avatar" src="@Url.Content(cp.Usuario.FotosUsuarios.First().Imagen.RutaFoto)" style="border-radius: 50%;border: 2px solid #c6c6c6;width: 74px;height: 74px;" />
+                                                }
+                                                else
+                                                {
+                                                    
+                                                    <img alt="avatar" src="@Url.Content(cp.Usuario.FotosUsuarios.First().Imagen.RutaFotoThumb)" style="border-radius: 50%;border: 2px solid #c6c6c6;width: 74px;height: 74px;" />
+                                                
+                                                }
+                                                
+                                            }
+                                            else
+                                            {
+                                                <img alt="avatar" src="@Url.Content("~/assets/images/default-avatar.jpg")" style="border-radius: 50%;border: 2px solid #c6c6c6;width: 74px;height: 74px;" />
+                                            }
+                                        </div><!-- /.avatar -->
+                                    </div><!-- /.col -->
+
+                                    <div class="col-xs-12 col-lg-11 col-sm-10 no-margin">
+                                        <div class="comment-body">
+                                            <div class="meta-info">
+                                                <div class="author inline">
+                                                    <a href="#" class="bold">@cp.Usuario.User</a>
+                                                </div>
+            
+                                                <div class="date inline pull-right">
+                                                    @cp.FechaComentario
+                                                </div>
+                                            </div><!-- /.meta-info -->
+                                            <p class="comment-text">
+                                                @cp.Comentario
+                                            </p><!-- /.comment-text -->
+                                        </div><!-- /.comment-body -->
+
+                                    </div><!-- /.col -->
+
+                                </div><!-- /.row -->
+                            </div><!-- /.comment-item -->
+                            
+                        }
+
+                    </div><!-- /.comments -->
+
+                    
+                </div><!-- /.tab-pane #reviews -->
+            </div><!-- /.tab-content -->
+
+            
+        </div><!-- /.tab-holder -->*@
+
+    </div><!-- /.container -->
+</section><!-- /#single-product-tab -->
+<!-- ========================================= SINGLE PRODUCT TAB : END ========================================= -->
+<!-- ========================================= RECENTLY VIEWED ========================================= -->
+@*<section id="recently-reviewd" class="wow fadeInUp">
+    <div class="container">
+        <div class="carousel-holder hover">
+            
+            <div class="title-nav">
+                <h2 class="h1">Recently Viewed</h2>
+                <div class="nav-holder">
+                    <a href="#prev" data-target="#owl-recently-viewed" class="slider-prev btn-prev fa fa-angle-left"></a>
+                    <a href="#next" data-target="#owl-recently-viewed" class="slider-next btn-next fa fa-angle-right"></a>
+                </div>
+            </div><!-- /.title-nav -->
+
+            <div id="owl-recently-viewed" class="owl-carousel product-grid-holder">
+                <div class="no-margin carousel-item product-item-holder size-small hover">
+                    <div class="product-item">
+                        <div class="ribbon red"><span>sale</span></div> 
+                        <div class="image">
+                            <img alt="" src="../assets/images/blank.gif" data-echo="../assets/images/products/product-11.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">LC-70UD1U 70" class aquos 4K ultra HD</a>
+                            </div>
+                            <div class="brand">Sharp</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">Add to Cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                <a class="btn-add-to-compare" href="#">Compare</a>
+                            </div>
+                        </div>
+                    </div><!-- /.product-item -->
+                </div><!-- /.product-item-holder -->
+
+                <div class="no-margin carousel-item product-item-holder size-small hover">
+                    <div class="product-item">
+                        <div class="ribbon blue"><span>new!</span></div> 
+                        <div class="image">
+                            <img alt="" src="../assets/images/blank.gif" data-echo="../assets/images/products/product-12.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">cinemizer OLED 3D virtual reality TV Video</a>
+                            </div>
+                            <div class="brand">zeiss</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">Add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                <a class="btn-add-to-compare" href="#">Compare</a>
+                            </div>
+                        </div>
+                    </div><!-- /.product-item -->
+                </div><!-- /.product-item-holder -->
+
+                <div class=" no-margin carousel-item product-item-holder size-small hover">
+                    <div class="product-item">
+
+                        <div class="image">
+                            <img alt="" src="../assets/images/blank.gif" data-echo="../assets/images/products/product-13.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">s2340T23" full HD multi-Touch Monitor</a>
+                            </div>
+                            <div class="brand">dell</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">Add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                <a class="btn-add-to-compare" href="#">Compare</a>
+                            </div>
+                        </div>
+                    </div><!-- /.product-item -->
+                </div><!-- /.product-item-holder -->
+
+                <div class=" no-margin carousel-item product-item-holder size-small hover">
+                    <div class="product-item">
+                        <div class="ribbon blue"><span>new!</span></div> 
+                        <div class="image">
+                            <img alt="" src="../assets/images/blank.gif" data-echo="../assets/images/products/product-14.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">kardon BDS 7772/120 integrated 3D</a>
+                            </div>
+                            <div class="brand">harman</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">Add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                <a class="btn-add-to-compare" href="#">Compare</a>
+                            </div>
+                        </div>
+                    </div><!-- /.product-item -->
+                </div><!-- /.product-item-holder -->
+
+                <div class=" no-margin carousel-item product-item-holder size-small hover">
+                    <div class="product-item">
+                        <div class="ribbon green"><span>bestseller</span></div> 
+                        <div class="image">
+                            <img alt="" src="../assets/images/blank.gif" data-echo="../assets/images/products/product-15.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">netbook acer travel B113-E-10072</a>
+                            </div>
+                            <div class="brand">acer</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">Add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                <a class="btn-add-to-compare" href="#">Compare</a>
+                            </div>
+                        </div>
+                    </div><!-- /.product-item -->
+                </div><!-- /.product-item-holder -->
+
+                <div class=" no-margin carousel-item product-item-holder size-small hover">
+                    <div class="product-item">
+
+                        <div class="image">
+                            <img alt="" src="../assets/images/blank.gif" data-echo="../assets/images/products/product-16.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">iPod touch 5th generation,64GB, blue</a>
+                            </div>
+                            <div class="brand">apple</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">Add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                <a class="btn-add-to-compare" href="#">Compare</a>
+                            </div>
+                        </div>
+                    </div><!-- /.product-item -->
+                </div><!-- /.product-item-holder -->
+
+                <div class=" no-margin carousel-item product-item-holder size-small hover">
+                    <div class="product-item">
+
+                        <div class="image">
+                            <img alt="" src="../assets/images/blank.gif" data-echo="../assets/images/products/product-13.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">s2340T23" full HD multi-Touch Monitor</a>
+                            </div>
+                            <div class="brand">dell</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">Add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                <a class="btn-add-to-compare" href="#">Compare</a>
+                            </div>
+                        </div>
+                    </div><!-- /.product-item -->
+                </div><!-- /.product-item-holder -->
+
+                <div class=" no-margin carousel-item product-item-holder size-small hover">
+                    <div class="product-item">
+                        <div class="ribbon blue"><span>new!</span></div> 
+                        <div class="image">
+                            <img alt="" src="../assets/images/blank.gif" data-echo="../assets/images/products/product-14.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">kardon BDS 7772/120 integrated 3D</a>
+                            </div>
+                            <div class="brand">harman</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">Add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                <a class="btn-add-to-compare" href="#">Compare</a>
+                            </div>
+                        </div>
+                    </div><!-- /.product-item -->
+                </div><!-- /.product-item-holder -->
+            </div><!-- /#recently-carousel -->
+
+        </div><!-- /.carousel-holder -->
+    </div><!-- /.container -->
+</section><!-- /#recently-reviewd -->*@
+<!-- ========================================= RECENTLY VIEWED : END ========================================= -->     
+<!-- ============================================================= FOOTER ============================================================= -->
+
+    </div>
+
+
+
+

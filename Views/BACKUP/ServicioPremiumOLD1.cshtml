@@ -1,0 +1,249 @@
+﻿@model MvcApplication4.Models.Formulario
+
+@{
+    ViewBag.Title = "Mejor lo alquilo - Servicio Premium";
+}
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@*<script src="@Url.Content("~/Scripts/MvcFoolproofJQueryValidation.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/mvcfoolproof.unobtrusive.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/MvcFoolproofValidation.js")" type="text/javascript"></script>*@
+
+<script src="@Url.Content("~/assets/js/trumbowyg.min.js")"></script>
+<link rel="stylesheet" href="@Url.Content("~/assets/css/trumbowyg.min.css")">
+<script src="@Url.Content("~/assets/js//plugins/upload/trumbowyg.upload.js")"></script>
+        <script src="@Url.Content("~/assets/js//plugins/base64/trumbowyg.base64.js")"></script>
+        <script src="@Url.Content("~/assets/js//plugins/colors/trumbowyg.colors.js")"></script>
+
+<script type="text/javascript">
+    function AgregarFileUploader()
+    {
+        var cant = document.getElementById("DIVSubirFotos").childElementCount - 2;
+
+        //htmltext = "<input id='ImageUpload" + cant + "' name='ImageUpload" + cant + "' type='file' value=''>";
+        htmltext = "<input id='ImageUpload' name='ImageUpload' type='file' value=''>";
+        //htmltext = htmltext + "<span class='field-validation-valid' data-valmsg-for='ImageUpload' data-valmsg-replace='true'></span>";
+        input = document.createElement("input");
+        document.getElementById("DIVSubirFotos").appendChild(input);
+        input.outerHTML = htmltext;
+        /*var newimage = document.createElement("input");
+        newimage.outerHTML = htmltext;
+        document.getElementById("ImageUpload").appendChild(newimage);
+        */
+    }
+
+    function MostrarPrecioEnvio(cb)
+    {
+        document.getElementById('DIVPrecioEnvio').hidden = (cb.checked == false);
+        document.getElementById('DIVComentarioEnvio').hidden = (cb.checked == false);
+    }
+
+    function CambioDeptos(depto)
+    {
+        document.getElementById('DIVBarrio').hidden = true;
+        if ($("#IdDepartamento").val() == "10")
+        {
+            document.getElementById('DIVBarrio').hidden = false;
+        }
+        return false;
+    }
+
+    var rows = 1;
+    function AgregarRow()
+    {
+        rows = rows + 1;
+
+        //codeHTML = $('#row1').html;
+
+        //row1 = $("#FormSP").children()[1];
+        htmlNuevaRow = $("#FormROWS").children()[0].outerHTML.replace('id="row1"', 'id="row' + rows + '"');
+        $("#FormROWS").append(htmlNuevaRow);
+        //document.getElementById("FormSP").appendChild(input);
+
+
+        return false;
+    }
+
+</script>
+
+<!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+
+<div class="wrapper" style="text-align:center">
+
+    
+
+@*<img src="@Url.Content("~/assets/images/servicioPremium.jpg")" style="width:70%">*@
+<!-- ============================================================= TOP NAVIGATION ============================================================= -->
+<!-- ============================================================= TOP NAVIGATION : END ============================================================= -->
+<!-- ============================================================= HEADER ============================================================= -->
+
+<!-- ============================================================= HEADER : END ============================================================= -->
+    
+    <!-- ========================================= CONTENT ========================================= -->
+
+<section id="checkout-page">
+    <div class="container reg">
+        <div class="col-xs-12 no-margin">
+            
+            <div class="billing-address">
+                <h2 class="border h1">Formulario</h2>
+                @using (Html.BeginForm("ServicioPremium", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "FormSP" }))
+                {
+                    
+                    
+                    <div class="row field-row" id="titulos">
+                        <div class="col-md-2 col-sm-12 col-xs-12">
+                            @Html.LabelFor(model => model.IdCategoriaProducto, "Categoría")
+                          
+                        </div>
+
+                         <div class="col-md-2 col-sm-12 col-xs-12">
+                            @Html.LabelFor(model => model.Marca, "Marca/Modelo")
+                          
+                        </div>
+
+                        <div class="col-md-2 col-sm-12 col-xs-12">
+
+                            @Html.LabelFor(model => model.Descripcion)
+                          
+              
+                        </div>
+
+                        <div class="col-md-1 col-sm-12 col-xs-12">
+
+                            @Html.LabelFor(model => model.Cantidad)
+                          
+              
+                        </div>
+
+                        <div class="col-md-2 col-sm-12 col-xs-12">
+                            @Html.LabelFor(model => model.Estado, "Estado")
+                          
+                        </div>
+
+                        <div class="col-md-1 col-sm-12 col-xs-12">
+                            @Html.LabelFor(model => model.PrecioEstimadoActual, "Precio estimado")
+                            
+                        </div>
+                        <div class="col-md-1 col-sm-12 col-xs-12">
+                            @Html.LabelFor(model => model.PrecioCompra, "Precio compra")
+                            
+                        </div>
+                        
+                        <div class="col-md-1 col-sm-12 col-xs-12">
+                            @Html.LabelFor(model => model.TiempoVidaUtil, "Vida util (años)")
+                          
+                        </div>
+
+                        
+                    </div><!-- /.field-row -->
+                    
+                    <div id="FormROWS">
+                    
+                    <div class="row field-row" id="row1">
+                        <div class="col-md-2 col-sm-12 col-xs-12">
+                          
+                            @Html.DropDownList("IdCategoriaProducto", null, new { @class = "le-input" })
+                            @Html.ValidationMessageFor(model => model.IdCategoriaProducto)
+                        </div>
+
+                         <div class="col-md-2 col-sm-12 col-xs-12">
+                           
+                            @Html.TextBoxFor(model => model.Marca, new { @class = "le-input", placeholder = "Marca/Modelo" })
+                            @Html.ValidationMessageFor(model => model.Marca)
+                        </div>
+
+                        <div class="col-md-2 col-sm-12 col-xs-12">
+
+                            @Html.TextAreaFor(model => model.Descripcion, new { @class = "le-input", style="height:41px" })
+                            @Html.ValidationMessageFor(model => model.Descripcion)
+
+              
+                        </div>
+
+                        <div class="col-md-1 col-sm-12 col-xs-12">
+
+                            
+                            @Html.TextBoxFor(model => model.Cantidad, new { @class = "le-input", type = "number" })
+                            @Html.ValidationMessageFor(model => model.Cantidad)
+
+              
+                        </div>
+
+                        <div class="col-md-2 col-sm-12 col-xs-12">
+                            
+                            @Html.DropDownList("Estado", null, new { @class = "le-input" })
+                            @Html.ValidationMessageFor(model => model.Estado)
+                        </div>
+
+                        <div class="col-md-1 col-sm-12 col-xs-12">
+                            
+                            @Html.TextBoxFor(model => model.PrecioEstimadoActual, new { @class = "le-input", type = "number" })
+                            @Html.ValidationMessageFor(model => model.PrecioEstimadoActual)
+                            
+                        </div>
+                        <div class="col-md-1 col-sm-12 col-xs-12">
+                            
+                            @Html.TextBoxFor(model => model.PrecioCompra, new { @class = "le-input", type = "number" })
+                            @Html.ValidationMessageFor(model => model.PrecioCompra)
+                            
+                        </div>
+                        
+                        <div class="col-md-1 col-sm-12 col-xs-12">
+                            
+                            @Html.TextBoxFor(model => model.TiempoVidaUtil, new { @class = "le-input", type = "number" })
+                            @Html.ValidationMessageFor(model => model.TiempoVidaUtil)
+                        </div>
+                        @*<div class="col-md-1 col-sm-1 col-xs-1">
+                            <a href="#">X</a>
+                        </div>*@
+                        
+                    </div><!-- /.field-row -->
+                    
+                    
+                    
+                    </div>
+                    
+                    <input type="button" value="Agregar artículo" onclick="javascript:AgregarRow();" />
+
+                    <div class="row field-row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-left">
+                            <label>Opciones de envío</label>
+                                
+                            <label>@Html.RadioButton("envio", "1", true, new { style = "width: 15%;" }) Lo pasamos a buscar, costo $130 (IVA incluido).</label>
+                            <label>@Html.RadioButton("envio", "2", false, new { style = "width: 15%;" }) Si quieres traerlo coordina con nosotros (<a href="mailto:premium@mejorloalquilo.com">premium@mejorloalquilo.com</a>).</label>
+
+                        </div>
+                    </div><!-- /.field-row -->
+                    
+                    
+                    <div class="place-order-button">
+                        <input class="le-button big" type="submit" value="Enviar" />
+                    </div>
+                }
+            </div><!-- /.billing-address -->
+
+        </div><!-- /.col -->
+    </div><!-- /.container -->    
+</section><!-- /#checkout-page -->
+<!-- ========================================= CONTENT : END ========================================= -->      
+<!-- ============================================================= FOOTER ============================================================= -->
+
+    <script>
+
+        $('#trumbowyg-demo').trumbowyg();
+    </script>
+</div>

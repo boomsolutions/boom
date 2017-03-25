@@ -1,0 +1,74 @@
+﻿@model IEnumerable<MvcApplication4.Controllers.ReporteSolicitudView>
+
+@{
+    //Layout = null;
+}
+
+
+<h2>Solicitudes realizadas</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Usuarios Confirmados", "ListarUsuarios")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Producto
+        </th>
+        <th>
+            Propietario
+        </th>
+        <th>
+            FechaDesde
+        </th>
+        <th>
+            FechaHasta
+        </th>
+        <th>
+            Arrendatario
+        </th>
+        <th>
+            Fecha realizado
+        </th>
+        <th>
+            Estado
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+    @*if(item.Estado == "Confirmado")
+    {
+        <tr style="background-color: rgba(100, 251, 105, 0.17);">
+    }
+        <tr style="background-color: rgba(249, 251, 100, 0.17);">
+            <tr style="background-color: rgba(251, 100, 105, 0.17)">*@
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropietarioProducto)
+            @Html.ActionLink("Recordar","EnviarMailRecordatorioSolicitudPropietario",item.EmailPropietario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDesde)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaHasta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArrendatarioProducto)
+            @Html.ActionLink("Recordar","EnviarMailRecordatorioSolicitudArrendatario",item.EmailArrendatario)
+        </td>
+       <td>
+            @Html.DisplayFor(modelItem => item.FechaRealizado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+    </tr>
+}
+
+</table>

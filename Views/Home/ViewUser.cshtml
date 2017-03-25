@@ -1,0 +1,437 @@
+@model MvcApplication4.Models.Usuarios
+
+@{
+    ViewBag.Title = "VIEW USER";
+                                    //Layout = null;
+}
+
+<script type="text/javascript">
+    
+    function onDeleteSuccess(link) {
+        //link.parentElement.remove();
+
+        if (confirm("¿Estas seguro que deseas borrar la imagen permanentemente?")) {
+            //link.parentNode.parentNode.parentNode.remove();
+            link.parentNode.parentNode.childNodes[1].childNodes[1].remove();
+            return true;
+        }
+        return false;
+        //alert(result);
+    }
+</script>
+
+<!-- BEGIN BODY REAL -->
+<div class="container" >        
+       
+    <div class="row">
+    
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="account-menu-holder">
+            <div class="account-menu-title">
+                <p>MI CUENTA</p>
+            </div>
+            <div class="account-menu-option">
+                <div class="panel-group panel-group-faq" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-faq">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="">
+                            Configuracion
+                            </a>
+                        </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" aria-expanded="true">
+                        <div class="panel-body">
+                            <ul>
+                                <li>@Html.ActionLink("Datos personales", "ViewUser", "Home")</li>
+                            </ul>
+    
+                              
+                        </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-faq">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Mis publicaciones
+                            </a>
+                        </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
+                        <div class="panel-body">
+                              
+                            <ul>
+                                @{ string cantConsSinLeer = ViewBag.CantidadConsultas; }
+                                <li>@Html.ActionLink("Publicaciones", "ViewPublicaciones", "Home")</li>
+                                <li>@Html.ActionLink("Preguntas" + cantConsSinLeer, "ViewConsultasParaUsuario", "Home")</li>
+                                <li>@Html.ActionLink("Alquileres concretados", "ViewAlquileresPorUsuario", "Home")</li>
+                                <li>@Html.ActionLink("Reservas pendientes", "ViewSolicitudesParaUsuario", "Home")</li>
+                                <li>@Html.ActionLink("Reservas rechazadas", "ViewSolicitudesParaUsuarioRechazadas", "Home")</li>
+                                <!--
+	                            <li><a href="#">Publicaciones</a></li>
+	                            <li><a href="#">Preguntas</a></li>
+	                            <li><a href="#">Alquileres concretados</a></li>
+	                            <li><a href="#">Reservas pendientes</a></li>	                                
+                                <li><a href="#">Reservas rechazadas</a></li>
+                                    -->
+                            </ul>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-faq">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Mis alquileres
+                            </a>
+                        </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree" aria-expanded="false">
+                        <div class="panel-body">
+                            <ul>
+	                             @{ string cantRespSinLeer = ViewBag.CantidadRespuestasSinLeerString; }
+                                <li>@Html.ActionLink("Preguntas" + cantRespSinLeer, "ViewConsultasDelUsuario", "Home")</li>
+                                <li>@Html.ActionLink("Alquileres concretados", "ViewAlquileresDelUsuario", "Home")</li>
+                                <li>@Html.ActionLink("Reservas pendientes", "ViewSolicitudesDelUsuario", "Home")</li>
+                                <li>@Html.ActionLink("Reservas rechazadas", "ViewSolicitudesDelUsuarioRechazadas", "Home")</li>
+	                            <!--<li><a href="#">Preguntas</a></li>
+	                            <li><a href="#">Alquileres concretados</a></li>
+	                            <li><a href="#">Reservas pendientes</a></li>	                                
+                                <li><a href="#">Reservas rechazadas</a></li>-->
+                            </ul>
+                              
+                        </div>
+                        </div>
+                    </div>
+                
+                
+              	</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <div class="account-detail-holder">
+            <div class="account-detail-title">
+                <p>Configuración - Datos personales</p>
+            </div>
+            <div class="account-detail-content">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h2>Editar Usuario</h2>
+                                    <hr />
+                                </div>
+                            </div>
+                         @if (ViewBag.Usuario != null)
+                         {
+
+                         }
+
+                        @using (Html.BeginForm("EditUser", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+
+                            //Html.Hidden("IdUsuario", Model.IdUsuario)
+                    
+                            @Html.Hidden("IdUsuarioEncrypt", HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(Model.IdUsuario.ToString())))
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <!--<label>Usuario</label><br>
+                                    <input type="text" placeholder="Nombre" class="le-input" />-->
+                                    @*@Html.LabelFor(model => model.User, "Usuario")*@
+                                    @Html.TextBoxFor(model => model.User, new { @class = "le-input", placeholder = "Usuario" })
+                                    @Html.ValidationMessageFor(model => model.User)
+                                </div>
+                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top">
+                                    <!--<label>Contraseña</label><br>
+                                    <input type="text" placeholder="Nombre" />-->
+                                    @*@Html.LabelFor(model => model.Password, "Contraseña")*@
+                                    @Html.PasswordFor(model => model.Password, new { @class = "le-input", placeholder = "Contraseña" })
+                                    @Html.ValidationMessageFor(model => model.Password)
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top">
+                                    <!--<label>Confirmar contraseña</label><br>
+                                    <input type="text" placeholder="Nombre" />-->
+                                    @*@Html.LabelFor(model => model.ConfirmPassword, "Confirmar Contraseña")*@
+                                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "le-input", placeholder = "Confirmar Contraseña" })
+                                    @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-top">
+                                <!--<label>Corre electronico</label><br>
+                                <input type="text" placeholder="Nombre" style="width: 100%;" />-->
+                                     @*@Html.LabelFor(model => model.Email)*@
+                                        @Html.TextBoxFor(model => model.Email, new { @class = "le-input", placeholder = "Correo electronico" })
+                                        @Html.ValidationMessageFor(model => model.Email)
+                                </div>
+                            </div>
+                            
+                            <div class="row field-row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12  margin-top">
+                                @Html.LabelFor(model => model.Nombre)
+                                @Html.TextBoxFor(model => model.Nombre, new { @class = "le-input", placeholder = "Nombre" })
+                                @Html.ValidationMessageFor(model => model.Nombre)
+                                </div>
+                    
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-top">
+                                @Html.LabelFor(model => model.Apellido)
+                                @Html.TextBoxFor(model => model.Apellido, new { @class = "le-input", placeholder = "Apellido" })
+                                @Html.ValidationMessageFor(model => model.Apellido)
+                                </div>
+                            </div><!-- /.field-row -->
+
+                            @*<div class="row field-row">
+                                <div class="col-xs-12">
+                                @Html.LabelFor(model => model.Email)
+                                @Html.TextBoxFor(model => model.Email, new { @class = "le-input", placeholder = "Email" })
+                                @Html.ValidationMessageFor(model => model.Email)
+                                </div>
+                            </div><!-- /.field-row -->*@
+
+                             <div class="row">
+                                
+                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 no-padding margin-top">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <label for="FechaNacimiento">FECHA DE NACIMIENTO</label>
+                                        </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 no-padding-right">
+                                        @Html.DropDownList("ListaDias", null, new { @class = "le-input"})
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        @Html.DropDownList("ListaMeses", null, new { @class = "le-input"})
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 no-padding-left">
+                                        @Html.DropDownList("ListaAnios", null, new { @class = "le-input"})
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        @Html.ValidationMessage("FechaNacimiento")
+                                    </div>
+                                    <!--
+                                <label>FECHA DE NACIMIENTO</label>
+                                <select>
+                	                <option>Dia</option>
+                	                <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                                <select>
+                	                <option>Mes</option>
+                	                <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                </select>
+                                <select>
+                	                <option>AÑo</option>
+                	                <option>1984</option>
+                                    <option>1985</option>
+                                    <option>1986</option>
+                                    <option>1987</option>
+                                </select>-->
+                                </div>
+                                @*<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    @Html.LabelFor(model => model.Telefono, "TELEFONO")
+                                    @Html.TextBoxFor(model => model.Telefono, new { @class = "le-input", placeholder = "Telefono" })
+                                    @Html.ValidationMessageFor(model => model.Telefono)
+                                </div>*@
+                    
+                                
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-top">
+                	
+                                    <label for="Telefono">TEL&Eacute;FONO</label>
+                    
+                                    @Html.TextBoxFor(model => model.Telefono, new { @class = "le-input", placeholder = "+598 99 123456" })
+                                    @Html.ValidationMessageFor(model => model.Telefono)
+                                </div>
+                    
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margin-top">
+                                    @Html.LabelFor(model => model.IdDepartamento, "Departamento")
+                                            @Html.DropDownList("IdDepartamento", null, new { @class = "le-input" , onchange = "javascript:CambioDeptos(this);"})
+                                            @Html.ValidationMessageFor(model => model.IdDepartamento)
+                                    <!--
+                                <label>DEPARTAMENTO</label>
+                	                <select>
+                	                <option>Artigas</option>
+                	                <option>Monte</option>
+                                    <option>MAldo</option>
+                                    <option>Canelones</option>
+                	                </select>-->
+                                </div>
+                
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margin-top">
+                                    @Html.LabelFor(model => model.IdBarrio, "Barrio")
+                                            @Html.DropDownList("IdBarrio", null, new { @class = "le-input" })
+                                            @Html.ValidationMessageFor(model => model.IdBarrio)
+                                </div>
+
+                            </div><!-- /.field-row -->
+
+                           
+                            @*<div class="row margin-top">
+                                <div class="col-xs-2">
+                                    <label>Sexo</label>
+                                </div>   
+
+                                 @if (Model == null)
+                                 { 
+                                    <div class="col-xs-4"> 
+                                        <label>@Html.RadioButton("Sexo", "F", true, new { style = "width: 15%;" }) Femenino</label>    
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <label>@Html.RadioButton("Sexo", "M", false, new { style = "width: 15%;" }) Masculino</label>
+                                    </div>
+                                 }
+                                 else
+                                 {
+                                     <div class="col-xs-4"> 
+                                        <label>@Html.RadioButton("Sexo", "F", Model.Sexo == "F", new { style = "width: 15%;" }) Femenino</label>    
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <label>@Html.RadioButton("Sexo", "M", Model.Sexo == "M", new { style = "width: 15%;" }) Masculino</label> 
+                                    </div>
+                                 }
+                        
+                            </div>*@
+                            @*
+                    
+                                if (Model.FotosUsuarios != null)
+                                {
+                                     foreach (MvcApplication4.Models.FotoUsuarios fu in Model.FotosUsuarios.ToList())
+                                     {
+                        
+                    
+                                        <div id="DIVBORRAR" class="thumb-holder">
+                                        @Ajax.ActionLink(
+                                            " ",
+                                            "DeleteFotoUserConfirmed",
+                                            "Home",
+                                            new
+                                            {
+                                                id = HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(fu.IdFotoUsuario.ToString()))
+                                            },
+                                            new AjaxOptions
+                                            {
+                                                HttpMethod = "POST"
+                                            }, new { onclick = "javascipt:onDeleteSuccess(this)", @class = "fa fa-times-circle" }
+                                        )       
+                                        <img alt="Foto perfil" src="@Url.Content(fu.Imagen.RutaFoto)" height="100" />
+                                        </div>
+                             
+                                     }
+                                 }
+                            *@<div class="row margin-top">
+                                <div class="col-xs-12" id="DIVSubirFotos">
+                                    
+                                    @Html.Label("ImageUpload", "FOTO DE PERFIL")
+                                    @Html.ValidationMessage("ImageUpload")
+
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                      <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 135px; height: 135px;cursor: pointer;">
+                                           @if (Model.FotosUsuarios != null)
+                                           {
+                                               foreach (MvcApplication4.Models.FotoUsuarios fu in Model.FotosUsuarios.ToList())
+                                               {
+                        
+                    
+                                                       
+                                                    <img alt="Foto perfil" src="@Url.Content(fu.Imagen.RutaFoto)" />
+                                                    
+                                               }
+                                           }
+                                      </div>
+                                      <div>
+                                        <span class="btn btn-default btn-file" style="display:none">
+                                            <span class="fileinput-new">Select image</span>
+                                            <span class="fileinput-exists">Change</span>
+                                            <!--<input type="file" name="...">-->
+                                            @Html.TextBox("ImageUpload", String.Empty, new { type = "file"/*, onchange = "javascript:CargarPreview(this);" */})
+                            
+                                
+                                        </span>
+                                          @Html.ValidationMessage("ImageUpload")
+
+                                          @if (Model.FotosUsuarios != null)
+                                          {
+                                              foreach (MvcApplication4.Models.FotoUsuarios fu in Model.FotosUsuarios.ToList())
+                                              {
+                                              
+                                                  @Ajax.ActionLink(
+                                                        "Borrar",
+                                                        "DeleteFotoUserConfirmed",
+                                                        "Home",
+                                                        new
+                                                        {
+                                                            id = HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(fu.IdFotoUsuario.ToString()))
+                                                        },
+                                                        new AjaxOptions
+                                                        {
+                                                            HttpMethod = "POST",
+                                                            OnBegin = "return onDeleteSuccess(this)"
+                                                        }, new { /*onclick = "javascipt:onDeleteSuccess(this)",*/ /*data_dismiss="fileinput",*/ @class = "btn btn-default fileinput-exists" }
+                                                    )       
+                                              }
+                                          }
+                                        @*<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Borrar</a>*@
+                                      </div>
+                                    </div>
+                                </div>
+                                @*<div class="col-xs-12" >
+                                <a href="javascript:AgregarFileUploader();">Mas fotos...</a>
+                                 </div>*@
+                            </div>
+                    <hr />
+                            <div class="row margin-bottom">
+                                <div class="col-lg-12">
+                                    <input class="le-button big" type="submit" value="Aceptar cambios" />
+                                </div>
+                            </div>
+                        }
+                    </div><!-- /.billing-address -->
+                    </div>
+                </div>
+                @*@if (ViewBag.Usuario != null)
+                {
+                    MvcApplication4.Models.Usuarios usu = ViewBag.Usuario;
+
+                    <div class="row">
+                        <div class="col-lg-6">@usu.Nombre</div>
+                        <div class="col-lg-6">@usu.Apellido</div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">@usu.User</div>
+                        <div class="col-lg-6">@usu.Email</div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">@usu.FechaNacimiento</div>
+                        <div class="col-lg-6">@usu.Telefono</div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">@usu.Ciudad</div>
+                        <div class="col-lg-6">@usu.Barrio</div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">@Html.ActionLink("Editar", "EditUser", "Home", new { @class="le-button"})</div>                        
+                    </div>
+                }*@
+            </div>
+                
+        </div>
+    </div>
+        
+   
+    </div>
+     
+     
+</div>
+
+   
+<!-- END BODY REAL -->

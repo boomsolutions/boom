@@ -1,0 +1,1396 @@
+﻿@{
+    ViewBag.Title = "HOME/INDEX";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        @*<meta name="title" content="Mejor lo alquilo">*@
+        <meta name="description" content="Mejor lo alquilo es la plataforma online exclusiva para alquilar artículos, accesorios, bienes y mucho más.">
+        <meta name="author" content="">
+        <meta name="keywords" content="MejorLoAlquilo, Alquilo, Alquilar, Rentar, Mejor, Template, eCommerce">
+        <meta name="robots" content="all">
+
+        <title>Mejor lo alquilo</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="@Url.Content("~/assets/css/bootstrap.min.css")">
+        
+        <!-- Customizable CSS -->
+        <link rel="stylesheet" href="@Url.Content("~/assets/css/main.css")">
+        <link rel="stylesheet" href="@Url.Content("~/assets/css/green.css")">
+        <link rel="stylesheet" href="@Url.Content("~/assets/css/owl.carousel.css")">
+        <link rel="stylesheet" href="@Url.Content("~/assets/css/owl.transitions.css")">
+        <link rel="stylesheet" href="@Url.Content("~/assets/css/animate.min.css")">
+        <link rel="stylesheet" href="@Url.Content("~/assets/css/normalize.min.css")">
+
+        <!-- Demo Purpose Only. Should be removed in production -->
+        <link rel="stylesheet" href="@Url.Content("~/assets/css/config.css")">
+
+        <link href="@Url.Content("~/assets/css/green.css")" rel="alternate stylesheet" title="Green color">
+        <link href="@Url.Content("~/assets/css/blue.css")" rel="alternate stylesheet" title="Blue color">
+        <link href="@Url.Content("~/assets/css/red.css")" rel="alternate stylesheet" title="Red color">
+        <link href="@Url.Content("~/assets/css/orange.css")" rel="alternate stylesheet" title="Orange color">
+        <link href="@Url.Content("~/assets/css/navy.css")" rel="alternate stylesheet" title="Navy color">
+        <link href="@Url.Content("~/assets/css/dark-green.css")" rel="alternate stylesheet" title="Darkgreen color">
+        <!-- Demo Purpose Only. Should be removed in production : END -->
+
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+        
+        <!-- Icons/Glyphs -->
+        <link rel="stylesheet" href="@Url.Content("~/assets/css/font-awesome.min.css")">
+        
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="@Url.Content("~/assets/images/favicon.ico")">
+
+        <!-- HTML5 elements and media queries Support for IE8 : HTML5 shim and Respond.js -->
+        <!--[if lt IE 9]>
+            <script src="../../assets/js/html5shiv.js"></script>
+            <script src="../../assets/js/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+        <script src="@Url.Content("~/Scripts/modernizr-2.5.3.js")" type="text/javascript"></script>
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-60451506-1', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+
+        <script type="text/javascript">
+        function cargaImagen2(img)
+        {
+            /*
+            r0 = img.width / img.height;
+            r = 99 / 73; //pasar a conf gral!!!
+
+        
+            if(r0 > r)
+            {
+                img.setAttribute("width", "99");
+            }
+            else
+            {
+                img.setAttribute("height", "73");
+            }*/
+        }
+
+        function cargaImagen(img) {
+            //alert(img.width + " - " + img.height);
+            r0 = img.width / img.height;
+            r = 246 / 186; //pasar a conf gral!!!
+
+
+            //if (img.width > img.height)
+            if (r0 > r) {
+                img.setAttribute("width", "246");
+            }
+            else {
+                img.setAttribute("height", "186");
+            }
+        }
+
+
+        function cargaImagenCar(img) {
+            //alert(img.width + " - " + img.height);
+            r0 = img.width / img.height;
+            r = 194 / 143; //pasar a conf gral!!!
+
+
+            //if (img.width > img.height)
+            if (r0 > r) {
+                img.setAttribute("width", "194");
+            }
+            else {
+                img.setAttribute("height", "143");
+            }
+        }
+
+        // media query event handler
+        if (matchMedia) {
+            var mq = window.matchMedia("(max-width: 397px)");
+            mq.addListener(WidthChange);
+            WidthChange(mq);
+        }
+
+        // media query change
+        function WidthChange(mq) {
+
+            if (mq.matches) {
+                // window width is less than 397px
+                if (document.getElementById("slider1_container")) {
+                    document.getElementById("slider1_container").getElementsByTagName("div")[0].style.display = "none"
+                }
+            }
+            else {
+                // window width is more than 397px
+                if (document.getElementById("slider1_container")) {
+                    document.getElementById("slider1_container").getElementsByTagName("div")[0].style.display = ""
+                }
+            }
+
+        }
+        </script>
+
+<script type="text/javascript">
+   //document.body.onload = ga('send', 'event', 'load', 'OnLoadHome', 'Entro al home de MLA'); //alert("OnLoad HOME.");
+</script>
+
+         <script type="text/javascript" src="@Url.Content("~/assets/js/jssor.slider.mini.js")"></script>
+        <script>
+            jQuery(document).ready(function ($) {
+
+                var options = {
+                    $FillMode: 2,                                       //[Optional] The way to fill image in slide, 0 stretch, 1 contain (keep aspect ratio and put all inside slide), 2 cover (keep aspect ratio and cover whole slide), 4 actual size, 5 contain for large image, actual size for small image, default value is 0
+                    $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                    $AutoPlayInterval: 4000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+                    $PauseOnHover: 1,                                   //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
+
+                    $ArrowKeyNavigation: true,   			            //[Optional] Allows keyboard (arrow key) navigation or not, default value is false
+                    $SlideEasing: $JssorEasing$.$EaseOutQuint,          //[Optional] Specifies easing for right to left animation, default value is $JssorEasing$.$EaseOutQuad
+                    $SlideDuration: 800,                               //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+                    $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
+                    //$SlideWidth: 600,                                 //[Optional] Width of every slide in pixels, default value is width of 'slides' container
+                    //$SlideHeight: 300,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
+                    $SlideSpacing: 0, 					                //[Optional] Space between each slide in pixels, default value is 0
+                    $DisplayPieces: 1,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
+                    $ParkingPosition: 0,                                //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
+                    $UISearchMode: 1,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
+                    $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
+                    $DragOrientation: 1,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+
+                    $BulletNavigatorOptions: {                          //[Optional] Options to specify and enable navigator or not
+                        $Class: $JssorBulletNavigator$,                 //[Required] Class to create navigator instance
+                        $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                        $AutoCenter: 1,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                        $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
+                        $Lanes: 1,                                      //[Optional] Specify lanes to arrange items, default value is 1
+                        $SpacingX: 8,                                   //[Optional] Horizontal space between each item in pixel, default value is 0
+                        $SpacingY: 8,                                   //[Optional] Vertical space between each item in pixel, default value is 0
+                        $Orientation: 1,                                //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
+                        $Scale: false                                   //Scales bullets navigator or not while slider scale
+                    },
+
+                    $ArrowNavigatorOptions: {                           //[Optional] Options to specify and enable arrow navigator or not
+                        $Class: $JssorArrowNavigator$,                  //[Requried] Class to create arrow navigator instance
+                        $ChanceToShow: 1,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                        $AutoCenter: 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                        $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
+                    }
+                };
+
+                //Make the element 'slider1_container' visible before initialize jssor slider.
+                $("#slider1_container").css("display", "block");
+                var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+
+                //responsive code begin
+                //you can remove responsive code if you don't want the slider scales while window resizes
+                
+                function ScaleSlider() {
+                    var bodyWidth = document.body.clientWidth;
+                    if (bodyWidth)
+                        jssor_slider1.$ScaleWidth(Math.min(bodyWidth, 1920));
+                    else
+                        window.setTimeout(ScaleSlider, 30);
+                }
+                ScaleSlider();
+
+                $(window).bind("load", ScaleSlider);
+                $(window).bind("resize", ScaleSlider);
+                $(window).bind("orientationchange", ScaleSlider);
+                
+                WidthChange(mq);
+                //responsive code end
+
+                //$("#owl-recently-viewed2").owlCarousel();
+            });
+    </script>
+        <script>
+            $(function () {
+                var pull = $('#pull');
+                menu = $('nav ul');
+                menuHeight = menu.height();
+
+                $(pull).on('click', function (e) {
+                    e.preventDefault();
+                    menu.slideToggle();
+                });
+
+                $(window).resize(function () {
+                    var w = $(window).width();
+                    if (w > 320 && menu.is(':hidden')) {
+                        menu.removeAttr('style');
+                    }
+                });
+            });
+	</script>
+        <link href="@Url.Content("~/assets/css/bootstrap.min.css")" rel="stylesheet" />
+    </head>
+<body>
+    
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+    'gtm.start':
+    new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+
+    <div class="wrapper">
+        <!-- ============================================================= TOP NAVIGATION ============================================================= -->
+
+<nav class="clearfix">
+    
+		<ul class="clearfix">
+            
+             <li>@Html.ActionLink("Home", "Index", "Home")</li>    
+            <li>@Html.ActionLink("¿Qué es MejorLoAlquilo?", "QuienesSomos", "Home")</li>
+            <li>@Html.ActionLink("Preguntas frecuentes", "Faq", "Home")</li>
+            <li>@Html.ActionLink("¿Cómo funciona?", "ComoFunciona", "Home")</li>
+            @*<li>@Html.ActionLink("Conoce más de nosotros", "Conocenos", "Home")</li>*@
+            <li>
+                
+                @Html.ActionLink("Servicio Premium", "BannerServicioPremium", "Home", new { style="color: #FF7E82;font-weight: bold;", onclick="javascript: ga('send', 'event', 'BotonServicioPremiumBanner', 'click', 'Se ingreso al BANNER de servicio premium');"})
+
+            </li>
+
+            @*<li>@Html.ActionLink("Acerca del prototipo", "About", "Home")</li>
+            <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>*@
+
+            @if (User.Identity.Name == "dimapego" || User.Identity.Name == "smileface" || User.Identity.Name == "MLAAdmin")
+            {  
+                <li style="background: #78A9F9;">@Html.ActionLink("Lista Productos", "ListProducts", "Home")</li>
+                <li style="background: #78A9F9;">@Html.ActionLink("Lista Suscriptores", "ListarSuscriptores", "Home")</li>          
+                <li style="background: #78A9F9;">@Html.ActionLink("Lista Ingresos a Landing por dia", "ListarCantidadSuscriptoresPorDia", "Home")</li>
+                <li style="background: #78A9F9;">@Html.ActionLink("Lista usuarios registrados", "Index", "Usuario")</li> 
+                
+                <li style="background: #78A9F9;">@Html.ActionLink("ReporteVisitarPorArticulo", "ReporteVisitasPorArticulo", "Home")</li> 
+                <li style="background: #78A9F9;">@Html.ActionLink("ReporteSuscritosPorAnio", "ReporteSuscritosPorAnio", "Home")</li> 
+                <li style="background: #78A9F9;">@Html.ActionLink("ReporteConsultasRealizadas", "ReporteConsultasRealizadas", "Home")</li> 
+                <li style="background: #78A9F9;">@Html.ActionLink("ReporteSolicitudesRealizadas", "ReporteSolicitudesRealizadas", "Home")</li> 
+                <li style="background: #78A9F9;">@Html.ActionLink("Lista Publicaciones Pendientes Aprobacion", "ListarProductosPendientesAprobacion", "Home")</li>           
+            }
+                
+            <li>@Html.ActionLink("Suscríbete al boletín", "Suscripcion", "Home")</li>
+
+            @if (Request.IsAuthenticated)
+            {
+                <li>
+                    @*Html.ActionLink("<img src='/MvcApplication4/assets/images/logo.png' width='30px' height='30px'>" + @User.Identity.Name, "ViewUser", "Home")*@
+                    <a href="@Url.Content("~/Home/ViewUser")"><img alt="Foto perfil" src="@Url.Content(ViewBag.FotoUser)" width="30px" height="30px" style="border-radius:50%;margin-right:10px;border:2px solid #c6c6c6"/>@User.Identity.Name</a>
+                </li>
+                <li> <a>
+                         @if (ViewBag.CantidadConsultasSinLeer == 0 && ViewBag.CantidadRespuestasSinLeerInt == 0 && ViewBag.CantidadSolicitudesPendientesInt == 0)
+                         {
+                            @*<div style="width: 20px;height: 20px; -webkit-border-radius: 25px;-moz-border-radius: 25px;border-radius: 25px;/* border: black; *//* background: #F3353B; *//* background-image: url(&quot;../assets/images/campana.png&quot;); */z-index: 99999;"></div>*@
+                            <img alt="campana" src="@Url.Content("~/assets/images/campana.png")" width="30px" height="30px" style="/*border-radius:50%;margin-right:10px;border:2px solid #c6c6c6*/"/>
+                         }
+                         else
+                         {
+                             <img alt="campana" src="@Url.Content("~/assets/images/campanaRED.png")" width="30px" height="30px" style="/*border-radius:50%;margin-right:10px;border:2px solid #c6c6c6*/"/>
+                         }
+                    </a>
+
+                </li>
+                <li>@Html.ActionLink("Salir", "LogOut", "Home")</li>
+            }
+            else
+            {
+                <li>@Html.ActionLink("Registrarse", "CreateUser", "Home")</li>
+                <li>@Html.ActionLink("Ingresar", "LogIn", "Home")</li>           
+            }
+            <li>@Html.ActionLink("Publicar", "CreateProduct", "Home", null, new { @class = "le-button" })</li>
+            
+		</ul>
+		<a href="#" id="pull">
+            <div class="logo logo2" style="top: 14px!important;">
+                @*<a href="@Url.Content("~/Home/Index")">*@
+                    <img alt="logo" src="@Url.Content("~/assets/images/logo.png")" style="height:31px" />
+       
+                @*</a>*@
+            </div><!-- /.logo -->
+		</a>
+	</nav>        
+
+<nav class="top-bar2 animate-dropdown" >
+    <div class="logo logo2" >
+    <a href="@Url.Content("~/Home/Index")">
+        <img alt="logo" src="@Url.Content("~/assets/images/logo.png")" style="margin: 0px 0px 0px 0px; height:31px"/>
+       
+    </a>
+</div><!-- /.logo -->
+    
+    <div class="container">
+        <div class="col-xs-12 col-sm-6 no-margin" style="top: 11px;">
+            <ul>
+                
+            @*<li>@Html.ActionLink("¿Qué es MejorLoAlquilo?", "QuienesSomos", "Home")</li>
+            <li>@Html.ActionLink("Preguntas frecuentes", "Faq", "Home")</li>
+            <li>@Html.ActionLink("¿Cómo funciona?", "ComoFunciona", "Home")</li>*@
+                
+                <li>
+                    <div style="position: absolute;top: -27px;margin-left: -87px;">
+                        <img alt="Cartel nuevo servicio" src="@Url.Content("~/assets/images/flechaNUEVO2.png")" style="width: 75px;">
+
+                    </div>
+                    @Html.ActionLink("Servicio Premium", "BannerServicioPremium", "Home", new { style="color: #FF7E82;font-weight: bold;",onclick="javascript: ga('send', 'event', 'BotonServicioPremiumBanner', 'click', 'Se ingreso al BANNER de servicio premium');"})
+
+                </li>
+                <li class="dropdown" >  
+                    <a class="dropdown" data-hover="dropdown" href="#">
+                        ¿Qué es MejorLoAlquilo?
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("¿Qué es MejorLoAlquilo?", "QuienesSomos", "Home", new { style="color:black"})</li>
+                        <li>@Html.ActionLink("Preguntas frecuentes", "Faq", "Home", new { style="color:black"})</li>
+                        <li>@Html.ActionLink("¿Cómo funciona?", "ComoFunciona", "Home", new { style="color:black"})</li>
+                        @*<li>@Html.ActionLink("Conoce más de nosotros", "Conocenos", "Home", new { style="color:black"})</li>*@
+                    </ul>
+                </li>
+
+                
+            </ul>
+
+            
+
+        </div><!-- /.col -->
+
+        <div class="col-xs-12 col-sm-6 no-margin">
+            <ul class="right">
+                
+                    <li>@Html.ActionLink("Suscríbete al boletín", "Suscripcion", "Home")</li>
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        @*<li>@Html.ActionLink("Registrarse", "CreateUser", "Home")</li>*@
+                        <li>
+                            @*Html.ActionLink("<img src='/MvcApplication4/assets/images/logo.png' width='30px' height='30px'>" + @User.Identity.Name, "ViewUser", "Home")*@
+                            <a href="@Url.Content("~/Home/ViewUser")"><img alt="Foto perfil" src="@Url.Content(ViewBag.FotoUser)" width="30px" height="30px" style="border-radius:50%;margin-right:10px;border:2px solid #c6c6c6"/>@User.Identity.Name</a>
+                        </li>
+                        <li class="dropdown" >  
+                            <a class="dropdown" data-hover="dropdown" href="#">
+                            @if (ViewBag.CantidadConsultasSinLeer == 0 && ViewBag.CantidadRespuestasSinLeerInt == 0 && ViewBag.CantidadSolicitudesPendientesInt == 0)
+                             {
+                                @*<div style="width: 20px;height: 20px; -webkit-border-radius: 25px;-moz-border-radius: 25px;border-radius: 25px;/* border: black; *//* background: #F3353B; *//* background-image: url(&quot;../assets/images/campana.png&quot;); */z-index: 99999;"></div>*@
+                                <img alt="campana" src="@Url.Content("~/assets/images/campana2.png")" width="30px" height="30px" style="/*border-radius:50%;margin-right:10px;border:2px solid #c6c6c6*/"/>
+                             }
+                             else
+                             {
+                                 <img alt="campana red" src="@Url.Content("~/assets/images/campanaRED2.png")" width="30px" height="30px" style="/*border-radius:50%;margin-right:10px;border:2px solid #c6c6c6*/"/>
+                             }
+                            </a>
+                            <ul class="dropdown-menu">
+                                @{ 
+                                    string consultasSinLeer = ViewBag.CantidadConsultas;
+                                    string respuestasSinLeer = ViewBag.CantidadRespuestasSinLeerString;
+                                    string solicitudesPendientes = ViewBag.CantidadSolicitudesPendientesString; 
+                                   }
+                                <li>@Html.ActionLink("Ver consultas" + consultasSinLeer, "ViewConsultasParaUsuario", "Home", new { style="color:black"})</li>
+                                <li>@Html.ActionLink("Ver respuestas" + respuestasSinLeer, "ViewConsultasDelUsuario", "Home", new { style="color:black"})</li>
+                                <li>@Html.ActionLink("Ver solicitudes" + solicitudesPendientes, "ViewSolicitudesParaUsuario", "Home", new { style="color:black"})</li>
+                                
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("Salir", "LogOut", "Home")</li>
+                    }
+                    else
+                    {
+    
+                        <li>@Html.ActionLink("Registrarse", "CreateUser", "Home")</li>
+                        <li>@Html.ActionLink("Ingresar", "LogIn", "Home")</li>
+                        <!-- Trigger the modal with a button -->
+                        @*<li><a data-toggle="modal" data-target="#myModal">Ingresar 2</a></li>*@
+        
+                        @*<li><a id="login01" href="#loginModal">PopUp</a></li>*@
+                    }
+
+                @Html.ActionLink("Publicar", "CreateProduct", "Home", null, new { @class = "le-button" })
+
+                
+
+            </ul>
+        </div><!-- /.col -->
+    </div><!-- /.container -->
+
+    <div class="logo2" style="top:20px !important;left:0px">
+        <div class="col-xs-12 col-sm-6 no-margin" style="top: 11px;">
+            <ul>
+             
+   
+
+                @if (User.Identity.Name == "dimapego" || User.Identity.Name == "smileface" || User.Identity.Name == "MLAAdmin")
+                {
+                       
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#actions">ADMIN</a>
+                        <ul class="dropdown-menu" role="menu" style="background-color:transparent;">
+                            @*<li>@Html.ActionLink("Crear Producto", "CreateProduct", "Home")</li>
+                            <li>@Html.ActionLink("Crear Usuario", "CreateUser", "Home")</li>*@
+                            <li>@Html.ActionLink("Lista Productos", "ListProducts", "Home")</li>
+                <li>@Html.ActionLink("Lista Suscriptores", "ListarSuscriptores", "Home")</li>          
+                <li>@Html.ActionLink("Lista Ingresos a Landing por dia", "ListarCantidadSuscriptoresPorDia", "Home")</li>
+                <li>@Html.ActionLink("Lista usuarios registrados", "Index", "Usuario")</li> 
+                                
+                            <li>@Html.ActionLink("ReporteVisitarPorArticulo", "ReporteVisitasPorArticulo", "Home")</li> 
+                                <li>@Html.ActionLink("ReporteSuscritosPorAnio", "ReporteSuscritosPorAnio", "Home")</li> 
+                                <li>@Html.ActionLink("ReporteConsultasRealizadas", "ReporteConsultasRealizadas", "Home")</li> 
+                                <li>@Html.ActionLink("ReporteSolicitudesRealizadas", "ReporteSolicitudesRealizadas", "Home")</li> 
+                            <li>@Html.ActionLink("Lista Publicaciones Pendientes Aprobacion", "ListarProductosPendientesAprobacion", "Home")</li>  
+                        </ul>
+                    </li>
+                }
+                
+            </ul>
+        </div><!-- /.col -->
+        </div>
+</nav><!-- /.top-bar -->
+<!-- ============================================================= TOP NAVIGATION : END ============================================================= -->       <!-- ============================================================= HEADER ============================================================= -->
+<header style="padding-top: 0px;border-bottom-width: 0px;padding-bottom: 0px;" >
+    
+  @*  <div style="position: absolute;top: 300px;z-index:999">
+         <img src="@Url.Content("~/assets/images/candado.png")" >
+
+        </div>*@
+        
+    <div style="background-size:cover;/*padding-bottom:100px;*//*padding-top:400px;*//*height:720px;*/width:100%; /*min-height: 50px;*/ height:100%;">
+    <div>
+       @* <div style="
+    /* height: 100%; */
+    vertical-align: middle;
+    text-align: center;
+    z-index: 9999999999;
+    color: white;
+    font-size: x-large;
+    position: absolute;
+    width: 100%;
+    top: 205px;
+">TEXTO MEDIO</div>*@
+         </div>       
+            <!-- Jssor Slider Begin -->
+        <!-- To move inline styles to css file/block, please specify a class name for each element. --> 
+        <!-- ================================================== -->
+        <div id="slider1_container" style="display: none; position: relative; margin: 0 auto;
+        top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
+            
+            <!-- Loading Screen -->
+            <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+                <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block;
+                top: 0px; left: 0px; width: 100%; height: 100%;">
+                </div>
+                <div style="position: absolute; display: block; background: url('@Url.Content("~/assets/img/loading.gif")') no-repeat center center;
+                top: 0px; left: 0px; width: 100%; height: 100%;">
+                </div>
+            </div>
+        
+            <!-- Slides Container -->
+            <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1300px; height: 500px; overflow: hidden;">
+                
+                @for (int i = 1; i <= 8; i++)
+                {
+                     <div>
+                        <img alt="Slider @i.ToString()" u="image" src="@Url.Content("~/assets/images/sliders/foto" + @i.ToString() + ".jpg")" />
+                        <div style="font-weight: bold;position:absolute;width:480px;height:120px;top:30%;left:30%;padding:5px;text-align:center;line-height:60px;text-transform:uppercase;font-size:29px;color:#FFFFFF;margin:0 auto;">
+                            Nuestros artículos también son tuyos
+                        </div>
+                    </div>
+                }
+                @*<div>
+                    <img u="image" src="@Url.Content("~/assets/images/sliders/foto1.jpg")" />
+                        <div style="font-weight: bold;position:absolute;width:480px;height:120px;top:30%;left:30%;padding:5px;text-align:center;line-height:60px;text-transform:uppercase;font-size:43px;color:#FFFFFF;margin:0 auto;">
+                            Mis articulos son tus articulos
+                        </div>
+                </div>
+                <div>
+                    <img u="image" src="@Url.Content("~/assets/images/sliders/foto2.jpg")" />
+                    <div style="font-weight: bold;position:absolute;width:480px;height:120px;top:30%;left:30%;padding:5px;text-align:center;line-height:60px;text-transform:uppercase;font-size:43px;color:#FFFFFF;margin:0 auto;">
+                            Mis articulos son tus articulos
+                        </div>
+                </div>
+                <div>
+                    <img u="image" src="@Url.Content("~/assets/images/sliders/foto3.jpg")" />
+                    <div style="font-weight: bold;position:absolute;width:480px;height:120px;top:30%;left:30%;padding:5px;text-align:center;line-height:60px;text-transform:uppercase;font-size:43px;color:#FFFFFF;margin:0 auto;">
+                            Mis articulos son tus articulos
+                        </div>
+                </div>
+                <div>
+                    <img u="image" src="@Url.Content("~/assets/images/sliders/foto4.jpg")" />
+                <div style="font-weight: bold;position:absolute;width:480px;height:120px;top:30%;left:30%;padding:5px;text-align:center;line-height:60px;text-transform:uppercase;font-size:43px;color:#FFFFFF;margin:0 auto;">
+                            Mis articulos son tus articulos
+                        </div>
+                </div>*@
+                @*<div>
+                    <img u="image" src="@Url.Content("~/assets/images/sliders/foto5.jpg")" />
+                    <div style="font-weight: bold;position:absolute;width:480px;height:120px;top:30%;left:30%;padding:5px;text-align:center;line-height:60px;text-transform:uppercase;font-size:43px;color:#FFFFFF;margin:0 auto;">
+                            Mis articulos son tus articulos
+                        </div>
+                </div>*@
+                @*<div>
+                    <img u="image" src="@Url.Content("~/assets/images/sliders/foto6.jpg")" />
+                    <div style="font-weight: bold;position:absolute;width:480px;height:120px;top:30%;left:30%;padding:5px;text-align:center;line-height:60px;text-transform:uppercase;font-size:43px;color:#FFFFFF;margin:0 auto;">
+                            Mis articulos son tuyos también
+                        </div>
+                </div>*@
+            </div>
+            
+            <!--#region Bullet Navigator Skin Begin -->
+            <!-- Help: http://www.jssor.com/development/slider-with-bullet-navigator-jquery.html -->
+            <style>
+                /* jssor slider bullet navigator skin 21 css */
+                /*
+                .jssorb21 div           (normal)
+                .jssorb21 div:hover     (normal mouseover)
+                .jssorb21 .av           (active)
+                .jssorb21 .av:hover     (active mouseover)
+                .jssorb21 .dn           (mousedown)
+                */
+                .jssorb21 {
+                    position: absolute;
+                }
+                .jssorb21 div, .jssorb21 div:hover, .jssorb21 .av {
+                    position: absolute;
+                    /* size of bullet elment */
+                    width: 19px;
+                    height: 19px;
+                    text-align: center;
+                    line-height: 19px;
+                    color: white;
+                    font-size: 12px;
+                    background: url(@{Url.Content("~/assets/img/b21.png)");}) no-repeat;
+                    
+                    overflow: hidden;
+                    cursor: pointer;
+                }
+                .jssorb21 div { background-position: -5px -5px; }
+                .jssorb21 div:hover, .jssorb21 .av:hover { background-position: -35px -5px; }
+                .jssorb21 .av { background-position: -65px -5px; }
+                .jssorb21 .dn, .jssorb21 .dn:hover { background-position: -95px -5px; }
+            </style>
+            <!-- bullet navigator container -->
+            <div u="navigator" class="jssorb21" style="bottom: 26px; right: 6px;">
+                <!-- bullet navigator item prototype -->
+                <div u="prototype"></div>
+            </div>
+            <!--#endregion Bullet Navigator Skin End -->
+            
+            <!--#region Arrow Navigator Skin Begin -->
+            <!-- Help: http://www.jssor.com/development/slider-with-arrow-navigator-jquery.html -->
+            <style>
+                /* jssor slider arrow navigator skin 21 css */
+                /*
+                .jssora21l                  (normal)
+                .jssora21r                  (normal)
+                .jssora21l:hover            (normal mouseover)
+                .jssora21r:hover            (normal mouseover)
+                .jssora21l.jssora21ldn      (mousedown)
+                .jssora21r.jssora21rdn      (mousedown)
+                */
+                .jssora21l, .jssora21r {
+                    display: block;
+                    position: absolute;
+                    /* size of arrow element */
+                    width: 55px;
+                    height: 55px;
+                    cursor: pointer;
+                    background: url(@{Url.Content("~/assets/img/a21.png)");}) center center no-repeat;
+                    overflow: hidden;
+                }
+                .jssora21l { background-position: -3px -33px; }
+                .jssora21r { background-position: -63px -33px; }
+                .jssora21l:hover { background-position: -123px -33px; }
+                .jssora21r:hover { background-position: -183px -33px; }
+                .jssora21l.jssora21ldn { background-position: -243px -33px; }
+                .jssora21r.jssora21rdn { background-position: -303px -33px; }
+            </style>
+            <!-- Arrow Left -->
+            <span u="arrowleft" class="jssora21l" style="top: 123px; left: 8px;">
+            </span>
+            <!-- Arrow Right -->
+            <span u="arrowright" class="jssora21r" style="top: 123px; right: 8px;">
+            </span>
+            <!--#endregion Arrow Navigator Skin End -->
+            <a style="display: none" href="http://www.jssor.com">Bootstrap Slider</a>
+                
+        </div>
+        <!-- Jssor Slider End -->
+    </div>
+
+    
+    <div class="container no-padding">
+        
+        <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
+            <!-- ============================================================= LOGO ============================================================= -->
+@*
+<div class="logo">
+    <a href="@Url.Content("~/Home/Index")">
+        <img alt="logo" src="@Url.Content("~/assets/images/logo.png")" width="233" height="54"/>
+       
+    </a>
+</div><!-- /.logo -->
+*@
+<!-- ============================================================= LOGO : END ============================================================= -->     
+
+        </div><!-- /.logo-holder -->
+
+<div class="col-xs-12 col-sm-12 col-md-12 top-search-holder no-margin" style="margin: 0 0 0 0;">
+    
+<!-- ============================================================= SEARCH AREA ============================================================= -->
+<div class="search-area" style="margin-top: -80px;">
+    @*<div class="container-fluid">
+            textoooooooooooooooooooooooooooooooooo asdasssssssssssssssssssssssss
+            </div>*@
+        
+    
+    <!--<form>-->
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { id = "searchForm", name = "searchForm" }))
+        {  
+        <div class="control-group" style="background-color:white">
+            @Html.TextBox("SearchString", String.Empty, new { @class = "search-field", @placeholder = "Qué estás buscando?", style = "border-right-style:inset;border-right-color:rgb(198, 198, 198); border-right-width:1px" })
+            <!--
+            <ul class="categories-filter animate-dropdown">
+                
+                 
+                <li class="dropdown">
+                     
+                
+                    <a class="dropdown-toggle"  data-toggle="dropdown" href="Index">all categories</a>
+
+                    
+                    
+        
+                    <ul class="dropdown-menu" role="menu" >
+                        @foreach (MvcApplication4.Models.CategoriaProductos c in (List<MvcApplication4.Models.CategoriaProductos>)ViewBag.CategoriasProductos)
+                        {
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="Index">@c.DescripcionI1</a></li>
+                        
+                        }
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">laptops</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">tv & audio</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">gadgets</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="category-grid.html">cameras</a></li>
+                        
+                    </ul>
+                </li>
+            </ul>-->
+            
+            @Html.DropDownList("Categorias", null, new { style = "margin-left: 10px;border: none;width: 27%;" })
+            
+            <!--<input class="search-button" type="submit" value="BUSCAR" />-->
+            <a class="search-button" href="javascript:{document.getElementById('searchForm').submit()}" style="color: white;font-weight: bold;background-color: #ff7e82;">Buscar</a>    
+            
+            
+        </div>
+    <!--</form>-->
+        }
+
+    
+</div><!-- /.search-area -->
+<!-- ============================================================= SEARCH AREA : END ============================================================= -->      </div><!-- /.top-search-holder -->
+<!--
+<div class="col-xs-12 col-sm-12 no-margin">        
+        @Html.ActionLink("PUBLICAR", "CreateProduct", "Home", null, new { @class = "le-button huge" })
+    </div>-->
+<!--
+<div class="col-xs-12 col-sm-12 col-md-3 top-cart-row no-margin">
+    <div class="top-cart-row-container">-->
+        <!--
+        <div class="wishlist-compare-holder">
+        <div class="wishlist ">
+            <a href="#"><i class="fa fa-heart"></i> wishlist <span class="value">(21)</span> </a>
+        </div>
+        <div class="compare">
+            <a href="#"><i class="fa fa-exchange"></i> compare <span class="value">(2)</span> </a>
+        </div>
+        </div>
+-->
+    <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+    <!--
+        <div class="top-cart-holder dropdown animate-dropdown">
+        
+        <div class="basket">
+            
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <div class="basket-item-count">
+                    <span class="count">3</span>
+                    <img src="@Url.Content("~/assets/images/icon-cart.png")" alt="" />
+                </div>
+
+                <div class="total-price-basket"> 
+                    <span class="lbl">your cart:</span>
+                    <span class="total-price">
+                        <span class="sign">$</span><span class="value">3219,00</span>
+                    </span>
+                </div>
+            </a>
+
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="basket-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 no-margin text-center">
+                                <div class="thumb">
+                                    <img alt="" src="@Url.Content("~/assets/images/products/product-small-01.jpg")" />
+                                </div>
+                            </div>
+                            <div class="col-xs-8 col-sm-8 no-margin">
+                                <div class="title">Blueberry</div>
+                                <div class="price">$270.00</div>
+                            </div>
+                        </div>
+                        <a class="close-btn" href="#"></a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="basket-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 no-margin text-center">
+                                <div class="thumb">
+                                    <img alt="" src="@Url.Content("~/assets/images/products/product-small-01.jpg")" />
+                                </div>
+                            </div>
+                            <div class="col-xs-8 col-sm-8 no-margin">
+                                <div class="title">Blueberry</div>
+                                <div class="price">$270.00</div>
+                            </div>
+                        </div>
+                        <a class="close-btn" href="#"></a>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="basket-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 no-margin text-center">
+                                <div class="thumb">
+                                    <img alt="" src="@Url.Content("~/assets/images/products/product-small-01.jpg")" />
+                                </div>
+                            </div>
+                            <div class="col-xs-8 col-sm-8 no-margin">
+                                <div class="title">Blueberry</div>
+                                <div class="price">$270.00</div>
+                            </div>
+                        </div>
+                        <a class="close-btn" href="#"></a>
+                    </div>
+                </li>
+
+
+                <li class="checkout">
+                    <div class="basket-item">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6">
+                                <a href="cart.html.html" class="le-button inverse">View cart</a>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <a href="checkout.html" class="le-button">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>    
+
+    </div>-->
+<!--</div>-->
+    
+    
+<!-- ============================================================= SHOPPING CART DROPDOWN : END ============================================================= -->      <!-- </div>--><!-- /.top-cart-row -->
+
+    </div><!-- /.container -->
+</header>
+<!-- ============================================================= HEADER : END ============================================================= --><div class="animate-dropdown"><!-- ========================================= BREADCRUMB ========================================= -->
+
+
+<body>
+    <div class="page">
+        <!--
+        <header>
+            <div id="title">
+                <h1>Mejor Lo Alquilo</h1>
+            </div>
+            
+            <div id="logindisplay">
+                @Html.Partial("_LogOnPartial")
+            </div>
+            <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Producto", "Index", "Productos")</li>
+                    <li>@Html.ActionLink("Alquiler", "Index", "Alquiler")</li>
+                    <li>@Html.ActionLink("Categoria Producto", "Index", "CategoriaProducto")</li>
+                    <li>@Html.ActionLink("Comentario Alquiler", "Index", "ComentarioAlquiler")</li>
+                    <li>@Html.ActionLink("Usuario", "Index", "Usuario")</li>
+                    <li>@Html.ActionLink("Fotos de Produdctos", "Index", "FotoProductos")</li>
+                    <li>@Html.ActionLink("Imagen", "Create", "Imagen")</li>
+                </ul>
+            </nav>
+        </header>
+-->
+        
+        <!-- ============================================================= FOOTER ============================================================= -->
+<footer id="footer" class="color-bg" style="border-top: none;">
+    
+    <div class="container" style="margin-bottom: 30px;">
+        <h1 style="text-align: center;margin-bottom: 50px;">Categorías</h1>
+            <div class="product-grid-holder">
+
+                @foreach (MvcApplication4.Models.CategoriaProductos cp in (List<MvcApplication4.Models.CategoriaProductos>)ViewBag.CategoriasProductos)
+                {
+                    if (cp.FotoCategoria != null)
+                    {
+                        <a href="@Url.Content("~/?SearchString=&Categorias=" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(cp.IdCategoriaProducto.ToString()))).ToString().Replace("%", "%25")">
+                            <div class="col-xs-12 col-sm-4 col-md-3  no-margin product-item-holder" style="background-image: url(@Url.Content("~/assets/images/categorias/" + cp.FotoCategoria));background-size: cover;background-position: center;min-height: 311px;display: table;">
+                                <div style="vertical-align: middle;display: table-cell;">      
+                                    <div style="text-align: center;color:white;font-weight:bold;font-size: x-large;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;">@cp.DescripcionI1</div>
+                                </div>
+                    
+                            </div>
+                        </a>
+                    }
+                }
+                
+            </div>
+    </div>
+
+
+    <section id="recently-reviewd2" class="wow fadeInUp">
+    <div class="container">
+        <div class="carousel-holder hover">
+            
+            <div class="title-nav">
+                <h2 class="h1">Publicaciones recientes</h2>
+                <div class="nav-holder">
+                    <a href="#prev" data-target="#owl-recently-viewed-2" class="slider-prev btn-prev fa fa-angle-left"></a>
+                    <a href="#next" data-target="#owl-recently-viewed-2" class="slider-next btn-next fa fa-angle-right"></a>
+                </div>
+            </div><!-- /.title-nav -->
+
+            <div id="owl-recently-viewed-2" class="owl-carousel product-grid-holder">
+
+                @foreach (MvcApplication4.Models.Productos p in (List<MvcApplication4.Models.Productos>)ViewBag.ProductosRecientes)
+                {
+                    
+                    <a href="@Url.Content("~/Home/Details/" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p.IdProducto.ToString()))).ToString().Replace("%", "%25")">
+                        <div class="no-margin carousel-item product-item-holder size-small hover" style="min-height: 400px;">
+                            <div class="product-item">
+                                @*<div class="ribbon red"><span>sale</span></div> *@
+                                <div class="image">
+                                    @if (p.FotosProductos.Count() > 0)
+                                    {
+                                        if (String.IsNullOrEmpty(p.FotosProductos.First().Imagen.RutaFotoThumb))
+                                        {
+                                            <img alt="foto" src="@Url.Content(p.FotosProductos.First().Imagen.RutaFoto.Replace("../../", ""))" data-echo="@Url.Content(p.FotosProductos.First().Imagen.RutaFoto.Replace("../../", ""))" onload="cargaImagenCar(this);" />
+                                        }
+                                        else
+                                        {
+                                            <img alt="foto" src="@Url.Content(p.FotosProductos.First().Imagen.RutaFotoThumb.Replace("../../", ""))" data-echo="@Url.Content(p.FotosProductos.First().Imagen.RutaFotoThumb.Replace("../../", ""))" onload="cargaImagenCar(this);" />
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <img alt="foto blank" src="@Url.Content("~/assets/images/blank.gif")" data-echo="@Url.Content("~/assets/images/products/product-small-02.jpg")"  onload="cargaImagenCar(this);" />
+                                    }
+                                </div>
+                                <div class="body">
+                                    <div class="title">
+                                        @*<a href="single-product.html">LC-70UD1U 70" class aquos 4K ultra HD</a>*@
+                                
+                                        @p.Nombre
+                                    </div>
+                                    @*<div class="brand">Sharp</div>*@
+                                </div>
+                                <div class="prices">
+                                        @*<div class="price-prev">$1399.00</div>*@
+                                        @if (p.MostrarPrecioHora)
+                                        {
+                                            <div class="price-current pull-left">hora: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioHora</div><br/>
+                                        }
+                                        @if (p.MostrarPrecioDiario)
+                                        {
+                                            <div class="price-current pull-left">día: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioDiario</div><br/>
+                                        }
+                                        @if (p.MostrarPrecioSemanal)
+                                        {
+                                    
+                                            <div class="price-current pull-left">semana: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioSemanal</div><br/>
+                                        }
+                                        @if (p.MostrarPrecioFinDeSemana)
+                                        {
+                                            <div class="price-current pull-left">fin de semana: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioFinDeSemana</div><br/>
+                                        }
+                                        @if (p.MostrarPrecioMensual)
+                                        {
+                                            <div class="price-current pull-left">mes: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioMensual</div>
+                                        }
+                                    </div>
+
+                                @*<div class="hover-area">
+                                    <div class="add-cart-button">
+                                        <a href="single-product.html" class="le-button">Add to Cart</a>
+                                    </div>
+                                    <div class="wish-compare">
+                                        <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                        <a class="btn-add-to-compare" href="#">Compare</a>
+                                    </div>
+                                </div>*@
+                            </div><!-- /.product-item -->
+                        </div><!-- /.product-item-holder -->
+                    </a>
+                }
+            </div><!-- /#recently-carousel -->
+
+        </div><!-- /.carousel-holder -->
+    </div><!-- /.container -->
+</section><!-- /#recently-reviewd -->
+        
+    <section id="recently-reviewd" class="wow fadeInUp">
+    <div class="container">
+        <div class="carousel-holder hover">
+            
+            <div class="title-nav">
+                <h2 class="h1">Más publicaciones</h2>
+                <div class="nav-holder">
+                    <a href="#prev" data-target="#owl-recently-viewed" class="slider-prev btn-prev fa fa-angle-left"></a>
+                    <a href="#next" data-target="#owl-recently-viewed" class="slider-next btn-next fa fa-angle-right"></a>
+                </div>
+            </div><!-- /.title-nav -->
+
+            <div id="owl-recently-viewed" class="owl-carousel product-grid-holder">
+
+                @foreach (MvcApplication4.Models.Productos p in (List<MvcApplication4.Models.Productos>)ViewBag.ProductosRandom)
+                {
+                    
+                    <a href="@Url.Content("~/Home/Details/" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p.IdProducto.ToString()))).ToString().Replace("%", "%25")">
+                        <div class="no-margin carousel-item product-item-holder size-small hover" style="min-height: 400px;">
+                    <div class="product-item">
+                        @*<div class="ribbon red"><span>sale</span></div> *@
+                        <div class="image">
+                            @if (p.FotosProductos.Count() > 0)
+                            {
+                                if (String.IsNullOrEmpty(p.FotosProductos.First().Imagen.RutaFotoThumb))
+                                {
+                                    <img alt="foto mas publicaciones" src="@Url.Content(p.FotosProductos.First().Imagen.RutaFoto.Replace("../../", ""))" data-echo="@Url.Content(p.FotosProductos.First().Imagen.RutaFoto.Replace("../../", ""))" onload="cargaImagenCar(this);" />
+                                }
+                                else
+                                {
+                                    <img alt="foto mas publicaciones" src="@Url.Content(p.FotosProductos.First().Imagen.RutaFotoThumb.Replace("../../", ""))" data-echo="@Url.Content(p.FotosProductos.First().Imagen.RutaFotoThumb.Replace("../../", ""))" onload="cargaImagenCar(this);" />
+                                }
+
+                            }
+                            else
+                            {
+                                <img alt="foto mas publicaciones blank" src="@Url.Content("~/assets/images/blank.gif")" data-echo="@Url.Content("~/assets/images/products/product-small-02.jpg")"  onload="cargaImagenCar(this);" />
+                            }
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                @*<a href="single-product.html">LC-70UD1U 70" class aquos 4K ultra HD</a>*@
+                                
+                                @p.Nombre
+                            </div>
+                            @*<div class="brand">Sharp</div>*@
+                        </div>
+                        <div class="prices">
+                                @*<div class="price-prev">$1399.00</div>*@
+                                @if (p.MostrarPrecioHora)
+                                {
+                                    <div class="price-current pull-left">hora: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioHora</div><br/>
+                                }
+                                @if (p.MostrarPrecioDiario)
+                                {
+                                    <div class="price-current pull-left">día: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioDiario</div><br/>
+                                }
+                                @if (p.MostrarPrecioSemanal)
+                                {
+                                    
+                                    <div class="price-current pull-left">semana: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioSemanal</div><br/>
+                                }
+                                @if (p.MostrarPrecioFinDeSemana)
+                                {
+                                    <div class="price-current pull-left">fin de semana: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioFinDeSemana</div><br/>
+                                }
+                                @if (p.MostrarPrecioMensual)
+                                {
+                                    <div class="price-current pull-left">mes: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioMensual</div>
+                                }
+                            </div>
+
+                        @*<div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">Add to Cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">Add to Wishlist</a>
+                                <a class="btn-add-to-compare" href="#">Compare</a>
+                            </div>
+                        </div>*@
+                    </div><!-- /.product-item -->
+                </div><!-- /.product-item-holder -->
+                    </a>
+                }
+            </div><!-- /#recently-carousel -->
+
+        </div><!-- /.carousel-holder -->
+    </div><!-- /.container -->
+</section><!-- /#recently-reviewd -->
+
+
+
+
+    @* 
+    <div class="container">
+        <h1 style="text-align: center;margin-bottom: 50px;">Publicaciones recientes</h1>
+            <div class="product-grid-holder">
+                @foreach (MvcApplication4.Models.Productos p in (List<MvcApplication4.Models.Productos>)ViewBag.ProductosUltimos)
+                {
+                    <a href="@Url.Content("~/Home/Details/" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p.IdProducto.ToString()))).ToString().Replace("%","%25")">
+                        
+                    <div class="col-sm-4 col-md-3  no-margin product-item-holder">
+                            <div class="product-item">
+                               
+                                <div class="image" style="height: 222px;">
+                                    @if (p.FotosProductos.Count() > 0)
+                                    {
+                                        if (String.IsNullOrEmpty(p.FotosProductos.First().Imagen.RutaFotoThumb))
+                                        {
+                                            <img alt="" src="@Url.Content(p.FotosProductos.First().Imagen.RutaFoto.Replace("../../", ""))" data-echo="@Url.Content(p.FotosProductos.First().Imagen.RutaFoto.Replace("../../", ""))" onload="cargaImagen(this);" />
+                                        }
+                                        else
+                                        {
+                                            <img alt="" src="@Url.Content(p.FotosProductos.First().Imagen.RutaFotoThumb.Replace("../../", ""))" data-echo="@Url.Content(p.FotosProductos.First().Imagen.RutaFotoThumb.Replace("../../", ""))" onload="cargaImagen(this);" />
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <img alt="" src="@Url.Content("~/assets/images/blank.gif")" data-echo="@Url.Content("~/assets/images/products/product-small-02.jpg")"  onload="cargaImagen(this);" />
+                                    }
+                                </div>
+                                <div class="body">
+                                    <div class="title">
+                                        @p.Nombre
+                               
+                                    </div>
+                               
+                                </div>
+                                <div class="prices">
+                               
+                                    @if(p.MostrarPrecioHora)
+                                    {
+                                        <div class="price-current pull-left">hora: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioHora</div><br/>
+                                    }
+                                    @if(p.MostrarPrecioDiario)
+                                    {
+                                        <div class="price-current pull-left">día: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioDiario</div><br/>
+                                    }
+                                    @if(p.MostrarPrecioSemanal)
+                                    {
+                                    
+                                        <div class="price-current pull-left">semana: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioSemanal</div><br/>
+                                    }
+                                    @if(p.MostrarPrecioFinDeSemana)
+                                    {
+                                        <div class="price-current pull-left">fin de semana: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioFinDeSemana</div><br/>
+                                    }
+                                    @if(p.MostrarPrecioMensual)
+                                    {
+                                        <div class="price-current pull-left">mes: </div><div class="price-current pull-right">@p.Moneda.Simbolo @p.PrecioMensual</div>
+                                    }
+                                </div>
+
+                               
+                            </div>
+                        </div> 
+                        </a>
+                }
+                       
+                    </div>
+            </div>*@
+
+    
+    <div class="sub-form-row">
+        <div class="container">
+            @*<div class="col-xs-12 col-sm-8 col-sm-offset-2 no-padding">
+                <form role="form">
+                    <input placeholder="Subscribe to our newsletter">
+                    <button class="le-button">Subscribe</button>
+                </form>
+            </div>*@
+        </div><!-- /.container -->
+    </div><!-- /.sub-form-row -->
+
+    <div class="link-list-row">
+        <div class="container no-padding">
+            <div class="col-xs-12 col-md-4 ">
+                <!-- ============================================================= CONTACT INFO ============================================================= -->
+<div class="contact-info">
+    <div class="footer-logo">
+        <img alt="logo" src="@Url.Content("~/assets/images/logofooter.png")" width="233" height="auto"/>
+        
+    </div><!-- /.footer-logo -->
+    <div class="footer-logo">
+        <img alt="logoORT" src="@Url.Content("~/assets/images/logoORT.png")" width="25%" height="25%">
+        <img alt="logoCIE" src="@Url.Content("~/assets/images/logoCIE.png")" width="25%" height="25%">
+        <img alt="logoANII" src="@Url.Content("~/assets/images/logoANII.png")" width="25%" height="25%">  
+    </div>
+   @* <p class="regular-bold"> Sientete libre de contactarnos via email.</p>
+    
+    <p>
+        17 Princess Road, London, Greater London NW1 8JR, UK
+        1-888-8MEDIA (1-888-892-9953)
+    </p>*@
+    
+     <div class="social-icons">
+        <h3>Únete a nosotros</h3>
+        <ul>
+            <li><a href="https://www.facebook.com/MLA.mejorloalquilo" class="fa fa-facebook"></a></li>
+            <li><a href="https://twitter.com/MejorLoAlquilo" class="fa fa-twitter"></a></li>
+            <li><a href="https://plus.google.com/u/0/107704055462147933717" class="fa fa-google-plus"></a></li>
+            @*
+            <li><a href="https://www.youtube.com/channel/UCFAC8a48dojdgFj3cy6aqnA" class="fa fa-youtube"></a></li>
+            <li><a href="http://www.pinterest.com/MLA" class="fa fa-pinterest"></a></li>
+            <li><a href="http://www.linkedin.com/MLA" class="fa fa-linkedin"></a></li>
+            <li><a href="http://www.pinterest.com/MLA" class="fa fa-stumbleupon"></a></li>
+            <li><a href="http://www.dribble.com/MLA" class="fa fa-dribbble"></a></li>
+            <li><a href="http://www.vk.com/MLA" class="fa fa-vk"></a></li>
+            *@
+            <li><a href="https://www.instagram.com/mejor_lo_alquilo/" class="fa fa-instagram"></a></li>
+            
+        </ul>
+    </div><!-- /.social-icons -->
+
+</div>
+<!-- ============================================================= CONTACT INFO : END ============================================================= -->            </div>
+
+            <div class="col-xs-12 col-md-8 no-margin">
+                <!-- ============================================================= LINKS FOOTER ============================================================= -->
+<div class="link-widget">
+    <div class="widget">
+        <h3>Información</h3>
+        <ul>
+          
+            <li>@Html.ActionLink("¿Que es MejorLoAlquilo?", "QuienesSomos", "Home")</li>
+            <li>@Html.ActionLink("Preguntas frecuentes", "Faq", "Home")</li>
+            <li>@Html.ActionLink("Publicar", "CreateProduct", "Home")</li>
+            <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+        </ul>
+    </div><!-- /.widget -->
+</div><!-- /.link-widget -->
+<!-- ============================================================= LINKS FOOTER : END ============================================================= -->            </div>
+        </div><!-- /.container -->
+    </div><!-- /.link-list-row -->
+
+    <div class="copyright-bar">
+        <div class="container">
+            <div class="col-xs-12 col-sm-6 no-margin">
+                <div class="copyright">
+                    &copy; <a href="index.html">Mejor Lo Alquilo</a> - all rights reserved
+                </div><!-- /.copyright -->
+            </div>
+            <div class="col-xs-12 col-sm-6 no-margin">
+                <div class="payment-methods ">
+                    @*<ul>
+                        <li><img alt="" src="@Url.Content("~/assets/images/payments/payment-visa.png")"></li>
+                        <li><img alt="" src="@Url.Content("~/assets/images/payments/payment-master.png")"></li>
+                        <li><img alt="" src="@Url.Content("~/assets/images/payments/payment-paypal.png")"></li>
+                        <li><img alt="" src="@Url.Content("~/assets/images/payments/payment-skrill.png")"></li>
+                    </ul>*@
+                </div><!-- /.payment-methods -->
+            </div>
+        </div><!-- /.container -->
+    </div><!-- /.copyright-bar -->
+
+</footer><!-- /#footer -->
+<!-- ============================================================= FOOTER : END ============================================================= -->   </div><!-- /.wrapper -->
+
+    </div>
+
+
+        <!-- BEGIN CUSTOM ALERTS-->
+        @*<script src="@Url.Content("~/assets/js/ohsnap.js")"></script>
+        <div id="ohsnap"></div>
+        <script>
+            function alertaCustom() {
+                ohSnap('Oh Snap! I cannot process your card...', 'red');
+            }
+        
+        
+        </script>*@
+
+            @*<a href="javascript:alertaCustom();">PRUEBA</a>*@
+        <!-- END CUSTOM ALERTS-->
+
+
+            
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog" style="width:900px;height:900px">
+            
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Ingresar</h4>
+                  </div>
+                  <div class="modal-body" style="height: 900px;">
+                    @Html.Partial("LogIn")
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+            
+              </div>
+            </div>
+
+
+        <!--  BEGIN FORMS MODALES -->
+        
+        <!-- LLAMADO 
+            <a id="login01" href="#animatedModal">DEMO01</a>
+            -->
+     
+        <div id="loginModal">
+            <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
+            <div id="btn-close-modal" class="close-loginModal"> 
+                x
+            </div>
+                
+            <div class="modal-content">
+                @*Html.Partial("LogIn")*@
+            </div>
+        </div>
+    	<!-- END FORMS MODALES -->
+
+        <script src="@Url.Content("~/assets/js/jquery.min.js")"></script>
+  		<script src="@Url.Content("~/assets/js/animatedModal.min.js")"></script>
+		<script>
+		    
+		    
+
+		    $("#login01").animatedModal({
+		        modalTarget: 'loginModal',
+		        animatedIn: 'zoomIn',
+		        animatedOut: 'zoomOut',
+		        color: '#502262',
+		        width: '70%',
+		        height: '70%',
+		        top: '21%',
+		        left: '15%',
+		        // Callbacks
+		        beforeOpen: function () {
+		            console.log("The animation was called");
+		        },
+		        afterOpen: function () {
+		            console.log("The animation is completed");
+		        },
+		        beforeClose: function () {
+		            console.log("The animation was called");
+		        },
+		        afterClose: function () {
+		            console.log("The animation is completed");
+		        }
+		    });
+
+        </script>
+
+
+    <!-- JavaScripts placed at the end of the document so the pages load faster -->
+    <script src="@Url.Content("~/assets/js/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/jquery-migrate-1.2.1.js")"></script>
+    <script src="@Url.Content("~/assets/js/bootstrap.min.js")"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+    <script src="@Url.Content("~/assets/js/gmap3.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/bootstrap-hover-dropdown.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/owl.carousel.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/css_browser_selector.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/echo.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/jquery.easing-1.3.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/bootstrap-slider.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/jquery.raty.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/jquery.prettyPhoto.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/jquery.customSelect.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/wow.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/scripts.js")"></script>
+
+    <!-- For demo purposes – can be removed on production -->
+    
+    <script src="@Url.Content("~/switchstylesheet/switchstylesheet.js")"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $(".changecolor").switchstylesheet({ seperator: "color" });
+            $('.show-theme-options').click(function () {
+                $(this).parent().toggleClass('open');
+                return false;
+            });
+        });
+
+        $(window).bind("load", function () {
+            $('.show-theme-options').delay(2000).trigger('click');
+        });
+    </script>
+    <!-- For demo purposes – can be removed on production : End -->
+
+    <!-- CHAT!!!!!! -->
+    <!-- begin SnapEngage code -->
+
+   @* <script type="text/javascript">
+        (function () {
+            var se = document.createElement('script'); se.type = 'text/javascript'; se.async = true;
+            se.src = '//storage.googleapis.com/code.snapengage.com/js/c80896a5-212e-426a-8593-e1e2623b05c3.js';
+            var done = false;
+            se.onload = se.onreadystatechange = function () {
+                if (!done && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
+                    done = true;
+                    /* Place your SnapEngage JS API code below */
+                    /* SnapEngage.allowChatSound(true); Example JS API: Enable sounds for Visitors. */
+                }
+            };
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(se, s);
+        })();
+    </script>*@
+
+    <!-- end SnapEngage code -->
+
+
+        <!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+            var $_Tawk_API = {}, $_Tawk_LoadStart = new Date();
+            (function () {
+                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/5564aaae8ef604322ca492e2/default';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+            })();
+        </script>
+        <!--End of Tawk.to Script-->
+
+</body>
+</html>
+
+
+

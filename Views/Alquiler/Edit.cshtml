@@ -1,0 +1,61 @@
+﻿@model MvcApplication4.Models.Alquileres
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Alquileres</legend>
+
+        @Html.HiddenFor(model => HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(model.IdAlquiler.ToString())))
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdProducto, "Producto")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IdProducto", String.Empty)
+            @Html.ValidationMessageFor(model => model.IdProducto)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FechaDesde)
+        </div>
+        <div class="editor-field">
+            
+            <input type="date" id="FechaDesde" name="FechaDesde" />
+            @Html.EditorFor(model => model.FechaDesde)
+            @Html.ValidationMessageFor(model => model.FechaDesde)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FechaHasta)
+        </div>
+        <div class="editor-field">
+            <input type="date" id="FechaHasta" name="FechaHasta" />
+            @Html.ValidationMessageFor(model => model.FechaHasta)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdUsuarioArrendatario, "Usuario Arrendatario")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IdUsuarioArrendatario", String.Empty)
+            @Html.ValidationMessageFor(model => model.IdUsuarioArrendatario)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

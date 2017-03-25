@@ -1,0 +1,68 @@
+﻿@model MvcApplication4.Models.Productos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Productos</legend>
+
+    <div class="display-label">Nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">Descripcion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descripcion)
+    </div>
+
+    <div class="display-label">CategoriasProducto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CategoriasProducto.DescripcionI1)
+    </div>
+
+    <div class="display-label">PrecioDiario</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrecioDiario)
+    </div>
+
+    <div class="display-label">PrecioSemanal</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrecioSemanal)
+    </div>
+
+    <div class="display-label">PrecioMensual</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrecioMensual)
+    </div>
+
+    <div class="display-label">GarantiaDinero</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GarantiaDinero)
+    </div>
+
+    <div class="display-label">GarantiaExtra</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GarantiaExtra)
+    </div>
+
+    <div class="display-label">CondicionesUso</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CondicionesUso)
+    </div>
+
+    <div class="display-label">Usuario Dueño</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Usuario.Nombre)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

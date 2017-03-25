@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+
+
+<h2>Suscriptores por dia</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Usuarios Confirmados", "ListarUsuarios")*@
+</p>
+<table>
+    <tr>
+        <th style="width: 200px;">
+            Fecha
+        </th>
+        <th>
+            Cantidad
+        </th>
+        
+        
+    </tr>
+
+ 
+
+@foreach (MvcApplication4.Controllers.SuscriptoresPorDia sd in ((List<MvcApplication4.Controllers.SuscriptoresPorDia>)ViewBag.ListaLogVisitas))
+{
+    <tr>
+        <td>
+            @sd.fecha.ToString()
+        </td>
+        <td>
+            @sd.cant.ToString()
+        </td>
+        
+    </tr>
+}
+
+</table>
+
+
+
+
+

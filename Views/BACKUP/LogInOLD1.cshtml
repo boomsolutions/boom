@@ -1,0 +1,289 @@
+﻿@model MvcApplication4.Models.Usuarios
+
+@{
+    //Layout = null;
+    }
+
+<!-- BEGIN FACEBOOK SDK -->
+
+<script>
+    // This is called with the results from from FB.getLoginStatus().
+    function statusChangeCallback(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        // The response object is returned with a status field that lets the
+        // app know the current login status of the person.
+        // Full docs on the response object can be found in the documentation
+        // for FB.getLoginStatus().
+        if (response.status === 'connected') {
+            // Logged into your app and Facebook.
+            testAPI();
+        } else if (response.status === 'not_authorized') {
+            // The person is logged into Facebook, but not your app.
+            document.getElementById('status').innerHTML = 'Please log ' +
+              'into this app.';
+        } else {
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            document.getElementById('status').innerHTML = 'Please log ' +
+              'into Facebook.';
+        }
+    }
+
+    // This function is called when someone finishes with the Login
+    // Button.  See the onlogin handler attached to it in the sample
+    // code below.
+    function checkLoginState() {
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+    }
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '433803946817431',
+            cookie: true,  // enable cookies to allow the server to access 
+            // the session
+            xfbml: true,  // parse social plugins on this page
+            version: 'v2.2' // use version 2.2
+        });
+
+        // Now that we've initialized the JavaScript SDK, we call 
+        // FB.getLoginStatus().  This function gets the state of the
+        // person visiting this page and can return one of three states to
+        // the callback you provide.  They can be:
+        //
+        // 1. Logged into your app ('connected')
+        // 2. Logged into Facebook, but not your app ('not_authorized')
+        // 3. Not logged into Facebook and can't tell if they are logged into
+        //    your app or not.
+        //
+        // These three cases are handled in the callback function.
+
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+
+    };
+
+    // Load the SDK asynchronously
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    // Here we run a very simple test of the Graph API after login is
+    // successful.  See statusChangeCallback() for when this call is made.
+    function testAPI() {
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function (response) {
+            console.log('Successful login for: ' + response.name);
+            console.log('Successful login for ID: ' + response.id);
+            console.log('Successful login for ID: ' + response.appId);
+            document.getElementById('status').innerHTML =
+              'Gracias por ingresar via Facebook, ' + response.name + '!';
+        });
+    }
+
+    function FBLogIn()
+    {
+        FB.login(function (response) {
+            // Handle the response object, like in statusChangeCallback() in our demo
+            // code.
+            console.log('FBLogIn-login');
+            //console.log(response);
+            // The response object is returned with a status field that lets the
+            // app know the current login status of the person.
+            // Full docs on the response object can be found in the documentation
+            // for FB.getLoginStatus().
+            if (response.status === 'connected') {
+                // Logged into your app and Facebook.
+                //testAPI();
+                FB.api('/me', function (response) {
+                    alert('Hola ' + response.name);
+                });
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+                document.getElementById('status').innerHTML = 'Por favor logueate en esta app.';
+            } else {
+                // The person is not logged into Facebook, so we're not sure if
+                // they are logged into this app or not.
+                document.getElementById('status').innerHTML = 'Por favor logueate a Facebook.';
+            }
+        }, {scope: 'public_profile,email'});
+    }
+</script>
+
+<!-- END FACEBOOK SDK -->
+
+<!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+ 
+<div class="wrapper">
+    
+    
+<!-- ============================================================= TOP NAVIGATION ============================================================= -->
+
+<!-- ============================================================= TOP NAVIGATION : END ============================================================= -->      
+<!-- ============================================================= HEADER ============================================================= -->
+
+<!-- ============================================================= HEADER : END ============================================================= -->
+<!-- ========================================= BREADCRUMB ========================================= -->
+<!--<div class="animate-dropdown">
+<div id="top-mega-nav">
+    <div class="container">
+        <nav>
+            <ul class="inline">
+                <li class="dropdown le-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-list"></i> shop by department
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Computer Cases & Accessories</a></li>
+                        <li><a href="#">CPUs, Processors</a></li>
+                        <li><a href="#">Fans, Heatsinks &amp; Cooling</a></li>
+                        <li><a href="#">Graphics, Video Cards</a></li>
+                        <li><a href="#">Interface, Add-On Cards</a></li>
+                        <li><a href="#">Laptop Replacement Parts</a></li>
+                        <li><a href="#">Memory (RAM)</a></li>
+                        <li><a href="#">Motherboards</a></li>
+                        <li><a href="#">Motherboard &amp; CPU Combos</a></li>
+                        <li><a href="#">Motherboard Components</a></li>
+                    </ul>
+                </li>
+
+                <li class="breadcrumb-nav-holder"> 
+                    <ul>
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="breadcrumb-item current gray">
+                            <a href="about.html">Authentication</a>
+                        </li>
+                    </ul>
+                </li> --><!-- /.breadcrumb-nav-holder -->
+          <!--   </ul>
+        </nav>
+    </div> --><!-- /.container -->
+<!--</div>--><!-- /#top-mega-nav -->
+<!-- ========================================= BREADCRUMB : END ========================================= --><!--</div>-->     
+<!-- ========================================= MAIN ========================================= -->
+<main id="authentication" class="inner-bottom-md">
+    <div class="container">
+        <div class="row">
+             <div class="col-md-3">
+</div>
+            <div class="col-md-6">
+                <section class="section sign-in inner-right-xs">
+                    <h2 class="bordered">Ingresar</h2>
+                    <p>Hola, Bienvenido a tu cuenta</p>
+
+                    <div class="social-auth-buttons">
+                        <div class="row">
+                            
+                            @*<div  class="fb-like"  data-share="true"  data-width="450"  data-show-faces="true">
+                            </div>
+                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                            </fb:login-button>  *@
+
+                            @*<div class="col-md-6">
+                                <button class="btn-block btn-lg btn btn-facebook" onclick="javascript:FBLogIn();"><i class="fa fa-facebook"></i> Ingresar con Facebook</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn-block btn-lg btn btn-twitter"><i class="fa fa-twitter"></i> Ingresar con Twitter</button>
+                            </div>*@
+                        </div>
+                    </div>
+
+                        @using (Html.BeginForm("LogIn", "Home", new { ReturnUrl = ViewBag.ReturnUrl, UrlReferrer =  ViewBag.UrlReferrer /*Request.Url*/ }, FormMethod.Post, new { role = "form", @class = "login-form cf-style-1" }))
+                        {
+                            
+                           <!-- <form role="form" class="login-form cf-style-1">-->
+                            
+                            
+                            @Html.ValidationSummary(true/*, "El usuario o contraseña no son correctos.", new { style="color:red"}*/)
+                        <div class="field-row">
+                            <label>Usuario</label>
+                            <!--<input type="text" class="le-input">-->
+                             @Html.TextBoxFor(model => model.User, new { @class = "le-input" })
+                
+                        </div><!-- /.field-row -->
+
+                        <div class="field-row">
+                            <label>Password</label>
+                            <!--<input type="text" class="le-input">-->
+                             @Html.PasswordFor(model => model.Password, new { @class = "le-input" })
+                
+                        </div><!-- /.field-row -->
+
+                        <div class="field-row clearfix" style="display: block;">
+                            @*<span class="pull-left">
+                                <label class="content-color"><input type="checkbox" class="le-checbox auto-width inline"> <span class="bold">Recordarme</span></label>
+                            </span>*@
+                            <span class="pull-right">
+                                @*<a href="#" class="content-color bold">¿Olvidaste tu contraseña?</a>*@
+                                @Html.ActionLink("¿Olvidaste tu contraseña?", "OlvidoPassword", "Home", null, new { @class = "content-color bold" })
+                            </span>
+                            
+                        </div>
+                        <div class="field-row">
+                            <div id="status" hidden="hidden">
+                            </div>
+                        </div>
+                        <div class="buttons-holder">
+                            <button type="submit" class="le-button huge" onclick="javascript: ga('send', 'event', 'BotonLogIn', 'click', 'Inicio de sesion');">Ingresar</button>
+                        </div><!-- /.buttons-holder -->
+                    <!--</form>-->
+<!-- /.cf-style-1 -->
+                        }
+                </section><!-- /.sign-in -->
+            </div><!-- /.col -->
+<!--
+            <div class="col-md-6">
+                <section class="section register inner-left-xs">
+                    <h2 class="bordered">Create New Account</h2>
+                    <p>Create your own Media Center account</p>
+
+                    <form role="form" class="register-form cf-style-1">
+                        <div class="field-row">
+                            <label>Email</label>
+                            <input type="text" class="le-input">
+                        </div>--><!-- /.field-row -->
+
+                       <!-- <div class="buttons-holder">
+                            <button type="submit" class="le-button huge">Sign Up</button>
+                        </div>--><!-- /.buttons-holder -->
+                   <!--  </form>
+
+                    <h2 class="semi-bold">Sign up today and you'll be able to :</h2>
+
+                    <ul class="list-unstyled list-benefits">
+                        <li><i class="fa fa-check primary-color"></i> Speed your way through the checkout</li>
+                        <li><i class="fa fa-check primary-color"></i> Track your orders easily</li>
+                        <li><i class="fa fa-check primary-color"></i> Keep a record of all your purchases</li>
+                    </ul>-->
+
+               <!-- </section> --><!-- /.register -->
+
+          <!--  </div> --><!-- /.col -->
+
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</main><!-- /.authentication -->
+<!-- ========================================= MAIN : END ========================================= -->    
+<!-- ============================================================= FOOTER ============================================================= -->
+
+</div>

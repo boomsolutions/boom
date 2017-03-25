@@ -1,0 +1,81 @@
+﻿@model MvcApplication4.Models.Productos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Productos</legend>
+
+    <div class="display-label">Nombre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nombre)
+    </div>
+
+    <div class="display-label">Descripcion</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descripcion)
+    </div>
+
+    <div class="display-label">CategoriasProducto</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CategoriasProducto.DescripcionI1)
+    </div>
+
+    <div class="display-label">PrecioDiario</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrecioDiario)
+    </div>
+
+    <div class="display-label">PrecioSemanal</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrecioSemanal)
+    </div>
+
+    <div class="display-label">PrecioMensual</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PrecioMensual)
+    </div>
+
+    <div class="display-label">GarantiaDinero</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GarantiaDinero)
+    </div>
+
+    <div class="display-label">GarantiaExtra</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GarantiaExtra)
+    </div>
+
+    <div class="display-label">CondicionesUso</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CondicionesUso)
+    </div>
+
+    <div class="display-label">Usuario Dueño</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Usuario.Nombre)
+    </div>
+
+    <div class="display-label">FOTOS</div>
+    <div class="display-field">
+        @try
+        {
+            if (model => model.FotosProductos.Count() > 0)
+            {
+                foreach (var f in model.FotosProductos.ToList())
+                {
+                <img src="@f.Imagen.RutaFoto" />
+                }
+            }
+        }
+        catch { }
+        @Html.DisplayFor(model => model.FotosProductos)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.IdProducto }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

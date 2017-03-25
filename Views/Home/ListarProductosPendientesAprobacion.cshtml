@@ -1,0 +1,337 @@
+﻿@model MvcApplication4.Models.Productos
+
+@{
+    ViewBag.Title = "ListarProductosPendientesAprobacion";
+}
+
+
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    function onConfirmRechazar(link)
+    {
+        if (confirm('Estás seguro que deseas RECHAZARLO?'))
+        {
+            msj = prompt('Ingrese la razón del rechazo:');
+            if (msj == "")
+            {
+                return false;
+            }
+            else {
+                document.getElementById("msjRechazo").value = msj;
+                //link.parentElement.parentElement.remove();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function onConfirmAprobar(link)
+    {
+        if (confirm('Estás seguro que deseas APROBARLO?')) {
+            link.parentElement.parentElement.remove();
+        }
+    }
+
+    function onConfirmRotar(link) {
+        if (confirm('Estás seguro que deseas rotar la foto (sentido horario)?')) {
+            //link.parentElement.parentElement.remove();
+            return true;
+        }
+        return false;
+    }
+
+    /*
+    function MensajeRechazo() {
+        msj = prompt('Ingrese la razon del rechazo:');
+        document.getElementById("msjRechazo").value = msj;
+    }
+    */
+
+    </script>
+
+<!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+
+<div class="wrapper">
+
+    
+
+        <!-- ============================================================= TOP NAVIGATION ============================================================= -->
+<!-- ============================================================= TOP NAVIGATION : END ============================================================= -->       
+<!-- ============================================================= HEADER ============================================================= -->
+
+<!-- ============================================================= HEADER : END ============================================================= -->
+    
+@*<div class="animate-dropdown"><!-- ========================================= BREADCRUMB ========================================= -->
+<div id="top-mega-nav">
+    <div class="container">
+        <nav>
+            <ul class="inline">
+                <li class="dropdown le-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-list"></i>operaciones del usuario
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Alquileres realizados", "ViewAlquileresPorUsuario", "Home")</li>
+                        <li>@Html.ActionLink("Productos publicados", "ViewUser", "Home")</li>
+                    </ul>
+                </li>
+
+                <li class="breadcrumb-nav-holder"> 
+                    <ul>
+                        <li class="breadcrumb-item current gray">
+                            <a href="#">Productos publicados por el usuario "@User.Identity.Name"</a>
+                        </li>
+                    </ul>
+                </li><!-- /.breadcrumb-nav-holder -->
+            </ul>
+        </nav>
+    </div><!-- /.container -->
+</div><!-- /#top-mega-nav -->
+<!-- ========================================= BREADCRUMB : END ========================================= -->
+
+</div>*@     
+    <section id="cart-page">
+    <div class="container-fluid">
+        <!-- ========================================= CONTENT ========================================= -->
+        <div class="col-xs-12 col-md-12 items-holder no-margin">
+            
+            @foreach (MvcApplication4.Models.Productos p1 in (List<MvcApplication4.Models.Productos>)ViewBag.Productos)
+            {
+                <div class="row no-margin cart-item">
+                    <div class="col-xs-12 col-sm-1 no-margin">
+                        <a href="#" class="thumb-holder">
+
+                                @if (p1.FotosProductos.Count() > 0)
+                                {
+
+                                    foreach (var f2 in p1.FotosProductos.ToList())
+                                    {
+
+                                        if (String.IsNullOrEmpty(f2.Imagen.RutaFotoThumb))
+                                        {
+                                            <div class="product-image-thumb" style="background-image:url('@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))')">
+                                                           
+                                            </div>
+                                                        
+                                        }
+                                        else
+                                        {
+                                            <div class="product-image-thumb" style="background-image:url('@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))')">
+                                                            
+                                            </div>
+                                                        
+                                                
+                                        }
+                                        
+                                                 
+                                        break;
+
+                                    }
+                                }
+                                else
+                                {
+                                        <div class="product-image-thumb" style="background-image:url('@Url.Content("~/assets/images/product-small-01.jpg")')">
+                                        </div>           
+                                }
+
+                            @*@if (p1.FotosProductos.Count() > 0)
+                                    {
+                                        
+                                        foreach (var f2 in p1.FotosProductos.ToList())
+                                        {
+                                            if (String.IsNullOrEmpty(f2.Imagen.RutaFotoThumb))
+                                            {
+                                                <img class="lazy" alt="Foto publicacion" src="@Url.Content(f2.Imagen.RutaFoto.Replace("../../", ""))"  />
+                                            }
+                                            else
+                                            {
+                                                <img class="lazy" alt="Foto publicacion" src="@Url.Content(f2.Imagen.RutaFotoThumb.Replace("../../", ""))"  />
+                                                
+                                            }
+                                        
+                                            break;
+                                            
+                                        }
+                                    }
+                            else
+                            {
+                                <img class="lazy" alt="Foto publicacion blank" src="http://placehold.it/73x73" />
+                            }*@
+
+                        </a>
+                        @*@using (Html.BeginForm("RotarFoto", "Home", FormMethod.Post, new { id = "formRechazo" }))
+                        {
+                            @Html.Hidden("id",HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p1.IdProducto.ToString())))
+                                    
+                            <input class="le-button" type="submit"  value="Rotar" onclick="javascript: onConfirmRotar(this);"/>
+                            
+                            
+                        }*@
+                    </div>
+
+                    <div class="col-xs-12 col-sm-2 ">
+                        <div class="title">
+                            @Html.ActionLink(p1.Nombre,"Details/" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p1.IdProducto.ToString())),"Home")
+
+                        </div>
+                        @*<div class="brand">[MARCA]</div>*@
+                    </div> 
+
+                    <div class="col-xs-12 col-sm-2 ">
+                        @p1.Usuario.Nombre @p1.Usuario.Apellido [@p1.Usuario.User] (@p1.Usuario.Email)
+                    </div> 
+
+                    <div class="col-xs-12 col-sm-1 no-margin">
+                            <div class="price">
+                                @if(p1.PrecioHora != null)
+                                {
+                                    @p1.Moneda.Simbolo @p1.PrecioHora
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                                <br>hora
+                            </div>                        
+                        </div>
+                        <div class="col-xs-12 col-sm-1 no-margin">
+                            <!--
+                            <div class="quantity">
+                                <div class="le-quantity">
+                                    <form>
+                                        <a class="minus" href="#reduce"></a>
+                                        <input name="quantity" readonly="readonly" type="text" value="1" />
+                                        <a class="plus" href="#add"></a>
+                                    </form>
+                                </div>
+                            </div>
+                                -->
+                            <div class="price">
+                                @if (p1.PrecioDiario != null)
+                                {
+                                    @p1.Moneda.Simbolo @p1.PrecioDiario
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                                <br>dia
+                            </div>
+                        </div> 
+                        <div class="col-xs-12 col-sm-1 no-margin">
+                            <div class="price">
+                          @if (p1.PrecioSemanal != null)
+                                {
+                                    @p1.Moneda.Simbolo @p1.PrecioSemanal
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                                <br>semana
+                          
+                            </div>                        
+                        </div>
+                        <div class="col-xs-12 col-sm-1 no-margin">
+                            <div class="price">
+                                @if (p1.PrecioFinDeSemana != null)
+                                {
+                                    @p1.Moneda.Simbolo @p1.PrecioFinDeSemana
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                                <br>fin de semana
+                            </div>
+                        
+                            <!--<a class="close-btn" href="#"></a>-->
+                        </div>
+
+                        <div class="col-xs-12 col-sm-1 no-margin">
+                            <div class="price">
+                                @if (p1.PrecioMensual != null)
+                                {
+                                    @p1.Moneda.Simbolo @p1.PrecioMensual
+                                }
+                                else
+                                {
+                                    <span>-</span>
+                                }
+                                <br>mes
+                            </div>
+                        
+                            <!--<a class="close-btn" href="#"></a>-->
+                        </div>
+                        <div class="col-xs-12 col-sm-1 no-margin">
+                            @*@Html.ActionLink("Aprobar", "AprobarProducto", new { id = HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p1.IdProducto.ToString())) }, new { @class = "le-button" })*@
+                            @Ajax.ActionLink("Aprobar", "AprobarProducto", "Home", new { id = HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p1.IdProducto.ToString())) }, new AjaxOptions {  HttpMethod = "POST" }, new { onclick = "javascipt:onConfirmAprobar(this);", @class = "le-button" })
+                        </div>
+                        <div class="col-xs-12 col-sm-1 no-margin">
+                            @*using (Html.BeginForm("DeleteProductConfirmed/" + HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p1.IdProducto.ToString())), "Home", FormMethod.Post))
+                            {
+                                    <input class="le-button" type="submit"  value="Borrar" onclick="javascript: return confirm('Esta seguro?');"/>
+                               
+                            }*@
+
+                         
+                           @* @Ajax.ActionLink(
+                                    "Rechazar VIEJO",
+                                    "RechazarProducto",
+                                    "Home",
+                                    new
+                                    {
+                                        id = HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p1.IdProducto.ToString())),
+                                        msjRechazo = Html.Hidden("msjRechazo")
+                                    },
+                                    new AjaxOptions
+                                    {
+                                        HttpMethod = "POST"/*, OnSuccess = "function(){ retun document.getElementById('msjRechazo').value }"*/
+                                    }, new { onclick = "javascipt:onConfirmRechazar(this);", @class = "le-button" }
+                                )  *@
+
+
+                            
+                        
+                            @*@Html.ActionLink("Confirmar", "ConfirmarAlquiler", new { id = a1.IdAlquiler }, new { @class = "le-button" })*@
+                        
+                            @using (Html.BeginForm("RechazarProducto", "Home", FormMethod.Post, new { id = "formRechazo" }))
+                            {
+                                    @Html.Hidden("id",HttpUtility.UrlEncode(MvcApplication4.Controllers.Funciones.Encrypt(p1.IdProducto.ToString())))
+                                    @Html.Hidden("msjRechazo")
+                                <input class="le-button" type="submit"  value="Rechazar" onclick="javascript:onConfirmRechazar(this);"/>
+                                    @*<input class="le-button" type="submit"  value="Rechazar NUEVO" onclick="javascript: MensajeRechazo();"/>*@
+                            
+                            }
+                        
+                        </div>
+                </div><!-- /.cart-item -->
+
+            }
+
+            
+        </div>
+        <!-- ========================================= CONTENT : END ========================================= -->
+
+        <!-- ========================================= SIDEBAR ========================================= -->
+        <!--
+        
+
+        <!-- ========================================= SIDEBAR : END ========================================= -->
+    </div>
+</section>      
+<!-- ============================================================= FOOTER ============================================================= -->
+    </div>

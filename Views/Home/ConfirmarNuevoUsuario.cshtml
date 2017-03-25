@@ -1,0 +1,51 @@
+﻿@model MvcApplication4.Models.Usuarios
+	
+<!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+
+<div class="wrapper">
+
+    
+		<!-- ============================================================= TOP NAVIGATION ============================================================= -->
+
+<!-- ============================================================= TOP NAVIGATION : END ============================================================= -->		
+    <!-- ============================================================= HEADER ============================================================= -->
+
+<!-- ============================================================= HEADER : END ============================================================= -->		
+    <main id="faq" class="inner">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 center-block">
+				<div class="info-404 text-center">
+					<h1>@Model.Nombre, te damos la bienvenida!</h1><br>
+                    <p class="lead">Ya puedes empezar a disfrutar de <a>MejorLoAlquilo</a></p>
+                   @* <h1 class="primary-color inner-bottom-xs">Alquila</h1>
+					<p class="lead">Encuentra aquellos articulos que tanto buscabas.</p>
+					<h1 class="primary-color inner-bottom-xs">Publica</h1>
+					<p class="lead">Permite que todos encontremos tus articulos.</p>*@
+                    @*<div class="sub-form-row inner-top-xs inner-bottom-xs">
+		                <form role="form">
+		                    <input placeholder="Search our product catalog" autocomplete="off">
+		                    <button class="le-button">Go</button>
+		                </form>
+				    </div>*@
+                    <br>
+					<div class="text-center">
+						<a href="@Url.Content("~/Home/Index")" class="btn-lg huge"><i class="fa fa-home"></i> Home</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>		<!-- ============================================================= FOOTER ============================================================= -->
+    </div>

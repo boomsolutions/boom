@@ -1,0 +1,52 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>ProbarEncriptacion</title>
+</head>
+<body>
+    <div>
+      <h1>PRUEBA DE ENCRIPTACION</h1>
+
+        @using (Html.BeginForm()) {
+           @Html.Label("txtTexto", "Texto a encriptar: ")
+           @Html.TextBox("txtTexto")
+            <br/>
+        @Html.Label("txtTexto2", "Texto a desencriptar: ")
+           @Html.TextBox("txtTexto2")
+            <br />
+            @Html.Label("txtRuta", "Ruta de foto: ")
+            @Html.TextBox("txtRuta")
+
+            <input type="submit" value="Encriptar" />
+        }
+        <br/>
+        <br/>
+        TEXTO ENCRIPTADO 1: @ViewBag.TextoEncriptado
+        <br/>
+        <br/>
+        TEXTO ENCRIPTADO 2: @ViewBag.TextoEncriptado2
+        <br/>
+        <br/>
+        TEXTO DESENCRIPTADO: @ViewBag.TextoDesencriptado
+
+        <br/>
+        <br/>
+        @ViewBag.Ruta
+        <br/>
+        @ViewBag.ErrorRuta1
+        <br/>
+        <br/>
+        @ViewBag.Ruta2
+        <br/>
+        @ViewBag.ErrorRuta2
+    </div>
+    <br />
+    <br />
+    
+</body>
+</html>

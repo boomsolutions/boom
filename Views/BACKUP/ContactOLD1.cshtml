@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "Contacto";
+    //Layout = null;
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/MvcFoolproofJQueryValidation.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/mvcfoolproof.unobtrusive.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/MvcFoolproofValidation.js")" type="text/javascript"></script>
+
+<script src="@Url.Content("~/assets/js/trumbowyg.min.js")"></script>
+<link rel="stylesheet" href="@Url.Content("~/assets/css/trumbowyg.min.css")">
+<script src="@Url.Content("~/assets/js//plugins/upload/trumbowyg.upload.js")"></script>
+<script src="@Url.Content("~/assets/js//plugins/base64/trumbowyg.base64.js")"></script>
+<script src="@Url.Content("~/assets/js//plugins/colors/trumbowyg.colors.js")"></script>
+
+      
+<script   type="text/javascript">
+
+    function somemethod(data)
+    {
+        alert(data.p1);
+        alert(data.p2);
+    }
+
+    
+    
+</script>
+
+<script type="text/javascript">
+   //document.body.onload = alert("PAGINA CONTACTO");
+   document.body.onload = ga('send', 'event', 'load', 'OnLoadContact', 'Entro a la seccion Contacto'); //alert("OnLoad HOME.");
+</script>
+
+<div class="wrapper">
+        <!-- ============================================================= TOP NAVIGATION ============================================================= -->
+<!-- ============================================================= TOP NAVIGATION : END ============================================================= -->       <!-- ============================================================= HEADER ============================================================= -->
+
+<!-- ============================================================= HEADER : END ============================================================= -->       <!-- ========================================= MAIN ========================================= -->
+<main id="contact-us" class="inner-bottom-md">
+    @*<section class="google-map map-holder">
+        <div id="map" class="map center"></div>
+        <form role="form" class="get-direction">
+            <div class="container">
+                <div class="row">
+                    <div class="center-block col-lg-10">
+                        <div class="input-group">
+                            <input type="text" class="le-input input-lg form-control" placeholder="Enter Your Starting Point">
+                            <span class="input-group-btn">
+                                <button class="btn btn-lg le-button" type="button">Get Directions</button>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </div>
+        </form>
+    </section>*@
+
+    <div class="container">
+
+        <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TWFS7T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+    '//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-TWFS7T');</script>
+    <!-- End Google Tag Manager -->
+
+        <div class="row">
+            
+            <div class="col-md-12">
+                <section class="section leave-a-message">
+                    <h2 class="bordered">Contáctanos</h2>
+                   @* <p>Cualquier duda o consulta que tengas puedes escribirnos.</p>
+                    *@
+                    @*<form id="contact-form" class="contact-form cf-style-1 inner-top-xs" method="post" action="~/Home/EnviarMailContacto" >*@
+
+                    @using (Html.BeginForm("EnviarMailContacto", "Home",  FormMethod.Post,  new { @class="contact-form cf-style-1 inner-top-xs" }))
+                    {
+                        @Html.ValidationSummary(true)
+                            
+                        <div class="row field-row">
+                            <div class="col-xs-12 col-sm-6">
+                                <label for="nombre">Tu nombre</label>
+                                <input class="le-input" data-val="true" data-val-required="Nombre requerido." id="nombre" name="nombre" placeholder="Nombre">
+                                <span class="field-validation-valid" data-valmsg-for="nombre" data-valmsg-replace="true"></span>
+
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <label>Tu email</label>
+                                <input class="le-input" data-val="true" data-val-required="Email requerido."  id="email" name="email" placeholder="Email">
+                                <span class="field-validation-valid" data-valmsg-for="email" data-valmsg-replace="true"></span>
+                            </div>
+                        </div><!-- /.field-row -->
+                        
+                        <div class="field-row">
+                            <label>Asunto</label>
+                            <input type="text" class="le-input" data-val="true" data-val-required="Asunto requerido."  id="asunto" name="asunto" placeholder="Asunto">
+                            <span class="field-validation-valid" data-valmsg-for="asunto" data-valmsg-replace="true"></span>
+                        </div><!-- /.field-row -->
+
+                        <div class="field-row">
+                            <label>Tu mensaje</label>
+                            <textarea rows="8" class="le-input" data-val="true" data-val-required="Mensaje requerido." id="mensaje" name="mensaje" placeholder="Mensaje"></textarea>
+                            <span class="field-validation-valid" data-valmsg-for="mensaje" data-valmsg-replace="true"></span>
+                        </div><!-- /.field-row -->
+
+                        <div class="buttons-holder">
+                            <button type="submit" class="le-button huge">Enviar mensaje</button>
+                        </div><!-- /.buttons-holder -->
+                    }
+                    <!-- /.contact-form -->
+                    @*@Ajax.ActionLink("PRUEBAJSON", "Contact", "Home", new AjaxOptions { OnSuccess = "somemethod"  })*@
+                   
+                </section><!-- /.leave-a-message -->
+            </div><!-- /.col -->
+
+            @*<div class="col-md-4">
+                <section class="our-store section inner-left-xs">
+                    <h2 class="bordered">Our Store</h2>
+                    <address>
+                        17 Princess Road <br/>
+                        London, Greater London <br/>
+                        NW1 8JR, UK
+                    </address>
+                    <h3>Hours of Operation</h3>
+                    <ul class="list-unstyled operation-hours">
+                        <li class="clearfix">
+                            <span class="day">Monday:</span>
+                            <span class="pull-right hours">12-6 PM</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="day">Tuesday:</span>
+                            <span class="pull-right hours">12-6 PM</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="day">Wednesday:</span>
+                            <span class="pull-right hours">12-6 PM</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="day">Thursday:</span>
+                            <span class="pull-right hours">12-6 PM</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="day">Friday:</span>
+                            <span class="pull-right hours">12-6 PM</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="day">Saturday:</span>
+                            <span class="pull-right hours">12-6 PM</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="day">Sunday</span>
+                            <span class="pull-right hours">Closed</span>
+                        </li>
+                    </ul>
+                    <h3>Career</h3>
+                    
+                </section><!-- /.our-store -->
+            </div>*@<!-- /.col -->
+
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</main>
+<!-- ========================================= MAIN : END ========================================= -->     
+<!-- ============================================================= FOOTER ============================================================= -->
+</div>
+
+
